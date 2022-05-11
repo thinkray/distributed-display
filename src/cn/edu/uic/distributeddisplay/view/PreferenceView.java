@@ -3,7 +3,7 @@ package cn.edu.uic.distributeddisplay.view;
 import cn.edu.uic.distributeddisplay.util.LangManger;
 import cn.edu.uic.distributeddisplay.util.ViewsManager;
 import cn.edu.uic.distributeddisplay.util.*;
-import cn.edu.uic.distributeddisplay.view.panel.PreferenceInfoPanel;
+import cn.edu.uic.distributeddisplay.view.panel.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,9 +43,18 @@ public class PreferenceView extends JFrame {
 
         setLayout(new BorderLayout());
 
+        JPanel jPanel = new JPanel();
+        jPanel.setLayout(new BoxLayout(jPanel,BoxLayout.PAGE_AXIS));
+        jPanel.add(new ServerConfigPanel());
+        jPanel.add(new NodeListPanel());
+        add(jPanel, BorderLayout.LINE_START);
+//        add(nodeConnectionConfigPanel, BorderLayout.LINE_START);
+
         // Profile Panel
         profilePanel = new PreferenceInfoPanel();
         add(profilePanel, BorderLayout.CENTER);
+
+        add(new ConsolePanel(), BorderLayout.SOUTH);
 
         // Prepare the window for display
         setSize(800, 600);

@@ -19,6 +19,7 @@ import java.util.Hashtable;
 public class PreferenceInfoPanel extends JPanel {
 
     private Container centerPanel;
+    private JScrollPane centerPanelScrollPane;
     private JPanel bottomPanel;
 
     private JTextField profileNameTextField;
@@ -225,7 +226,8 @@ public class PreferenceInfoPanel extends JPanel {
         CommonUtils.gbcNewLine();
         centerPanel.add(new Label(" "), CommonUtils.getGridBagConstraints(1, 1, 1, 0.2, 3, DefaultConst.INSETS_RIGHT));
 
-        add(centerPanel, BorderLayout.CENTER);
+        centerPanelScrollPane = new JScrollPane(centerPanel);
+        add(centerPanelScrollPane, BorderLayout.CENTER);
     }
 
     private void initBottomPanel() {
