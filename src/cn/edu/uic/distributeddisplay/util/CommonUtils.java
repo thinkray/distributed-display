@@ -12,7 +12,6 @@
 package cn.edu.uic.distributeddisplay.util;
 
 import com.google.common.collect.HashBiMap;
-
 import java.awt.*;
 import java.io.File;
 
@@ -36,8 +35,12 @@ public class CommonUtils {
         gbc.gridx = 0;
     }
 
-    public static int getColorFromIndex(Color color) throws NullPointerException{
-        return colorHashMap.get(color);
+    public static int getColorFromIndex(Color color) throws NullPointerException {
+        try {
+            return colorHashMap.get(color);
+        } catch (NullPointerException e) {
+            return -1;
+        }
     }
 
     public static Color getIndexFromColor(int index) throws NullPointerException{
@@ -83,7 +86,7 @@ public class CommonUtils {
                 return true;  // Indicating success
             }
         }catch(Exception e) {
-            //Log.logError(e.getMessage());
+            Log.logError(e.getMessage());
         }
         return false;
     }

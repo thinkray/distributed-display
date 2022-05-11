@@ -12,9 +12,9 @@ import java.awt.*;
 
 public class DefaultConst {
 
-    public static final String DEFAULT_NAME = "default_name";
+    public static final String DEFAULT_NAME = LangManger.get("default_name");
 
-    public static final String DEFAULT_TEXT = "default_text";
+    public static final String DEFAULT_TEXT = LangManger.get("default_text");
 
     public static final int DEFAULT_LETTER_SPACING = -20;
 
