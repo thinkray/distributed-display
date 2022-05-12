@@ -1,8 +1,8 @@
 /**
  * Some utilities used by the program
- *   1). Convert a given Color object to the index of colorComboBox in PanelPreferenceInfo
- *   2). Convert a given index in the colorComboBox in PanelPreferenceInfo to a Color object
- *   3). Control the grid bag constrains object in the PanelPreferenceInfo
+ *   1). Convert a given Color object to the index of colorComboBox in the preference panel
+ *   2). Convert a given index in the colorComboBox in the preference panel to a Color object
+ *   3). Control the grid bag constrains object in the preference panel
  *   4). Get the screenshot of a given window (not used)
  *
  * @author Bohui WU

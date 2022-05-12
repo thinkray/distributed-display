@@ -9,14 +9,13 @@ package cn.edu.uic.distributeddisplay.view.panel;
 
 import cn.edu.uic.distributeddisplay.util.CommonUtils;
 import cn.edu.uic.distributeddisplay.util.LangManger;
-import cn.edu.uic.distributeddisplay.controller.*;
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Hashtable;
 
-public class PreferenceInfoPanel extends JPanel {
+public class DisplayConfigPanel extends JPanel {
 
     private Container centerPanel;
     private JScrollPane centerPanelScrollPane;
@@ -46,7 +45,7 @@ public class PreferenceInfoPanel extends JPanel {
     JButton cancelButton;
 
 
-    public PreferenceInfoPanel() {
+    public DisplayConfigPanel() {
         // Initialize center panel
         initCenterPanelComponents();
         initCenterPanelLayout();

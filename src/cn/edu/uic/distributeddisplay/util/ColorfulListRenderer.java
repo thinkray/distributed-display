@@ -1,5 +1,5 @@
 /**
- * The renderer for colorComboBox in the panel PanelPreference
+ * The renderer for colorComboBox in the preference panel
  *
  * @author Bohui WU
  * @since 12/22/2019

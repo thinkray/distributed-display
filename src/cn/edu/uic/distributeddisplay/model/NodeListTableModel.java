@@ -1,6 +1,10 @@
 package cn.edu.uic.distributeddisplay.model;
 
+import cn.edu.uic.distributeddisplay.util.ProfileTableRow;
+
 import javax.swing.table.DefaultTableModel;
+import java.util.List;
+import java.util.Vector;
 
 public class NodeListTableModel extends DefaultTableModel {
     public NodeListTableModel(Object[][] data, String[] columnNames) {
@@ -20,6 +24,13 @@ public class NodeListTableModel extends DefaultTableModel {
             case 1:
             default:
                 return Boolean.class;
+        }
+    }
+
+    public void setDataVector(List<ProfileTableRow> profileTableRows) {
+        setDataVector(new Vector(), super.columnIdentifiers);
+        for (int i = 0; i < profileTableRows.size(); i++) {
+            addRow(profileTableRows.get(i).toObjectArray());
         }
     }
 }

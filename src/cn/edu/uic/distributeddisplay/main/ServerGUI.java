@@ -6,7 +6,7 @@
  */
 package cn.edu.uic.distributeddisplay.main;
 
-import cn.edu.uic.distributeddisplay.controller.PreferenceController;
+import cn.edu.uic.distributeddisplay.controller.ServerDashboardController;
 import cn.edu.uic.distributeddisplay.util.LangManger;
 import cn.edu.uic.distributeddisplay.util.Log;
 import cn.edu.uic.distributeddisplay.util.ConfigManager;
@@ -39,8 +39,8 @@ public class ServerGUI {
             ConfigManager.initConfigManager();
             LangManger.initLangManager();
 
-            // Start PreferenceView
-            new PreferenceController();
+            // Start Dashboard
+            new ServerDashboardController();
         });
     }
 }

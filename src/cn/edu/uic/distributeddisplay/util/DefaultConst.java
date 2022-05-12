@@ -2,8 +2,8 @@
  * The DefaultConst class stores all the default values for the program
  *
  * @author Bohui WU
- * @since 12/28/2019
  * @version 1.0
+ * @since 12/28/2019
  */
 
 package cn.edu.uic.distributeddisplay.util;
@@ -32,10 +32,10 @@ public class DefaultConst {
 
     public static final int DEFAULT_FIT_STYLE = 0;
 
-    public static final Insets INSETS_LEFT = new Insets(0,25,10,0);
+    public static final Insets INSETS_LEFT = new Insets(0, 25, 10, 0);
 
-    public static final Insets INSETS_CENTER = new Insets(0,0,0,0);
+    public static final Insets INSETS_CENTER = new Insets(0, 0, 0, 0);
 
-    public static final Insets INSETS_RIGHT = new Insets(0,0,0,25);
+    public static final Insets INSETS_RIGHT = new Insets(0, 0, 0, 25);
 
 }

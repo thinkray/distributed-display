@@ -43,7 +43,7 @@ public class ServerConfigPanel extends JPanel {
     }
 
     private void initCenterPanelLayout() {
-        setBorder(BorderFactory.createTitledBorder("Config"));
+        setBorder(BorderFactory.createTitledBorder("Server Config"));
         setLayout(new BorderLayout());
 
         Container centerPanel = new Container();
@@ -64,7 +64,7 @@ public class ServerConfigPanel extends JPanel {
     private void initBottomPanel() {
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        listenButton = new JButton("Listen");
+        listenButton = new JButton("Start");
         bottomPanel.add(listenButton);
 
         add(bottomPanel, BorderLayout.SOUTH);

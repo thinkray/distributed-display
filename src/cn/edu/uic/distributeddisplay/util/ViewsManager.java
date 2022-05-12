@@ -9,12 +9,12 @@
 package cn.edu.uic.distributeddisplay.util;
 
 import cn.edu.uic.distributeddisplay.view.DisplayView;
-import cn.edu.uic.distributeddisplay.view.PreferenceView;
+import cn.edu.uic.distributeddisplay.view.ServerMainWindowView;
 
 public class ViewsManager {
 
     private static DisplayView displayView;
-    private static PreferenceView preferenceView;
+    private static ServerMainWindowView serverMainWindowView;
 
     public static DisplayView getDisplayView() {
         return displayView;
@@ -28,14 +28,14 @@ public class ViewsManager {
         ViewsManager.displayView = displayView;
     }
 
-    public static PreferenceView getPreferenceView() {
-        return preferenceView;
+    public static ServerMainWindowView getMainWindowView() {
+        return serverMainWindowView;
     }
 
-    public static void setPreferenceView(PreferenceView preferenceView) {
+    public static void setMainWindowView(ServerMainWindowView serverMainWindowView) {
         // Not allowed to change the reference once it is set
-        if (preferenceView != null) {
-            ViewsManager.preferenceView = preferenceView;
+        if (serverMainWindowView != null) {
+            ViewsManager.serverMainWindowView = serverMainWindowView;
         }
     }
 

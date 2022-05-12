@@ -78,7 +78,7 @@
 
 # Files
     ├── TextDisplay.jar
-    ├── profile.bin
+    ├── serverSideProfile.bin
     ├── config.json
     ├── log.txt
     │   ├── lang
@@ -92,7 +92,7 @@
 |名稱|描述|
 |-|-|
 | TextDisplay.jar |程式本體，可執行檔|
-| profile.bin |您當前的個人資料|
+| serverSideProfile.bin |您當前的個人資料|
 | config.json |程式的配置|
 | log.txt |運行時日誌|
 | lang（資料夾）|存儲所有語言包的資料夾|

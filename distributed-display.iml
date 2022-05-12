@@ -12,5 +12,6 @@
     <orderEntry type="library" name="darcula" level="project" />
     <orderEntry type="library" name="guava-31.1-jre" level="project" />
     <orderEntry type="library" name="json-20141113" level="project" />
+    <orderEntry type="library" name="commons-text-1.9" level="project" />
   </component>
 </module>

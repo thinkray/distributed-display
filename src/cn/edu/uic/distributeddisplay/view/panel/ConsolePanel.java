@@ -19,10 +19,14 @@ public class ConsolePanel extends JPanel {
         setMaximumSize(new Dimension(-1, 125));
     }
 
+    public JEditorPane getConsoleEditorPane() {
+        return consoleEditorPane;
+    }
+
     private void initCenterPanelComponents() {
         consoleEditorPane = new JEditorPane();
         consoleEditorPane.setContentType("text/html");
-        consoleEditorPane.setText("<div>Program started.</div>");
+        consoleEditorPane.setText("<html><body><div id=\"container\"><div>Ready</div></div></body></html>");
 
         consoleScrollPane = new JScrollPane(consoleEditorPane);
     }
@@ -31,7 +35,7 @@ public class ConsolePanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder("Console"));
         setLayout(new BorderLayout());
 
-        add(consoleScrollPane,BorderLayout.CENTER);
+        add(consoleScrollPane, BorderLayout.CENTER);
     }
 
 //    private void initBottomPanel() {

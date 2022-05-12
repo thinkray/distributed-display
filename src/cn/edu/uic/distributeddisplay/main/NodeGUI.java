@@ -29,7 +29,7 @@ public class NodeGUI {
 //            ConfigManager.initConfigManager();
 //            LangManger.initLangManager();
 
-            // Start PreferenceView
+            // Start GUI
             new NodeGUIController();
         });
     }

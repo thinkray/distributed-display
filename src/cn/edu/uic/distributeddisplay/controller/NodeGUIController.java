@@ -11,6 +11,10 @@ import javax.swing.border.LineBorder;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class NodeGUIController {
 
@@ -33,8 +37,21 @@ public class NodeGUIController {
             v.getConnectButton().setEnabled(false);
             v.getStatusLabel().setText("Connecting...");
 
-            JOptionPane.showMessageDialog(v, "Cannot connect to the server",
-                    "Error", JOptionPane.ERROR_MESSAGE);
+
+            try {
+                String name = "rmi://" + v.getServerAddressTextField().getText() + "/DisplayServer";
+                RMIWorkerInterface rmiWorkerInterface = (RMIWorkerInterface) Naming.lookup(name);
+                System.out.println(rmiWorkerInterface.checkIn(v.getMachineNameTextField().getText()));
+            } catch (NotBoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (MalformedURLException ex) {
+                throw new RuntimeException(ex);
+            } catch (RemoteException ex) {
+                throw new RuntimeException(ex);
+            }
+
+//            JOptionPane.showMessageDialog(v, "Cannot connect to the server",
+//                    "Error", JOptionPane.ERROR_MESSAGE);
             v.getStatusLabel().setText(" ");
             v.getConnectButton().setEnabled(true);
         });

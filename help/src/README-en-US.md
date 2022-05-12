@@ -28,9 +28,9 @@ There are two ways you can do to get the program running:
 
 # Getting Started
 
-* Upon your first run, the program will be promptd with a message indicating that no profile is found, and a new one will be generated, just click "OK" to continue
-* Introduction to the fields of the profile's parameters
-    1. Profile Name: the name of the profile. It doesn't really matter at this point of the development. ;)
+* Upon your first run, the program will be promptd with a message indicating that no serverSideProfile is found, and a new one will be generated, just click "OK" to continue
+* Introduction to the fields of the serverSideProfile's parameters
+    1. Profile Name: the name of the serverSideProfile. It doesn't really matter at this point of the development. ;)
     1. Font: The font of the text to be displayed.
     1. Size: The size of the text to be displayed.
     1. Style: The style of the text to be displayed. You may select "Plain," "Bold," or "Italic" according to your preference.
@@ -47,12 +47,12 @@ There are two ways you can do to get the program running:
         * Tile: The image will be displayed will any resizing or stretching.
 * Introduction to the bottom panels
     * Cancel: Exit the program or return back to the display window (when you've clicked on the "confirm" button before).
-    * Preview: Preview the profile (the profile is not saved).
+    * Preview: Preview the serverSideProfile (the serverSideProfile is not saved).
     * Apply: The current settings will be saved.
     * Confirm: Save the current settings and enter display mode
 * Introduction to the menus
     * File
-        * Save: Save the current profile
+        * Save: Save the current serverSideProfile
         * Exit: Exit the program
     * Language
         * English: Set your language to English
@@ -76,7 +76,7 @@ There are two ways you can do to get the program running:
 
 # Files
     ├── TextDisplay.jar
-    ├── profile.bin
+    ├── serverSideProfile.bin
     ├── config.json
     ├── log.txt
     │   ├── lang
@@ -90,7 +90,7 @@ There are two ways you can do to get the program running:
 |Name|Description|
 |-|-|
 |TextDisplay.jar|The executable of the program|
-|profile.bin|Your current profile|
+|serverSideProfile.bin|Your current serverSideProfile|
 |config.json|The configurations for the program|
 |log.txt|The log for the program. The journal for the runtime|
 |lang (folder)|The folder that stores all the language packs|
@@ -107,7 +107,7 @@ To uninstall the program, simply remove the entire folder, and you are good to g
 ## 1.1-Release
 1. Added support for adjusting vertical spacing, inverting vertical text, change the image fit method
 1. Applied color theme Dracula
-1. Performance improved when previewing the profile
+1. Performance improved when previewing the serverSideProfile
 1. Bug fixes
 
 ## 1.0-Release

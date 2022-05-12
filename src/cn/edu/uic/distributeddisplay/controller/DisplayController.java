@@ -7,8 +7,8 @@
 
 package cn.edu.uic.distributeddisplay.controller;
 
+import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
 import cn.edu.uic.distributeddisplay.util.ViewsManager;
-import cn.edu.uic.distributeddisplay.profile.Profile;
 import cn.edu.uic.distributeddisplay.model.DisplayModel;
 import cn.edu.uic.distributeddisplay.view.DisplayView;
 
@@ -23,8 +23,8 @@ public class DisplayController {
     private DisplayModel m;
     private DisplayView v;
 
-    public DisplayController(Profile profile, boolean previewMode) {
-        this.m = new DisplayModel(profile);
+    public DisplayController(ServerSideProfile serverSideProfile, boolean previewMode) {
+        this.m = new DisplayModel(serverSideProfile);
         this.m.setPreviewMode(previewMode);
         this.v = new DisplayView();
         initController();
@@ -55,7 +55,7 @@ public class DisplayController {
             });
 
             // Define menu item events
-            v.getPreferenceItem().addActionListener(e -> closeView());
+            v.getMainWindowItem().addActionListener(e -> closeView());
             v.getExitItem().addActionListener(e -> System.exit(0));
         }
 
@@ -138,11 +138,11 @@ public class DisplayController {
 
     private void closeView() {
         v.setVisible(false);
-        ViewsManager.getPreferenceView().setVisible(true);
+        ViewsManager.getMainWindowView().setVisible(true);
         v.dispose();
     }
 
-    public Profile getProfile() {
+    public ServerSideProfile getProfile() {
         return m.getProfile();
     }
 

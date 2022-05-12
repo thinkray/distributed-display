@@ -12,7 +12,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.Serializable;
 
-public class Profile implements Serializable {
+public class NodeSideProfile implements Serializable {
 
 //    static final long serialVersionUID = 10L;
 
@@ -30,8 +30,8 @@ public class Profile implements Serializable {
     private int imgFitStyle; // 0: Fit, 1: Stretch, 2: Tile
     private boolean active;
 
-    public Profile(String name, String text, Font font, Color color, int letterSpacing, int margin, int vOffset, int hOffset,
-                   File backgroundImageDir, int textOrientation, int imgFitStyle, boolean active) {
+    public NodeSideProfile(String name, String text, Font font, Color color, int letterSpacing, int margin, int vOffset, int hOffset,
+                           File backgroundImageDir, int textOrientation, int imgFitStyle, boolean active) {
         // Initialize instance variables
         this.name = name;
         this.text = text;
@@ -47,17 +47,17 @@ public class Profile implements Serializable {
         this.active = active;
     }
 
-    public Profile() {
+    public NodeSideProfile() {
         this(DefaultConst.DEFAULT_NAME, DefaultConst.DEFAULT_TEXT, DefaultConst.DEFAULT_FONT,
                 DefaultConst.DEFAULT_COLOR, DefaultConst.DEFAULT_LETTER_SPACING, DefaultConst.DEFAULT_MARGIN,
                 DefaultConst.DEFAULT_V_OFFSET, DefaultConst.DEFAULT_H_OFFSET, null,
                 DefaultConst.DEFAULT_TEXT_ORIENTATION, DefaultConst.DEFAULT_FIT_STYLE, false);
     }
 
-    public Profile(Profile profile) {
-        this(profile.getName(), profile.getText(), profile.getFont(), profile.getColor(), profile.getLetterSpacing(),
-                profile.getMargin(), profile.getvOffset(), profile.gethOffset(), profile.getBackgroundImageDir(),
-                profile.textOrientation, profile.getImgFitStyle(), profile.isActive());
+    public NodeSideProfile(NodeSideProfile serverSideProfile) {
+        this(serverSideProfile.getName(), serverSideProfile.getText(), serverSideProfile.getFont(), serverSideProfile.getColor(), serverSideProfile.getLetterSpacing(),
+                serverSideProfile.getMargin(), serverSideProfile.getvOffset(), serverSideProfile.gethOffset(), serverSideProfile.getBackgroundImageDir(),
+                serverSideProfile.textOrientation, serverSideProfile.getImgFitStyle(), serverSideProfile.isActive());
     }
 
     public boolean isHorizontal() {

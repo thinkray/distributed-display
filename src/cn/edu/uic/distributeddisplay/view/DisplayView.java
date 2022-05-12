@@ -36,7 +36,7 @@ public class DisplayView extends JFrame {
         return rightClickMenu;
     }
 
-    public JMenuItem getPreferenceItem() {
+    public JMenuItem getMainWindowItem() {
         return preferenceItem;
     }
 

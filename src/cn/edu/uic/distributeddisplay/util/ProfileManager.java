@@ -6,18 +6,35 @@
  */
 package cn.edu.uic.distributeddisplay.util;
 
-import cn.edu.uic.distributeddisplay.profile.Profile;
+import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ProfileManager {
 
-    private static Profile profile;
+    private static ConcurrentHashMap<String, ProfileRow> profileMap = new ConcurrentHashMap<>();
 
-    public static Profile getProfile() {
-        return profile;
+    public static ProfileRow getProfileRow(String nodeName) {
+        return profileMap.get(nodeName);
     }
 
-    public static void setProfile(Profile profile) {
-        ProfileManager.profile = profile;
+    public static List getProfileTableRows() {
+        List result = new ArrayList<ProfileTableRow>();
+        for (Map.Entry<String, ProfileRow> row : profileMap.entrySet()) {
+            result.add(new ProfileTableRow(row.getKey(), row.getValue().isOnline));
+        }
+
+        return result;
     }
 
+    public static void putProfileRow(String nodeName, ProfileRow profileRow) {
+        profileMap.put(nodeName, profileRow);
+    }
+
+    public static int getProfileSize() {
+        return profileMap.size();
+    }
 }
