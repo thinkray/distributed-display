@@ -32,7 +32,7 @@ final public class DefaultConst {
 
     public static final int DEFAULT_V_OFFSET = 0;
 
-    public static final Font DEFAULT_FONT = new Font("Calibri", Font.PLAIN, 12);
+    public static final Font DEFAULT_FONT = new Font("Calibri", Font.PLAIN, 72);
 
     public static final Color DEFAULT_COLOR = Color.BLACK;
 
