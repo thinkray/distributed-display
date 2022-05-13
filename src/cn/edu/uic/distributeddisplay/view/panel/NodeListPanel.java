@@ -2,6 +2,8 @@ package cn.edu.uic.distributeddisplay.view.panel;
 
 import cn.edu.uic.distributeddisplay.model.NodeListTableModel;
 import cn.edu.uic.distributeddisplay.util.ProfileManager;
+import cn.edu.uic.distributeddisplay.util.ProfileRow;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,9 +55,24 @@ public class NodeListPanel extends JPanel {
                 try {
                     while (true) {
                         if (ProfileManager.getProfileSize() != nodeListTable.getRowCount()) {
-                            nodeListTable.clearSelection();
                             nodeListTableModel.setDataVector(ProfileManager.getProfileTableRows());
+                        } else {
+                            Boolean refreshFlag = false;
+                            for (int i = 0; i < nodeListTableModel.getRowCount(); i++) {
+                                String currentNodeName = (String) nodeListTableModel.getValueAt(i, 0);
+                                ProfileRow profileRowFromProfileManager = ProfileManager.getProfileRow(currentNodeName);
+                                if (profileRowFromProfileManager == null) {
+                                    refreshFlag = true;
+                                    break;
+                                } else {
+                                    nodeListTableModel.setValueAt(profileRowFromProfileManager.isOnline, i, 1);
+                                }
+                            }
+                            if (refreshFlag) {
+                                nodeListTableModel.setDataVector(ProfileManager.getProfileTableRows());
+                            }
                         }
+
                         Thread.sleep(100);
                     }
                 } catch (InterruptedException e) {

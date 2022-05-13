@@ -19,7 +19,8 @@ public class RMIWorkerController extends UnicastRemoteObject implements RMIWorke
     }
 
     public String checkIn(String nodeName) throws RemoteException {
-        if (ProfileManager.getProfileRow(nodeName) == null) {
+        ProfileRow currentProfileRow = ProfileManager.getProfileRow(nodeName);
+        if ((currentProfileRow == null) || (currentProfileRow.isOnline == false)) {
             ProfileRow profileRow = new ProfileRow(new ServerSideProfile(), true, new Date(), UUID.randomUUID().toString());
             ProfileManager.putProfileRow(nodeName, profileRow);
             return profileRow.uuid;

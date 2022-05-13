@@ -8,7 +8,9 @@ package cn.edu.uic.distributeddisplay.util;
 
 import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
 
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,6 +18,34 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ProfileManager {
 
     private static ConcurrentHashMap<String, ProfileRow> profileMap = new ConcurrentHashMap<>();
+    private static Thread onlineChecker;
+
+    public static void startOnlineChecker() {
+        onlineChecker = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        Date currentDate = new Date();
+                        for (Map.Entry<String, ProfileRow> row : profileMap.entrySet()) {
+                            row.getValue().isOnline = Duration.between(row.getValue().lastSeen.toInstant(), currentDate.toInstant()).toMillis() < 5000;
+                        }
+                        Thread.sleep(100);
+                    }
+                } catch (InterruptedException e) {
+                    return;
+                }
+            }
+        };
+        onlineChecker.start();
+    }
+
+    public static void stopOnlineChecker() {
+        onlineChecker.interrupt();
+        for (Map.Entry<String, ProfileRow> row : profileMap.entrySet()) {
+            row.getValue().isOnline = false;
+        }
+    }
 
     public static ProfileRow getProfileRow(String nodeName) {
         return profileMap.get(nodeName);
