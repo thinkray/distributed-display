@@ -20,7 +20,12 @@ public class RMIServerWorkerController extends UnicastRemoteObject implements RM
     }
 
     public String checkIn(String nodeName) throws RemoteException {
+        if (nodeName.length() == 0) {
+            return null;
+        }
+
         ProfileRow currentProfileRow = ProfileManager.getProfileRow(nodeName);
+
         if (currentProfileRow == null) {
             ProfileRow profileRow = new ProfileRow(new ServerSideProfile(), true, new Date(),
                     UUID.randomUUID().toString());
@@ -29,6 +34,7 @@ public class RMIServerWorkerController extends UnicastRemoteObject implements RM
         } else if (!currentProfileRow.isOnline) {
             currentProfileRow.lastSeen = new Date();
             currentProfileRow.uuid = UUID.randomUUID().toString();
+            currentProfileRow.newConfigAvailable = true;
             return currentProfileRow.uuid;
         } else {
             return null;
