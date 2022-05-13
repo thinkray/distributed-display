@@ -1,31 +1,35 @@
 package cn.edu.uic.distributeddisplay.controller;
 
-import cn.edu.uic.distributeddisplay.profile.NodeSideProfile;
 import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
+import cn.edu.uic.distributeddisplay.util.DefaultConst;
 import cn.edu.uic.distributeddisplay.util.ProfileManager;
 import cn.edu.uic.distributeddisplay.util.ProfileRow;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
-public class RMIWorkerController extends UnicastRemoteObject implements RMIWorkerInterface {
+public class RMIServerWorkerController extends UnicastRemoteObject implements RMIServerWorkerInterface {
     private RMIServerController rmiServerController;
 
-    public RMIWorkerController(RMIServerController rmiServerController) throws RemoteException {
+    public RMIServerWorkerController(RMIServerController rmiServerController) throws RemoteException {
         this.rmiServerController = rmiServerController;
     }
 
     public String checkIn(String nodeName) throws RemoteException {
         ProfileRow currentProfileRow = ProfileManager.getProfileRow(nodeName);
-        if ((currentProfileRow == null) || (currentProfileRow.isOnline == false)) {
+        if (currentProfileRow == null) {
             ProfileRow profileRow = new ProfileRow(new ServerSideProfile(), true, new Date(), UUID.randomUUID().toString());
             ProfileManager.putProfileRow(nodeName, profileRow);
             return profileRow.uuid;
+        } else if (!currentProfileRow.isOnline) {
+            currentProfileRow.lastSeen = new Date();
+            currentProfileRow.uuid = UUID.randomUUID().toString();
+            return currentProfileRow.uuid;
         } else {
-            return "";
+            return null;
         }
     }
 
@@ -33,13 +37,23 @@ public class RMIWorkerController extends UnicastRemoteObject implements RMIWorke
         return true;
     }
 
-//    public NodeSideProfile getConfig(String sessionUUID) throws RemoteException {
+    //    public NodeSideProfile getConfig(String sessionUUID) throws RemoteException {
 //
 //    }
 //
-//    public int heartbeat(String sessionUUID) throws RemoteException {
-//
-//    }
+    public int heartbeat(String nodeName, String sessionUUID) throws RemoteException {
+        ProfileRow currentProfileRow = ProfileManager.getProfileRow(nodeName);
+        if ((currentProfileRow == null) || (!currentProfileRow.isOnline) || (!Objects.equals(currentProfileRow.uuid, sessionUUID))) {
+            return DefaultConst.INVALID_SESSION;
+        }
+
+        currentProfileRow.lastSeen = new Date();
+        if (currentProfileRow.newConfigAvailable) {
+            return DefaultConst.SESSION_RENEWED_NEW_CONFIG_AVAILABLE;
+        }
+
+        return DefaultConst.SESSION_RENEWED_NO_NEW_CONFIG;
+    }
 
 //    public int update(int new_number) throws RemoteException {
 //        synchronized (this) {

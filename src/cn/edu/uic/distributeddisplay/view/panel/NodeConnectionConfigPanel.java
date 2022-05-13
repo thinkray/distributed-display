@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class NodeConnectionConfigPanel extends JPanel {
-    private JTextField machineNameTextField;
+    private JTextField nodeNameTextField;
     private JTextField serverAddressTextField;
     private JButton connectButton;
 
@@ -20,8 +20,8 @@ public class NodeConnectionConfigPanel extends JPanel {
         initBottomPanel();
     }
 
-    public JTextField getMachineNameTextField() {
-        return machineNameTextField;
+    public JTextField getNodeNameTextField() {
+        return nodeNameTextField;
     }
 
     public JTextField getServerAddressTextField() {
@@ -33,7 +33,7 @@ public class NodeConnectionConfigPanel extends JPanel {
     }
 
     private void initCenterPanelComponents() {
-        machineNameTextField = new JTextField();
+        nodeNameTextField = new JTextField();
         serverAddressTextField = new JTextField();
     }
 
@@ -43,10 +43,10 @@ public class NodeConnectionConfigPanel extends JPanel {
 
         Container centerPanel = new Container();
         centerPanel.setLayout(new GridBagLayout());
-        // Line 1: Machine name
+        // Line 1: Node name
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel("Machine Name: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(machineNameTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel("Node name: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
+        centerPanel.add(nodeNameTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
 
         // Line 2: Server address
         CommonUtils.gbcNewLine();

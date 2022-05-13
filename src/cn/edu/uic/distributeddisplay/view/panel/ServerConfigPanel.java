@@ -48,7 +48,7 @@ public class ServerConfigPanel extends JPanel {
 
         Container centerPanel = new Container();
         centerPanel.setLayout(new GridBagLayout());
-        // Line 1: Machine name
+        // Line 1: Node name
         CommonUtils.gbcNewLine();
         centerPanel.add(new JLabel("Listen Address: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
         centerPanel.add(listenAddressTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));

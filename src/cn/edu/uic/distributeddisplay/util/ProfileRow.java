@@ -9,8 +9,9 @@ public class ProfileRow {
     public boolean isOnline = false;
     public Date lastSeen = null;
     public String uuid = "";
-    public ProfileRow(ServerSideProfile serverSideProfile, boolean isOnline, Date lastSeen, String uuid)
-    {
+    public Boolean newConfigAvailable = true;
+
+    public ProfileRow(ServerSideProfile serverSideProfile, boolean isOnline, Date lastSeen, String uuid) {
         this.serverSideProfile = serverSideProfile;
         this.isOnline = isOnline;
         this.lastSeen = lastSeen;

@@ -38,4 +38,9 @@ public class DefaultConst {
 
     public static final Insets INSETS_RIGHT = new Insets(0, 0, 0, 25);
 
+    public static final int INVALID_SESSION = 404;
+
+    public static final int SESSION_RENEWED_NO_NEW_CONFIG = 304;
+
+    public static final int SESSION_RENEWED_NEW_CONFIG_AVAILABLE = 200;
 }

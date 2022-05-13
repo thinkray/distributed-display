@@ -48,7 +48,12 @@ public class ProfileManager {
     }
 
     public static ProfileRow getProfileRow(String nodeName) {
-        return profileMap.get(nodeName);
+        try {
+            ProfileRow profileRow = profileMap.get(nodeName);
+            return profileRow;
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     public static List getProfileTableRows() {

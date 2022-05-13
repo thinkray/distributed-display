@@ -1,7 +1,6 @@
 package cn.edu.uic.distributeddisplay.controller;
 
 import cn.edu.uic.distributeddisplay.util.ProfileManager;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -26,7 +25,7 @@ public class RMIServerController {
     public Boolean startServer(String address, Integer port) {
         try {
             rmiRegistry = LocateRegistry.createRegistry(port);
-            Naming.rebind("rmi://" + address + ":" + port + "/DisplayServer", new RMIWorkerController(this));
+            Naming.rebind("rmi://" + address + ":" + port + "/DisplayServer", new RMIServerWorkerController(this));
             ProfileManager.startOnlineChecker();
             isRunning = true;
             serverDashboardController.updateConsole("<div>Start listening on " + StringEscapeUtils.escapeHtml3(address + ":" + port) + "</div>");
@@ -49,7 +48,7 @@ public class RMIServerController {
         } catch (Exception e) {
             isRunning = true;
             serverDashboardController.updateConsole("<div>Failed to stop server</div>");
-            return true;
+            return false;
         }
     }
 

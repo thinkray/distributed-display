@@ -29,8 +29,8 @@ public class NodeConfigView extends JFrame {
         setMaximizedBounds(new Rectangle(20, 20, 400, 200));
     }
 
-    public JTextField getMachineNameTextField() {
-        return nodeConnectionConfigPanel.getMachineNameTextField();
+    public JTextField getNodeNameTextField() {
+        return nodeConnectionConfigPanel.getNodeNameTextField();
     }
 
     public JTextField getServerAddressTextField() {
