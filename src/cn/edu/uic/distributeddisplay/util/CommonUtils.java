@@ -85,7 +85,7 @@ public class CommonUtils {
                 Desktop.getDesktop().open(new File(loc));
                 return true;  // Indicating success
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             Log.logError(e.getMessage());
         }
         return false;

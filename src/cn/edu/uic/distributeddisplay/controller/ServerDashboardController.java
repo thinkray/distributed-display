@@ -214,7 +214,7 @@ public class ServerDashboardController {
 
     public ServerSideProfile wrapProfile() {
         DisplayConfigPanel p = v.getDisplayConfigPanel();
-        return new ServerSideProfile(p.getProfileNameTextField().getText(), p.getTextArea().getText(), new Font(p.getFontComboBox().getSelectedItem().toString(), p.getFontStyleComboBox().getSelectedIndex(), Integer.parseInt(p.getFontSizeComboBox().getSelectedItem().toString())), tempServerSideProfile.getColor(), p.getLetterSpacingSlider().getValue(), p.getMarginSlider().getValue(), p.getvOffsetSlider().getValue(), p.gethOffsetSlider().getValue(), new File(p.getImageDirectoryTextField().getText()), p.getTextDirectionComboBox().getSelectedIndex(), p.getImageFitStyleComboBox().getSelectedIndex(), false);
+        return new ServerSideProfile(p.getProfileNameTextField().getText(), p.getTextArea().getText(), new Font(p.getFontComboBox().getSelectedItem().toString(), p.getFontStyleComboBox().getSelectedIndex(), Integer.parseInt(p.getFontSizeComboBox().getSelectedItem().toString())), tempServerSideProfile.getColor(), p.getLetterSpacingSlider().getValue(), p.getMarginSlider().getValue(), p.getvOffsetSlider().getValue(), p.gethOffsetSlider().getValue(), new File(p.getImageDirectoryTextField().getText()), p.getTextDirectionComboBox().getSelectedIndex(), p.getImageFitStyleComboBox().getSelectedIndex());
     }
 
     public void updateConsole(String message) {
