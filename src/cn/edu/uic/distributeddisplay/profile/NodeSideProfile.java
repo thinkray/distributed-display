@@ -6,6 +6,8 @@
  */
 package cn.edu.uic.distributeddisplay.profile;
 
+import cn.edu.uic.distributeddisplay.util.CommonUtils;
+
 import javax.swing.*;
 
 public class NodeSideProfile extends AbstractProfile {
@@ -15,7 +17,11 @@ public class NodeSideProfile extends AbstractProfile {
     public NodeSideProfile(ServerSideProfile profile) {
         super(profile.text, profile.font, profile.color, profile.letterSpacing, profile.margin,
                 profile.vOffset, profile.hOffset, profile.textOrientation, profile.imgFitStyle);
-        backgroundImage = new ImageIcon(profile.getBackgroundImageDir().getPath());
+
+        // Verify the file is an image file before proceeding
+        if (CommonUtils.isImage(profile.getBackgroundImageDir())) {
+            backgroundImage = new ImageIcon(profile.getBackgroundImageDir().getPath());
+        }
     }
 
     @Override

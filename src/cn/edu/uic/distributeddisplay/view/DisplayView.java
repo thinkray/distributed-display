@@ -10,6 +10,8 @@ public class DisplayView extends JFrame {
     private JPopupMenu rightClickMenu;
     private JMenuItem preferenceItem;
     private JMenuItem exitItem;
+    private JPanel textPanel;
+    private JLabel backgroundLabel;
 
     public DisplayView() {
         // Full screen mode
@@ -36,11 +38,35 @@ public class DisplayView extends JFrame {
         return rightClickMenu;
     }
 
-    public JMenuItem getMainWindowItem() {
+    public JMenuItem getPreferenceItem() {
         return preferenceItem;
     }
 
     public JMenuItem getExitItem() {
         return exitItem;
+    }
+
+    public JPanel getTextPanel() {
+        return textPanel;
+    }
+
+    public void setTextPanel(JPanel textPanel) {
+        if (this.textPanel != null) {
+            remove(this.textPanel);
+        }
+        this.textPanel = textPanel;
+        add(textPanel, 0);
+    }
+
+    public JLabel getBackgroundLabel() {
+        return backgroundLabel;
+    }
+
+    public void setBackgroundLabel(JLabel backgroundLabel) {
+        if (this.backgroundLabel != null) {
+            remove(this.backgroundLabel);
+        }
+        this.backgroundLabel = backgroundLabel;
+        add(backgroundLabel);
     }
 }

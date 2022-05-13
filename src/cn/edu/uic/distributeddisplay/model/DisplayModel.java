@@ -7,7 +7,7 @@
  */
 package cn.edu.uic.distributeddisplay.model;
 
-import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
+import cn.edu.uic.distributeddisplay.profile.AbstractProfile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,30 +16,29 @@ import java.util.Collections;
 
 public class DisplayModel {
 
-    private ServerSideProfile serverSideProfile;
+    private AbstractProfile profile;
     private boolean previewMode;
     private Dimension screenSize;
 
-    public DisplayModel(ServerSideProfile serverSideProfile) {
-        this.serverSideProfile = serverSideProfile;
+    public DisplayModel(AbstractProfile profile) {
+        this.profile = profile;
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     }
 
-    public ArrayList<JLabel> getLabels() {
+    public ArrayList<JLabel> getLabelsHTML() {
         ArrayList<JLabel> labels = new ArrayList<>();
-        String[] originalText = serverSideProfile.getText().split("\n");
+        String[] originalText = profile.getText().split("\n");
         // Convert to HTML code
         for (String s : originalText) {
             StringBuilder htmlCode = new StringBuilder();
-            Font font = serverSideProfile.getFont();
-            Color color = serverSideProfile.getColor();
+            Font font = profile.getFont();
             htmlCode.append("<html><p>");
-            if (serverSideProfile.getTextOrientation() != 0) {
+            if (profile.getTextOrientation() != 0) {
                 // When the text orientation is vertical
                 String[] chars = s.split("");
                 for (String currentChar : chars) {
                     htmlCode.append("<p style='margin-top: ")
-                            .append(serverSideProfile.getLetterSpacing())
+                            .append(profile.getLetterSpacing())
                             .append(";'>")
                             .append(currentChar)
                             .append("</p>");
@@ -52,20 +51,24 @@ public class DisplayModel {
             // Generate the label and add it to the array list
             JLabel label = new JLabel(htmlCode.toString());
             label.setFont(font);
-            label.setForeground(serverSideProfile.getColor());
+            label.setForeground(profile.getColor());
             label.setHorizontalAlignment(JLabel.CENTER);
             label.setVerticalAlignment(JLabel.CENTER);
             labels.add(label);
         }
-        if (serverSideProfile.getTextOrientation() == 2) {
+        if (profile.getTextOrientation() == 2) {
             // If "vertical (inverse)" is selected
             Collections.reverse(labels);
         }
         return labels;
     }
 
-    public ServerSideProfile getProfile() {
-        return serverSideProfile;
+    public AbstractProfile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(AbstractProfile profile) {
+        this.profile = profile;
     }
 
     public boolean isPreviewMode() {

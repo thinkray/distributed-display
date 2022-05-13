@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class RMIClientController {
     private NodeGUIController nodeGUIController;
-    //    private DisplayController displayController;
+    private DisplayController displayController;
     private String nodeName;
     private String serverAddress;
     private RMIServerWorkerInterface rmiServerWorkerInterface;
@@ -23,9 +23,9 @@ public class RMIClientController {
     private Boolean isRunning;
 
 
-    public RMIClientController(NodeGUIController nodeGUIController/*, DisplayController displayController*/) {
+    public RMIClientController(NodeGUIController nodeGUIController, DisplayController displayController) {
         this.nodeGUIController = nodeGUIController;
-//        this.displayController = displayController;
+        this.displayController = displayController;
         this.isRunning = false;
     }
 
@@ -69,7 +69,7 @@ public class RMIClientController {
                             return;
                         } else if (severRespond == DefaultConst.SESSION_RENEWED_NEW_CONFIG_AVAILABLE) {
                             NodeSideProfile newProfile = rmiServerWorkerInterface.getConfig(nodeName, sessionUUID);
-                            // TODO: Refresh view
+                            displayController.setProfile(newProfile);
                         }
                         Thread.sleep(1000);
                     }
@@ -83,5 +83,9 @@ public class RMIClientController {
         };
 
         clientWorker.start();
+    }
+
+    public NodeGUIController getNodeGUIController() {
+        return nodeGUIController;
     }
 }

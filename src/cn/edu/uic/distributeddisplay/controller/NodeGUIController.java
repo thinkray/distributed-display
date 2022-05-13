@@ -15,7 +15,7 @@ public class NodeGUIController {
     private NodeConfigView v;
 
     public NodeGUIController() {
-        rmiClientController = new RMIClientController(this/*,new DisplayController()*/);
+        rmiClientController = new RMIClientController(this, new DisplayController());
         v = new NodeConfigView();
         initController();
     }
@@ -46,7 +46,7 @@ public class NodeGUIController {
                 return;
             }
             if (result) {
-                // TODO: Hide the panel
+                rmiClientController.getNodeGUIController().getV().setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(v, "Check in failed: Node name is already in use", "Error",
                         JOptionPane.ERROR_MESSAGE);
@@ -56,5 +56,9 @@ public class NodeGUIController {
                 v.getConnectButton().setEnabled(true);
             }
         });
+    }
+
+    public NodeConfigView getV() {
+        return v;
     }
 }

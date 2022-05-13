@@ -1,6 +1,8 @@
 package cn.edu.uic.distributeddisplay.main;
 
 import cn.edu.uic.distributeddisplay.controller.NodeGUIController;
+import cn.edu.uic.distributeddisplay.util.ConfigManager;
+import cn.edu.uic.distributeddisplay.util.LangManger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,8 +28,8 @@ public class NodeGUI {
             }
 
             // Initialize managers
-//            ConfigManager.initConfigManager();
-//            LangManger.initLangManager();
+            ConfigManager.initConfigManager();
+            LangManger.initLangManager();
 
             // Start GUI
             new NodeGUIController();

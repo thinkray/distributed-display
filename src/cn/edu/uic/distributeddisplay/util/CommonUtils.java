@@ -15,6 +15,8 @@ import com.google.common.collect.HashBiMap;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class CommonUtils {
 
@@ -90,6 +92,16 @@ public class CommonUtils {
             Log.logError(e.getMessage());
         }
         return false;
+    }
+
+    public static boolean isImage(File file) {
+        try {
+            String mimetype = Files.probeContentType(file.toPath());
+            return mimetype != null && mimetype.split("/")[0].equals("image");
+        } catch (IOException e) {
+            // May not even be a file
+            return false;
+        }
     }
 
 }

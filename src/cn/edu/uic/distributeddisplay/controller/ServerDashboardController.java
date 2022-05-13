@@ -115,7 +115,7 @@ public class ServerDashboardController {
         displayConfigPanel.getPreviewButton().addActionListener(e -> previewBtnClicked());
 //        displayConfigPanel.getCancelButton().addActionListener(e -> cancelBtnClicked());
         displayConfigPanel.getSelectImageDirectoryButton().addActionListener(e -> {
-            JFileChooser fc = new JFileChooser();
+            JFileChooser fc = new JFileChooser(v.getDisplayConfigPanel().getImageDirectoryTextField().getText());
             fc.setAcceptAllFileFilterUsed(false);
             fc.addChoosableFileFilter(new FileNameExtensionFilter("Image(*.jpg, *.jpeg, *.png)", "jpg", "JPG", "jpeg"
                     , "JPEG", "png", "PNG"));
