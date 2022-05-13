@@ -9,6 +9,9 @@ package cn.edu.uic.distributeddisplay.profile;
 import cn.edu.uic.distributeddisplay.util.CommonUtils;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class NodeSideProfile extends AbstractProfile {
 
