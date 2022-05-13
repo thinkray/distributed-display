@@ -26,6 +26,10 @@ public class NodeListPanel extends JPanel {
         setPreferredSize(new Dimension(300, 125));
     }
 
+    public JTable getNodeListTable() {
+        return nodeListTable;
+    }
+
     private void initCenterPanelComponents() {
         Object[][] data = {{"Kundan Kumar Jha", new Boolean(true)}, {"Anand Jha", new Boolean(false)}};
 
@@ -37,6 +41,7 @@ public class NodeListPanel extends JPanel {
         nodeListTableModel = new NodeListTableModel(data, columnNames);
         nodeListTable.setModel(nodeListTableModel);
         nodeListTable.setAutoCreateRowSorter(true);
+        nodeListTable.getTableHeader().setReorderingAllowed(false);
         // adding it to JScrollPane
         nodeListTableScrollPane = new JScrollPane(nodeListTable);
     }

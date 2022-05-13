@@ -45,13 +45,17 @@ public class NodeConnectionConfigPanel extends JPanel {
         centerPanel.setLayout(new GridBagLayout());
         // Line 1: Node name
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel("Node name: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(nodeNameTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel("Node name: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0,
+                DefaultConst.INSETS_LEFT));
+        centerPanel.add(nodeNameTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0,
+                DefaultConst.INSETS_RIGHT));
 
         // Line 2: Server address
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel("Server: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(serverAddressTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel("Server: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0,
+                DefaultConst.INSETS_LEFT));
+        centerPanel.add(serverAddressTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0,
+                DefaultConst.INSETS_RIGHT));
 
         add(centerPanel, BorderLayout.NORTH);
     }

@@ -28,7 +28,8 @@ public class ProfileManager {
                     while (true) {
                         Date currentDate = new Date();
                         for (Map.Entry<String, ProfileRow> row : profileMap.entrySet()) {
-                            row.getValue().isOnline = Duration.between(row.getValue().lastSeen.toInstant(), currentDate.toInstant()).toMillis() < 5000;
+                            row.getValue().isOnline = Duration.between(row.getValue().lastSeen.toInstant(),
+                                    currentDate.toInstant()).toMillis() < 5000;
                         }
                         Thread.sleep(100);
                     }

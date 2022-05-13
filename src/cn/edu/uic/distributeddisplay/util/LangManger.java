@@ -2,8 +2,8 @@
  * The LangManager manages getting the correct text to display
  *
  * @author Bohui WU
- * @since 12/28/2019
  * @version 1.0
+ * @since 12/28/2019
  */
 package cn.edu.uic.distributeddisplay.util;
 
@@ -46,7 +46,7 @@ public class LangManger {
     public static String get(String key) {
         try {
             return (String) langTable.get(key);
-        }catch(NullPointerException | JSONException e) {
+        } catch (NullPointerException | JSONException e) {
             Log.logError(e.getMessage() + " | Unable to retrieve value from the key [" + key + "]");
             return null;
         }

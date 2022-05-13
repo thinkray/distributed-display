@@ -2,8 +2,8 @@
  * The ViewsManger class registers the references of the views
  *
  * @author Bohui WU
- * @since 12/28/2019
  * @version 1.0
+ * @since 12/28/2019
  */
 
 package cn.edu.uic.distributeddisplay.util;

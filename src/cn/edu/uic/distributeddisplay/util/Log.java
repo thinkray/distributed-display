@@ -2,8 +2,8 @@
  * The Logger for the program
  *
  * @author Bohui WU
- * @since 1/2/2020
  * @version 1.0
+ * @since 1/2/2020
  */
 package cn.edu.uic.distributeddisplay.util;
 
@@ -38,7 +38,7 @@ public class Log {
         try {
             logger.setLevel(Level.SEVERE);
             logger.severe(msg);
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("[ERROR] Unable to log error message. Message:" + msg);
         }
     }

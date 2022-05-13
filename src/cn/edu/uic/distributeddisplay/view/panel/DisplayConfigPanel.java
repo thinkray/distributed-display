@@ -2,8 +2,8 @@
  * The panel stores all the components for adjusting the parameters of the profile
  *
  * @author Bohui WU
- * @since 12/18/2019
  * @version 1.8
+ * @since 12/18/2019
  */
 package cn.edu.uic.distributeddisplay.view.panel;
 
@@ -21,7 +21,6 @@ public class DisplayConfigPanel extends JPanel {
     private JScrollPane centerPanelScrollPane;
     private JPanel bottomPanel;
 
-    private JTextField profileNameTextField;
     private JComboBox<String> fontComboBox;
     private JComboBox<Integer> fontSizeComboBox;
     private JComboBox<String> fontStyleComboBox;
@@ -39,10 +38,10 @@ public class DisplayConfigPanel extends JPanel {
 
     private boolean initializing = true;
 
-    JButton confirmButton;
+    //    JButton confirmButton;
     JButton applyButton;
     JButton previewButton;
-    JButton cancelButton;
+//    JButton cancelButton;
 
 
     public DisplayConfigPanel() {
@@ -59,14 +58,13 @@ public class DisplayConfigPanel extends JPanel {
     }
 
     private void initCenterPanelComponents() {
-        profileNameTextField = new JTextField();
         initFontComboBox();
         initColorComboBox();
         initTextDirectionComboBox();
         textArea = new JTextArea();
         textArea.setRows(3);
         textArea.setLineWrap(true);
-        textArea.setBorder(BorderFactory.createMatteBorder(1,1,1,1, new Color(98, 98, 98)));
+        textArea.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(98, 98, 98)));
         initSliders();
         imageDirectoryTextField = new JTextField();
         imageDirectoryTextField.setEditable(false);
@@ -79,18 +77,18 @@ public class DisplayConfigPanel extends JPanel {
         marginSlider = new JSlider(JSlider.HORIZONTAL, 0, 50, 20);
         // Create the label table
         Hashtable<Integer, JLabel> marginSliderLabelTable = new Hashtable<>();
-        marginSliderLabelTable.put(50, new JLabel(LangManger.get("small")) );
-        marginSliderLabelTable.put(25, new JLabel(LangManger.get("moderate")) );
-        marginSliderLabelTable.put(0, new JLabel(LangManger.get("large")) );
+        marginSliderLabelTable.put(50, new JLabel(LangManger.get("small")));
+        marginSliderLabelTable.put(25, new JLabel(LangManger.get("moderate")));
+        marginSliderLabelTable.put(0, new JLabel(LangManger.get("large")));
         marginSlider.setLabelTable(marginSliderLabelTable);
         marginSlider.setPaintLabels(true);
         marginSlider.setInverted(true);
 
         // Letter spacing slider
         Hashtable<Integer, JLabel> verticalLetterSpacingLabelTable = new Hashtable<>();
-        verticalLetterSpacingLabelTable.put(-50, new JLabel(LangManger.get("small")) );
-        verticalLetterSpacingLabelTable.put(-20, new JLabel(LangManger.get("moderate")) );
-        verticalLetterSpacingLabelTable.put(10, new JLabel(LangManger.get("large")) );
+        verticalLetterSpacingLabelTable.put(-50, new JLabel(LangManger.get("small")));
+        verticalLetterSpacingLabelTable.put(-20, new JLabel(LangManger.get("moderate")));
+        verticalLetterSpacingLabelTable.put(10, new JLabel(LangManger.get("large")));
         letterSpacingSlider = new JSlider(JSlider.HORIZONTAL, -50, 10, -20);
         letterSpacingSlider.setLabelTable(verticalLetterSpacingLabelTable);
         letterSpacingSlider.setPaintLabels(true);
@@ -127,99 +125,86 @@ public class DisplayConfigPanel extends JPanel {
         centerPanel = new Container();
         centerPanel.setLayout(new GridBagLayout());
 
-        // Line 1: Profile name
+        // Line 1: Font
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("profile_name") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1,1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(profileNameTextField,
-                CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel(LangManger.get("font") + ": "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2,
+                1.0, DefaultConst.INSETS_LEFT));
+        centerPanel.add(fontComboBox, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
 
-        // Line 2: Font
+        // Line 2: Font Size
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("font") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(fontComboBox,
-                CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel(LangManger.get("size") + ": "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2,
+                1.0, DefaultConst.INSETS_LEFT));
+        centerPanel.add(fontSizeComboBox, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0,
+                DefaultConst.INSETS_RIGHT));
 
-        // Line 3: Font Size
+        // Line 3: Font Style
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("size") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(fontSizeComboBox,
-                CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel(LangManger.get("style") + ": "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2,
+                1.0, DefaultConst.INSETS_LEFT));
+        centerPanel.add(fontStyleComboBox, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0,
+                DefaultConst.INSETS_RIGHT));
 
-        // Line 4: Font Style
+        // Line 4: Color
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("style") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(fontStyleComboBox,
-                CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel(LangManger.get("color") + ": "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2,
+                1.0, DefaultConst.INSETS_LEFT));
+        centerPanel.add(colorComboBox, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
 
-        // Line 5: Color
+        // Line 5: TextDirection
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("color") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(colorComboBox,
-                CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel(LangManger.get("text_direction") + ": "), CommonUtils.getGridBagConstraints(0, 1,
+                1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
+        centerPanel.add(textDirectionComboBox, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0,
+                DefaultConst.INSETS_RIGHT));
 
-        // Line 6: TextDirection
+        // Line 6: Text
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("text_direction") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(textDirectionComboBox,
-                CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel(LangManger.get("text") + ": "), CommonUtils.getGridBagConstraints(0, 1, 3, 0.2,
+                1.0, DefaultConst.INSETS_LEFT));
+        centerPanel.add(textArea, CommonUtils.getGridBagConstraints(1, 8, 3, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
 
-        // Line 7: Text
-        CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("text") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1, 3, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(textArea,
-                CommonUtils.getGridBagConstraints(1, 8, 3, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
-
-        // Line 8: Vertical letter spacing
+        // Line 7: Vertical letter spacing
         CommonUtils.gbcNewLine(3);
         centerPanel.add(new JLabel(LangManger.get("vertical_letter_spacing") + ": "),
                 CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(letterSpacingSlider,
-                CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(letterSpacingSlider, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0,
+                DefaultConst.INSETS_RIGHT));
 
         // Line 8: Vertical Margin
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("line_space") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(marginSlider,
-                CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel(LangManger.get("line_space") + ": "), CommonUtils.getGridBagConstraints(0, 1, 1,
+                0.2, 1.0, DefaultConst.INSETS_LEFT));
+        centerPanel.add(marginSlider, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
 
         // Line 9: Vertical Offset
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("vertical_offset") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(vOffsetSlider,
-                CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel(LangManger.get("vertical_offset") + ": "), CommonUtils.getGridBagConstraints(0, 1,
+                1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
+        centerPanel.add(vOffsetSlider, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
 
         // Line 10: Horizontal Offset
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("horizontal_offset") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(hOffsetSlider,
-                CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel(LangManger.get("horizontal_offset") + ": "), CommonUtils.getGridBagConstraints(0,
+                1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
+        centerPanel.add(hOffsetSlider, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
 
-        // Line 10: Background image
+        // Line 11: Background image
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("image") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 0.8, DefaultConst.INSETS_LEFT));
-        centerPanel.add(imageDirectoryTextField,
-                CommonUtils.getGridBagConstraints(1, 1, 1, 1.6, 0.8, DefaultConst.INSETS_CENTER));
-        centerPanel.add(selectImageDirectoryButton,
-                CommonUtils.getGridBagConstraints(2, 1, 1, 0.1, 0.8, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel(LangManger.get("image") + ": "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2,
+                0.8, DefaultConst.INSETS_LEFT));
+        centerPanel.add(imageDirectoryTextField, CommonUtils.getGridBagConstraints(1, 1, 1, 1.6, 0.8,
+                DefaultConst.INSETS_CENTER));
+        centerPanel.add(selectImageDirectoryButton, CommonUtils.getGridBagConstraints(2, 1, 1, 0.1, 0.8,
+                DefaultConst.INSETS_RIGHT));
         selectImageDirectoryButton.setFont(new Font(null, Font.BOLD, 8));
 
-        // Line 11: TextDirection
+        // Line 12: TextDirection
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel(LangManger.get("fit") + ": "),
-                CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(imageFitStyleComboBox,
-                CommonUtils.getGridBagConstraints(1, 6, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel(LangManger.get("fit") + ": "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0
+                , DefaultConst.INSETS_LEFT));
+        centerPanel.add(imageFitStyleComboBox, CommonUtils.getGridBagConstraints(1, 6, 1, 1.6, 1.0,
+                DefaultConst.INSETS_RIGHT));
 
         // For smaller line space
         CommonUtils.gbcNewLine();
@@ -234,16 +219,16 @@ public class DisplayConfigPanel extends JPanel {
         bottomPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         // Initialize buttons
-        confirmButton = new JButton(LangManger.get("confirm"));
+//        confirmButton = new JButton(LangManger.get("confirm"));
         applyButton = new JButton(LangManger.get("apply"));
         previewButton = new JButton(LangManger.get("preview"));
-        cancelButton = new JButton(LangManger.get("cancel"));
+//        cancelButton = new JButton(LangManger.get("cancel"));
 
         // Add buttons to the panel
-        bottomPanel.add(cancelButton);
+//        bottomPanel.add(cancelButton);
         bottomPanel.add(previewButton);
         bottomPanel.add(applyButton);
-        bottomPanel.add(confirmButton);
+//        bottomPanel.add(confirmButton);
 
         add(bottomPanel, BorderLayout.SOUTH);
     }
@@ -307,10 +292,6 @@ public class DisplayConfigPanel extends JPanel {
         colorComboBox.addItem(LangManger.get("others"));
     }
 
-    public JTextField getProfileNameTextField() {
-        return profileNameTextField;
-    }
-
     public JComboBox<String> getFontComboBox() {
         return fontComboBox;
     }
@@ -367,9 +348,9 @@ public class DisplayConfigPanel extends JPanel {
         return initializing;
     }
 
-    public JButton getConfirmButton() {
-        return confirmButton;
-    }
+//    public JButton getConfirmButton() {
+//        return confirmButton;
+//    }
 
     public JButton getApplyButton() {
         return applyButton;
@@ -379,9 +360,9 @@ public class DisplayConfigPanel extends JPanel {
         return previewButton;
     }
 
-    public JButton getCancelButton() {
-        return cancelButton;
-    }
+//    public JButton getCancelButton() {
+//        return cancelButton;
+//    }
 
     public void markInitialized() {
         initializing = false;

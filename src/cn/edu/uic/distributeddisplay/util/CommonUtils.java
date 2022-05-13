@@ -1,17 +1,18 @@
 /**
  * Some utilities used by the program
- *   1). Convert a given Color object to the index of colorComboBox in the preference panel
- *   2). Convert a given index in the colorComboBox in the preference panel to a Color object
- *   3). Control the grid bag constrains object in the preference panel
- *   4). Get the screenshot of a given window (not used)
+ * 1). Convert a given Color object to the index of colorComboBox in the preference panel
+ * 2). Convert a given index in the colorComboBox in the preference panel to a Color object
+ * 3). Control the grid bag constrains object in the preference panel
+ * 4). Get the screenshot of a given window (not used)
  *
  * @author Bohui WU
- * @since 12/24/2019
  * @version 1.0
+ * @since 12/24/2019
  */
 package cn.edu.uic.distributeddisplay.util;
 
 import com.google.common.collect.HashBiMap;
+
 import java.awt.*;
 import java.io.File;
 
@@ -43,7 +44,7 @@ public class CommonUtils {
         }
     }
 
-    public static Color getIndexFromColor(int index) throws NullPointerException{
+    public static Color getIndexFromColor(int index) throws NullPointerException {
         return colorHashMap.inverse().get(index);
     }
 

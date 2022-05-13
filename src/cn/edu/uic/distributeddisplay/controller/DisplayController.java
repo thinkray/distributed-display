@@ -48,7 +48,7 @@ public class DisplayController {
             v.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if(e.getButton() == MouseEvent.BUTTON3) {
+                    if (e.getButton() == MouseEvent.BUTTON3) {
                         // Right click
                         v.getRightClickMenu().show(v, e.getX(), e.getY());
                     }
@@ -70,12 +70,12 @@ public class DisplayController {
     private void renderView() {
         // Initialize the text panel
         JPanel textPanel = new JPanel();
-        textPanel.setBackground(new Color(0,0,0,0));
+        textPanel.setBackground(new Color(0, 0, 0, 0));
         setTextPanelBounds(textPanel, m.getScreenSize());
 
         // Load labels into the frame
         ArrayList<JLabel> labels = m.getLabels();
-        for(JLabel label : labels) {
+        for (JLabel label : labels) {
             textPanel.add(label);
         }
 
@@ -97,9 +97,9 @@ public class DisplayController {
         double hMargin = m.getProfile().isHorizontal() ? 0 : (double) m.getProfile().getMargin() / 100;
         double vOffset = (double) m.getProfile().getvOffset() / 100;
         double hOffset = (double) m.getProfile().gethOffset() / 100;
-        textPanel.setBounds((int)(screenSize.getWidth() * hMargin) + (int)(screenSize.getWidth() * hOffset),
-                (int)(screenSize.getHeight() * vMargin) + (int)(screenSize.getHeight() * vOffset),
-                (int)(screenSize.getWidth() * (1 - 2 * hMargin)), (int)(screenSize.getHeight() * (1 - 2 * vMargin)));
+        textPanel.setBounds((int) (screenSize.getWidth() * hMargin) + (int) (screenSize.getWidth() * hOffset),
+                (int) (screenSize.getHeight() * vMargin) + (int) (screenSize.getHeight() * vOffset),
+                (int) (screenSize.getWidth() * (1 - 2 * hMargin)), (int) (screenSize.getHeight() * (1 - 2 * vMargin)));
     }
 
     public JLabel getBackgroundLabel(Dimension screenSize) {
@@ -117,13 +117,13 @@ public class DisplayController {
                 double screenRatio = screenSize.getWidth() / screenSize.getHeight();
                 // When the ration is greater than 1, the screen is in landscape mode.
                 // When the ration is in the interval of (0, 1), the screen is in portrait mode.
-                width = Math.min((int) (imgRatio * screenSize.getHeight()), (int)screenSize.getWidth());
-                height = Math.min((int) (1 / imgRatio * screenSize.getWidth()), (int)screenSize.getHeight());
+                width = Math.min((int) (imgRatio * screenSize.getHeight()), (int) screenSize.getWidth());
+                height = Math.min((int) (1 / imgRatio * screenSize.getWidth()), (int) screenSize.getHeight());
                 break;
             case DefaultConst.STRETCH:
                 // Stretch
-                width = (int)screenSize.getWidth();
-                height = (int)screenSize.getHeight();
+                width = (int) screenSize.getWidth();
+                height = (int) screenSize.getHeight();
                 break;
             case DefaultConst.TILE:
                 // Tile
@@ -132,8 +132,8 @@ public class DisplayController {
                 break;
         }
         Image backgroundImg = img.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        JLabel imgLabel = new JLabel ("", new ImageIcon(backgroundImg), JLabel.CENTER);
-        imgLabel.setBounds(0, 0, (int)screenSize.getWidth(), (int)screenSize.getHeight());
+        JLabel imgLabel = new JLabel("", new ImageIcon(backgroundImg), JLabel.CENTER);
+        imgLabel.setBounds(0, 0, (int) screenSize.getWidth(), (int) screenSize.getHeight());
         return imgLabel;
     }
 

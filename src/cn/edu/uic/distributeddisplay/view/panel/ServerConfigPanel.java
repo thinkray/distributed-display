@@ -39,7 +39,7 @@ public class ServerConfigPanel extends JPanel {
     private void initCenterPanelComponents() {
         listenAddressTextField = new JTextField();
         listenPortJSpinner = new JSpinner(new SpinnerNumberModel(1099, 1, 65535, 1));
-        listenPortJSpinner.setEditor(new JSpinner.NumberEditor(listenPortJSpinner,"#"));
+        listenPortJSpinner.setEditor(new JSpinner.NumberEditor(listenPortJSpinner, "#"));
     }
 
     private void initCenterPanelLayout() {
@@ -50,13 +50,17 @@ public class ServerConfigPanel extends JPanel {
         centerPanel.setLayout(new GridBagLayout());
         // Line 1: Node name
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel("Listen Address: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(listenAddressTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel("Listen Address: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0,
+                DefaultConst.INSETS_LEFT));
+        centerPanel.add(listenAddressTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0,
+                DefaultConst.INSETS_RIGHT));
 
         // Line 2: Server address
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel("Port: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0, DefaultConst.INSETS_LEFT));
-        centerPanel.add(listenPortJSpinner, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0, DefaultConst.INSETS_RIGHT));
+        centerPanel.add(new JLabel("Port: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0,
+                DefaultConst.INSETS_LEFT));
+        centerPanel.add(listenPortJSpinner, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0,
+                DefaultConst.INSETS_RIGHT));
 
         add(centerPanel, BorderLayout.NORTH);
     }

@@ -4,15 +4,13 @@ import cn.edu.uic.distributeddisplay.util.DefaultConst;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.Serializable;
 
-public abstract class Profile implements Serializable {
+public abstract class AbstractProfile implements Serializable {
 
 //    static final long serialVersionUID = 10L;
 
     // The current profile
-    protected String name;  // The name of the profile
     protected String text;
     protected Font font;
     protected Color color;
@@ -23,10 +21,9 @@ public abstract class Profile implements Serializable {
     protected int textOrientation;  // 0: Horizontal, 1: Vertical
     protected int imgFitStyle; // 0: Fit, 1: Stretch, 2: Tile
 
-    public Profile(String name, String text, Font font, Color color, int letterSpacing, int margin, int vOffset, int hOffset,
-                   int textOrientation, int imgFitStyle) {
+    public AbstractProfile(String text, Font font, Color color, int letterSpacing, int margin, int vOffset, int hOffset,
+                           int textOrientation, int imgFitStyle) {
         // Initialize instance variables
-        this.name = name;
         this.text = text;
         this.font = font;
         this.color = color;
@@ -38,8 +35,8 @@ public abstract class Profile implements Serializable {
         this.imgFitStyle = imgFitStyle;
     }
 
-    public Profile() {
-        this(DefaultConst.DEFAULT_NAME, DefaultConst.DEFAULT_TEXT, DefaultConst.DEFAULT_FONT,
+    public AbstractProfile() {
+        this(DefaultConst.DEFAULT_TEXT, DefaultConst.DEFAULT_FONT,
                 DefaultConst.DEFAULT_COLOR, DefaultConst.DEFAULT_LETTER_SPACING, DefaultConst.DEFAULT_MARGIN,
                 DefaultConst.DEFAULT_V_OFFSET, DefaultConst.DEFAULT_H_OFFSET, DefaultConst.DEFAULT_TEXT_ORIENTATION,
                 DefaultConst.DEFAULT_FIT_STYLE);
@@ -50,14 +47,6 @@ public abstract class Profile implements Serializable {
 
     public boolean isHorizontal() {
         return getTextOrientation() == DefaultConst.HORIZONTAL;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getText() {
@@ -135,8 +124,7 @@ public abstract class Profile implements Serializable {
     @Override
     public String toString() {
         return "Profile{" +
-                "name='" + name + '\'' +
-                ", text='" + text + '\'' +
+                "text='" + text + '\'' +
                 ", font=" + font +
                 ", color=" + color +
                 ", letterSpacing=" + letterSpacing +

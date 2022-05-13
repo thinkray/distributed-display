@@ -26,11 +26,11 @@ public class ColorfulListRenderer extends DefaultListCellRenderer {
                                                   boolean cellHasFocus) {
         setText(val.toString());
         Color color = table.get(idx);
-        if(color != null) {
+        if (color != null) {
             // Calculate the inverse of the given color
             setForeground(new Color(Math.abs(255 - color.getRed()),
-                    Math.abs(255 - color.getGreen()),
-                    Math.abs(255 - color.getBlue())
+                            Math.abs(255 - color.getGreen()),
+                            Math.abs(255 - color.getBlue())
                     )
             );
         }

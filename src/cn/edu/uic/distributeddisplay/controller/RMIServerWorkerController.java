@@ -1,5 +1,6 @@
 package cn.edu.uic.distributeddisplay.controller;
 
+import cn.edu.uic.distributeddisplay.profile.NodeSideProfile;
 import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
 import cn.edu.uic.distributeddisplay.util.ProfileManager;
@@ -21,7 +22,8 @@ public class RMIServerWorkerController extends UnicastRemoteObject implements RM
     public String checkIn(String nodeName) throws RemoteException {
         ProfileRow currentProfileRow = ProfileManager.getProfileRow(nodeName);
         if (currentProfileRow == null) {
-            ProfileRow profileRow = new ProfileRow(new ServerSideProfile(), true, new Date(), UUID.randomUUID().toString());
+            ProfileRow profileRow = new ProfileRow(new ServerSideProfile(), true, new Date(),
+                    UUID.randomUUID().toString());
             ProfileManager.putProfileRow(nodeName, profileRow);
             return profileRow.uuid;
         } else if (!currentProfileRow.isOnline) {
@@ -34,16 +36,31 @@ public class RMIServerWorkerController extends UnicastRemoteObject implements RM
     }
 
     public Boolean checkOut(String nodeName, String sessionUUID) throws RemoteException {
-        return true;
+        ProfileRow currentProfileRow = ProfileManager.getProfileRow(nodeName);
+        if ((currentProfileRow == null) || (!Objects.equals(currentProfileRow.uuid, sessionUUID))) {
+            return false;
+        } else {
+            currentProfileRow.lastSeen = new Date(0L);
+            currentProfileRow.isOnline = false;
+            return true;
+        }
     }
 
-    //    public NodeSideProfile getConfig(String sessionUUID) throws RemoteException {
-//
-//    }
-//
+    public NodeSideProfile getConfig(String nodeName, String sessionUUID) throws RemoteException {
+        ProfileRow currentProfileRow = ProfileManager.getProfileRow(nodeName);
+        if ((currentProfileRow == null) || (!currentProfileRow.isOnline) || (!Objects.equals(currentProfileRow.uuid,
+                sessionUUID))) {
+            return null;
+        }
+
+        currentProfileRow.newConfigAvailable = false;
+        return new NodeSideProfile(currentProfileRow.serverSideProfile);
+    }
+
     public int heartbeat(String nodeName, String sessionUUID) throws RemoteException {
         ProfileRow currentProfileRow = ProfileManager.getProfileRow(nodeName);
-        if ((currentProfileRow == null) || (!currentProfileRow.isOnline) || (!Objects.equals(currentProfileRow.uuid, sessionUUID))) {
+        if ((currentProfileRow == null) || (!currentProfileRow.isOnline) || (!Objects.equals(currentProfileRow.uuid,
+                sessionUUID))) {
             return DefaultConst.INVALID_SESSION;
         }
 

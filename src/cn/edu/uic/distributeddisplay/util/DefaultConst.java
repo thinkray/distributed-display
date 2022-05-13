@@ -22,8 +22,6 @@ final public class DefaultConst {
 
     public static final int TILE = 2;
 
-    public static final String DEFAULT_NAME = LangManger.get("default_name");
-
     public static final String DEFAULT_TEXT = LangManger.get("default_text");
 
     public static final int DEFAULT_LETTER_SPACING = -20;
@@ -41,7 +39,7 @@ final public class DefaultConst {
     public static final int DEFAULT_TEXT_ORIENTATION = HORIZONTAL;
 
     public static final int DEFAULT_FIT_STYLE = FIT;
-    
+
     public static final String DEFAULT_BACKGROUND_IMG_DIR = "";
 
     public static final Insets INSETS_LEFT = new Insets(0, 25, 10, 0);

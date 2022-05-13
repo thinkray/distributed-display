@@ -16,11 +16,14 @@ import cn.edu.uic.distributeddisplay.view.panel.NodeListPanel;
 import cn.edu.uic.distributeddisplay.view.panel.ServerConfigPanel;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import java.awt.*;
 import java.io.*;
+import java.util.Date;
 
 public class ServerDashboardController {
 
@@ -58,11 +61,14 @@ public class ServerDashboardController {
             ConfigManager.setConfigEntry("lang", "zh-Hant");
             JOptionPane.showMessageDialog(null, LangManger.get("lang_update_msg"));
         });
-        v.getAboutItem().addActionListener(e -> JOptionPane.showMessageDialog(null, "Version 1.2\n" + "Copyright \u00A9 2019-2022 Bohui WU (\u0040RapDoodle)", LangManger.get("about"), JOptionPane.INFORMATION_MESSAGE));
+        v.getAboutItem().addActionListener(e -> JOptionPane.showMessageDialog(null, "Version 1.2\n" + "Copyright " +
+                        "\u00A9 2019-2022 Bohui WU (\u0040RapDoodle)", LangManger.get("about"),
+                JOptionPane.INFORMATION_MESSAGE));
         v.getHelpItem().addActionListener(e -> {
             if (!CommonUtils.openLocalFile("./help/README-" + ConfigManager.getConfigEntry("lang") + ".html")) {
                 // When the manual is not found
-                JOptionPane.showMessageDialog(null, LangManger.get("err_help_not_found"), LangManger.get("message"), JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, LangManger.get("err_help_not_found"), LangManger.get("message"),
+                        JOptionPane.ERROR_MESSAGE);
             }
         });
     }
@@ -73,6 +79,21 @@ public class ServerDashboardController {
         DisplayConfigPanel displayConfigPanel = v.getDisplayConfigPanel();
         ConsolePanel consolePanel = v.getConsolePanel();
 
+        JTable nodeListTable = nodeListPanel.getNodeListTable();
+
+        nodeListTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                int[] selectedRows = nodeListTable.getSelectedRows();
+                if (selectedRows.length == 1) {
+                    ProfileRow profileRow =
+                            ProfileManager.getProfileRow((String) nodeListTable.getValueAt(nodeListTable.getSelectedRow(), 0));
+                    tempServerSideProfile = new ServerSideProfile(profileRow.serverSideProfile);
+                }
+                updateFields(tempServerSideProfile);
+            }
+        });
+
         serverConfigPanel.getListenButton().addActionListener(e -> {
             serverConfigPanel.getListenButton().setEnabled(false);
             if (rmiServerController.isRunning()) {
@@ -80,7 +101,8 @@ public class ServerDashboardController {
                     serverConfigPanel.getListenButton().setText("Start");
                 }
             } else {
-                if (rmiServerController.startServer(serverConfigPanel.getListenAddressTextField().getText(), (Integer) serverConfigPanel.getListenPortJSpinner().getValue())) {
+                if (rmiServerController.startServer(serverConfigPanel.getListenAddressTextField().getText(),
+                        (Integer) serverConfigPanel.getListenPortJSpinner().getValue())) {
                     serverConfigPanel.getListenButton().setText("Stop");
                 }
             }
@@ -88,14 +110,15 @@ public class ServerDashboardController {
         });
 
         // Button actions
-        displayConfigPanel.getConfirmButton().addActionListener(e -> confirmBtnClicked());
+//        displayConfigPanel.getConfirmButton().addActionListener(e -> confirmBtnClicked());
         displayConfigPanel.getApplyButton().addActionListener(e -> applyBtnClicked());
         displayConfigPanel.getPreviewButton().addActionListener(e -> previewBtnClicked());
-        displayConfigPanel.getCancelButton().addActionListener(e -> cancelBtnClicked());
+//        displayConfigPanel.getCancelButton().addActionListener(e -> cancelBtnClicked());
         displayConfigPanel.getSelectImageDirectoryButton().addActionListener(e -> {
             JFileChooser fc = new JFileChooser();
             fc.setAcceptAllFileFilterUsed(false);
-            fc.addChoosableFileFilter(new FileNameExtensionFilter("Image(*.jpg, *.jpeg, *.png)", "jpg", "JPG", "jpeg", "JPEG", "png", "PNG"));
+            fc.addChoosableFileFilter(new FileNameExtensionFilter("Image(*.jpg, *.jpeg, *.png)", "jpg", "JPG", "jpeg"
+                    , "JPEG", "png", "PNG"));
             if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 displayConfigPanel.getImageDirectoryTextField().setText(fc.getSelectedFile().getPath());
             }
@@ -142,10 +165,8 @@ public class ServerDashboardController {
         displayConfigPanel.markInitialized();
     }
 
-    private void updateFields(String nodeName) {
-        ServerSideProfile serverSideProfile = ProfileManager.getProfileRow(nodeName).serverSideProfile;
+    private void updateFields(ServerSideProfile serverSideProfile) {
         DisplayConfigPanel p = v.getDisplayConfigPanel();
-        p.getProfileNameTextField().setText(serverSideProfile.getName());
         Font font = serverSideProfile.getFont();
         p.getFontComboBox().setSelectedItem(font.getFontName());
         p.getFontSizeComboBox().setSelectedItem(font.getSize());
@@ -171,24 +192,24 @@ public class ServerDashboardController {
         p.getImageFitStyleComboBox().setSelectedIndex(serverSideProfile.getImgFitStyle());
     }
 
-    private void trySave(ServerSideProfile serverSideProfile) {
-        // TODO: Get selection list
-//        try {
-//            tempServerSideProfile.save(serverSideProfile);
-//        } catch (IOException ex) {
-//            Log.logError(ex.getMessage());
-//            JOptionPane.showMessageDialog(null, "Error occurred while saving the profile!");
-//        }
-    }
+//    private void trySave(ServerSideProfile serverSideProfile) {
+//        // TODO: Get selection list
+////        try {
+////            tempServerSideProfile.save(serverSideProfile);
+////        } catch (IOException ex) {
+////            Log.logError(ex.getMessage());
+////            JOptionPane.showMessageDialog(null, "Error occurred while saving the profile!");
+////        }
+//    }
 
-    public void confirmBtnClicked() {
-        ServerSideProfile serverSideProfile = wrapProfile();
-        trySave(serverSideProfile);
-        SwingUtilities.invokeLater(() -> {
-            new DisplayController(serverSideProfile, false);
-        });
-        ViewsManager.getMainWindowView().setVisible(false);
-    }
+//    public void confirmBtnClicked() {
+//        ServerSideProfile serverSideProfile = wrapProfile();
+//        trySave(serverSideProfile);
+//        SwingUtilities.invokeLater(() -> {
+//            new DisplayController(serverSideProfile, false);
+//        });
+//        ViewsManager.getMainWindowView().setVisible(false);
+//    }
 
     public void previewBtnClicked() {
         ServerSideProfile serverSideProfile = wrapProfile();
@@ -199,22 +220,46 @@ public class ServerDashboardController {
     }
 
     public void applyBtnClicked() {
-        ServerSideProfile serverSideProfile = wrapProfile();
-        trySave(serverSideProfile);
+        NodeListPanel nodeListPanel = v.getNodeListPanel();
+        JTable nodeListTable = nodeListPanel.getNodeListTable();
+        int[] selectedRows = nodeListTable.getSelectedRows();
+        ServerSideProfile serverSideProfileTemplate = wrapProfile();
+
+        for (int i = 0; i < selectedRows.length; i++) {
+            String currentNodeName = nodeListTable.getValueAt(selectedRows[i], 0).toString();
+            ProfileRow currentProfileRow = ProfileManager.getProfileRow(currentNodeName);
+            if (currentProfileRow == null) {
+                currentProfileRow = new ProfileRow(new ServerSideProfile(serverSideProfileTemplate), false,
+                        new Date(0L), "");
+                ProfileManager.putProfileRow(currentNodeName, currentProfileRow);
+            } else {
+                currentProfileRow.serverSideProfile = new ServerSideProfile(serverSideProfileTemplate);
+                currentProfileRow.newConfigAvailable = true;
+            }
+        }
+
+//        trySave(serverSideProfile);
     }
 
-    public void cancelBtnClicked() {
-        if (ViewsManager.getDisplayView() == null) {
-            ViewsManager.getMainWindowView().dispose();
-        } else {
-            ViewsManager.getMainWindowView().setVisible(false);
-            ViewsManager.getDisplayView().setVisible(true);
-        }
-    }
+//    public void cancelBtnClicked() {
+//        if (ViewsManager.getDisplayView() == null) {
+//            ViewsManager.getMainWindowView().dispose();
+//        } else {
+//            ViewsManager.getMainWindowView().setVisible(false);
+//            ViewsManager.getDisplayView().setVisible(true);
+//        }
+//    }
 
     public ServerSideProfile wrapProfile() {
         DisplayConfigPanel p = v.getDisplayConfigPanel();
-        return new ServerSideProfile(p.getProfileNameTextField().getText(), p.getTextArea().getText(), new Font(p.getFontComboBox().getSelectedItem().toString(), p.getFontStyleComboBox().getSelectedIndex(), Integer.parseInt(p.getFontSizeComboBox().getSelectedItem().toString())), tempServerSideProfile.getColor(), p.getLetterSpacingSlider().getValue(), p.getMarginSlider().getValue(), p.getvOffsetSlider().getValue(), p.gethOffsetSlider().getValue(), new File(p.getImageDirectoryTextField().getText()), p.getTextDirectionComboBox().getSelectedIndex(), p.getImageFitStyleComboBox().getSelectedIndex());
+        return new ServerSideProfile(p.getTextArea().getText(),
+                new Font(p.getFontComboBox().getSelectedItem().toString(),
+                        p.getFontStyleComboBox().getSelectedIndex(),
+                        Integer.parseInt(p.getFontSizeComboBox().getSelectedItem().toString())),
+                tempServerSideProfile.getColor(), p.getLetterSpacingSlider().getValue(),
+                p.getMarginSlider().getValue(), p.getvOffsetSlider().getValue(), p.gethOffsetSlider().getValue(),
+                new File(p.getImageDirectoryTextField().getText()), p.getTextDirectionComboBox().getSelectedIndex(),
+                p.getImageFitStyleComboBox().getSelectedIndex());
     }
 
     public void updateConsole(String message) {

@@ -1,5 +1,6 @@
 package cn.edu.uic.distributeddisplay.controller;
 
+import cn.edu.uic.distributeddisplay.profile.NodeSideProfile;
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
 import cn.edu.uic.distributeddisplay.util.ProfileManager;
 
@@ -28,7 +29,8 @@ public class RMIClientController {
         this.isRunning = false;
     }
 
-    public Boolean startClient(String nodeName, String address) throws NotBoundException, MalformedURLException, RemoteException {
+    public Boolean startClient(String nodeName, String address) throws NotBoundException, MalformedURLException,
+            RemoteException {
         this.nodeName = nodeName;
         this.serverAddress = "rmi://" + address + "/DisplayServer";
         this.rmiServerWorkerInterface = (RMIServerWorkerInterface) Naming.lookup(this.serverAddress);
@@ -66,13 +68,15 @@ public class RMIClientController {
                         if (severRespond == DefaultConst.INVALID_SESSION) {
                             return;
                         } else if (severRespond == DefaultConst.SESSION_RENEWED_NEW_CONFIG_AVAILABLE) {
-
+                            NodeSideProfile newProfile = rmiServerWorkerInterface.getConfig(nodeName, sessionUUID);
+                            // TODO: Refresh view
                         }
                         Thread.sleep(1000);
                     }
                 } catch (InterruptedException e) {
                     return;
                 } catch (RemoteException e) {
+                    // TODO: Back to config panel
                     throw new RuntimeException(e);
                 }
             }

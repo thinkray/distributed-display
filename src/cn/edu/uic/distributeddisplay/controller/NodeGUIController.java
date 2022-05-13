@@ -35,7 +35,8 @@ public class NodeGUIController {
             v.getStatusLabel().setText("Connecting...");
             Boolean result = false;
             try {
-                result = rmiClientController.startClient(v.getNodeNameTextField().getText(), v.getServerAddressTextField().getText());
+                result = rmiClientController.startClient(v.getNodeNameTextField().getText(),
+                        v.getServerAddressTextField().getText());
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(v, "Cannot connect to the server", "Error", JOptionPane.ERROR_MESSAGE);
                 v.getStatusLabel().setText(" ");
@@ -47,7 +48,8 @@ public class NodeGUIController {
             if (result) {
                 // TODO: Hide the panel
             } else {
-                JOptionPane.showMessageDialog(v, "Check in failed: Node name is already in use", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(v, "Check in failed: Node name is already in use", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 v.getNodeNameTextField().setEnabled(true);
                 v.getServerAddressTextField().setEnabled(true);
                 v.getStatusLabel().setText(" ");

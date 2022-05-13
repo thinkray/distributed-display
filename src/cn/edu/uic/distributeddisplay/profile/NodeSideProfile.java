@@ -8,12 +8,12 @@ package cn.edu.uic.distributeddisplay.profile;
 
 import javax.swing.*;
 
-public class NodeSideProfile extends Profile {
+public class NodeSideProfile extends AbstractProfile {
 
     private ImageIcon backgroundImage;
 
     public NodeSideProfile(ServerSideProfile profile) {
-        super(profile.name, profile.text, profile.font, profile.color, profile.letterSpacing, profile.margin,
+        super(profile.text, profile.font, profile.color, profile.letterSpacing, profile.margin,
                 profile.vOffset, profile.hOffset, profile.textOrientation, profile.imgFitStyle);
         backgroundImage = new ImageIcon(profile.getBackgroundImageDir().getPath());
     }
