@@ -9,9 +9,18 @@
 package cn.edu.uic.distributeddisplay.util;
 
 import java.awt.*;
-import java.io.File;
 
-public class DefaultConst {
+final public class DefaultConst {
+
+    public static final int HORIZONTAL = 0;
+
+    public static final int VERTICAL = 1;
+
+    public static final int FIT = 0;
+
+    public static final int STRETCH = 1;
+
+    public static final int TILE = 2;
 
     public static final String DEFAULT_NAME = LangManger.get("default_name");
 
@@ -29,9 +38,11 @@ public class DefaultConst {
 
     public static final Color DEFAULT_COLOR = Color.BLACK;
 
-    public static final int DEFAULT_TEXT_ORIENTATION = 0;
+    public static final int DEFAULT_TEXT_ORIENTATION = HORIZONTAL;
 
-    public static final int DEFAULT_FIT_STYLE = 0;
+    public static final int DEFAULT_FIT_STYLE = FIT;
+    
+    public static final String DEFAULT_BACKGROUND_IMG_DIR = "";
 
     public static final Insets INSETS_LEFT = new Insets(0, 25, 10, 0);
 
@@ -44,6 +55,4 @@ public class DefaultConst {
     public static final int SESSION_RENEWED_NO_NEW_CONFIG = 304;
 
     public static final int SESSION_RENEWED_NEW_CONFIG_AVAILABLE = 200;
-
-    public static final File DEFAULT_BACKGROUND_IMG_DIR = new File("");
 }

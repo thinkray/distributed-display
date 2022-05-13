@@ -40,7 +40,7 @@ public class ServerSideProfile extends Profile {
     public ServerSideProfile() {
         this(DefaultConst.DEFAULT_NAME, DefaultConst.DEFAULT_TEXT, DefaultConst.DEFAULT_FONT,
                 DefaultConst.DEFAULT_COLOR, DefaultConst.DEFAULT_LETTER_SPACING, DefaultConst.DEFAULT_MARGIN,
-                DefaultConst.DEFAULT_V_OFFSET, DefaultConst.DEFAULT_H_OFFSET, DefaultConst.DEFAULT_BACKGROUND_IMG_DIR,
+                DefaultConst.DEFAULT_V_OFFSET, DefaultConst.DEFAULT_H_OFFSET, new File(DefaultConst.DEFAULT_BACKGROUND_IMG_DIR),
                 DefaultConst.DEFAULT_TEXT_ORIENTATION, DefaultConst.DEFAULT_FIT_STYLE);
     }
 

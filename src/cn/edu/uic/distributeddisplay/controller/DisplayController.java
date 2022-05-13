@@ -8,6 +8,7 @@
 package cn.edu.uic.distributeddisplay.controller;
 
 import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
+import cn.edu.uic.distributeddisplay.util.DefaultConst;
 import cn.edu.uic.distributeddisplay.util.ViewsManager;
 import cn.edu.uic.distributeddisplay.model.DisplayModel;
 import cn.edu.uic.distributeddisplay.view.DisplayView;
@@ -108,7 +109,7 @@ public class DisplayController {
         // Accommodate different fitting styles
         int width = 0, height = 0;
         switch (m.getProfile().getImgFitStyle()) {
-            case 0:
+            case DefaultConst.FIT:
                 // Fit
                 double imgRatio = (double) img.getImage().getWidth(null) / (double) img.getImage().getHeight(null);
                 // When the ration is greater than 1, the image is wide.
@@ -119,12 +120,12 @@ public class DisplayController {
                 width = Math.min((int) (imgRatio * screenSize.getHeight()), (int)screenSize.getWidth());
                 height = Math.min((int) (1 / imgRatio * screenSize.getWidth()), (int)screenSize.getHeight());
                 break;
-            case 1:
+            case DefaultConst.STRETCH:
                 // Stretch
                 width = (int)screenSize.getWidth();
                 height = (int)screenSize.getHeight();
                 break;
-            case 2:
+            case DefaultConst.TILE:
                 // Tile
                 width = img.getImage().getWidth(null);
                 height = img.getImage().getHeight(null);

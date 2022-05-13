@@ -49,7 +49,7 @@ public abstract class Profile implements Serializable {
     public abstract ImageIcon getBackgroundImage();
 
     public boolean isHorizontal() {
-        return getTextOrientation() == 0;
+        return getTextOrientation() == DefaultConst.HORIZONTAL;
     }
 
     public String getName() {
