@@ -208,10 +208,6 @@ public class DisplayConfigPanel extends JPanel {
         centerPanel.add(imageFitStyleComboBox, CommonUtils.getGridBagConstraints(1, 6, 1, 1.6, 1.0,
                 DefaultConst.INSETS_RIGHT));
 
-        // For smaller line space
-        CommonUtils.gbcNewLine();
-        centerPanel.add(new Label(" "), CommonUtils.getGridBagConstraints(1, 1, 1, 0.2, 3, DefaultConst.INSETS_RIGHT));
-
         centerPanelScrollPane = new JScrollPane(centerPanel);
         add(centerPanelScrollPane, BorderLayout.CENTER);
     }
