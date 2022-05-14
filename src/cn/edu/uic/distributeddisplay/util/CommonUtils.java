@@ -20,8 +20,8 @@ import java.nio.file.Files;
 
 public class CommonUtils {
 
-    private static HashBiMap<Color, Integer> colorHashMap = HashBiMap.create();
-    private static GridBagConstraints gbc;
+    private static final HashBiMap<Color, Integer> colorHashMap = HashBiMap.create();
+    private static final GridBagConstraints gbc;
 
     static {
         // Define the color map

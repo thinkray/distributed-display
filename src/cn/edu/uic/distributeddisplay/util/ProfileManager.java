@@ -5,7 +5,9 @@
  */
 package cn.edu.uic.distributeddisplay.util;
 
+import cn.edu.uic.distributeddisplay.controller.RMIServerController;
 import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.*;
 import java.time.Duration;
@@ -17,11 +19,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ProfileManager {
 
-    private static File profileDirectory = new File(ConfigManager.getConfigEntry("profile_location"));
+    private static final File profileDirectory = new File(ConfigManager.getConfigEntry("profile_location"));
     private static ConcurrentHashMap<String, ProfileRow> profileMap = new ConcurrentHashMap<>();
     private static Thread onlineChecker;
 
-    public static void saveProfileListToFile() {
+    public static boolean saveProfileListToFile() {
         try {
             // Write the profile
             FileOutputStream fos = null;
@@ -36,8 +38,10 @@ public class ProfileManager {
             out.close();
             fos.close();
             Log.log("Profile saved.");
+            return true;
         } catch (Exception e) {
             Log.logError(e.getMessage());
+            return false;
         }
     }
 
@@ -63,7 +67,7 @@ public class ProfileManager {
         }
     }
 
-    public static void startOnlineChecker() {
+    public static void startOnlineChecker(RMIServerController rmiServerController) {
         onlineChecker = new Thread() {
             @Override
             public void run() {
@@ -71,8 +75,15 @@ public class ProfileManager {
                     while (true) {
                         Date currentDate = new Date();
                         for (Map.Entry<String, ProfileRow> row : profileMap.entrySet()) {
-                            row.getValue().isOnline = Duration.between(row.getValue().lastSeen.toInstant(),
-                                    currentDate.toInstant()).toMillis() < 5000;
+                            ProfileRow currentProfileRow = row.getValue();
+                            if (currentProfileRow.isOnline) {
+                                currentProfileRow.isOnline = Duration.between(row.getValue().lastSeen.toInstant(),
+                                        currentDate.toInstant()).toMillis() < 5000;
+                                if (!currentProfileRow.isOnline) {
+                                    rmiServerController.getServerDashboardController().updateConsole("<div " + "style" +
+                                            "=\"background-color: orange; color: white;\">Node [" + StringEscapeUtils.escapeHtml3(row.getKey()) + "] lost connection.</div>");
+                                }
+                            }
                         }
                         Thread.sleep(100);
                     }

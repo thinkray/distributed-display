@@ -10,8 +10,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class NodeGUIController {
-    private RMIClientController rmiClientController;
-    private NodeConfigView nodeConfigView;
+    private final RMIClientController rmiClientController;
+    private final NodeConfigView nodeConfigView;
 
     public NodeGUIController() {
         rmiClientController = new RMIClientController(this, new DisplayController(DefaultConst.SERVICE_MODE, this));
@@ -58,7 +58,9 @@ public class NodeGUIController {
             if (result) {
                 rmiClientController.getNodeGUIController().getNodeConfigView().setVisible(false);
             } else {
-                JOptionPane.showMessageDialog(nodeConfigView, LangManger.get("check_in_failed") + ": " + LangManger.get("node_name_in_use"), LangManger.get("error"),
+                JOptionPane.showMessageDialog(nodeConfigView,
+                        LangManger.get("check_in_failed") + ": " + LangManger.get("node_name_in_use"),
+                        LangManger.get("error"),
                         JOptionPane.ERROR_MESSAGE);
                 setComponentsStatus(true);
             }

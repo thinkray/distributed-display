@@ -23,8 +23,8 @@ import java.util.ArrayList;
 public class DisplayController {
 
     private NodeGUIController nodeGUIController = null;
-    private DisplayModel displayModel;
-    private DisplayView displayView;
+    private final DisplayModel displayModel;
+    private final DisplayView displayView;
 
     public DisplayController(AbstractProfile serverSideProfile, int mode) {
         this.displayModel = new DisplayModel(serverSideProfile);
@@ -77,7 +77,13 @@ public class DisplayController {
                     displayView.repaint();
                 });
             }
-            displayView.getExitItem().addActionListener(e -> System.exit(0));
+
+            displayView.getExitItem().addActionListener(e -> {
+                if (displayModel.getMode() == DefaultConst.SERVICE_MODE) {
+                    nodeGUIController.getRMIClientController().stopClient();
+                }
+                System.exit(0);
+            });
         }
 
         // Render the components

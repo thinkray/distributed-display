@@ -17,7 +17,7 @@ public class DisplayModel {
 
     private AbstractProfile profile;
     private int mode;
-    private Dimension screenSize;
+    private final Dimension screenSize;
 
     public DisplayModel(AbstractProfile profile) {
         this.profile = profile;

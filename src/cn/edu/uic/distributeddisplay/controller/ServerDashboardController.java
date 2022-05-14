@@ -12,6 +12,7 @@ import cn.edu.uic.distributeddisplay.view.panel.ConsolePanel;
 import cn.edu.uic.distributeddisplay.view.panel.DisplayConfigPanel;
 import cn.edu.uic.distributeddisplay.view.panel.NodeListPanel;
 import cn.edu.uic.distributeddisplay.view.panel.ServerConfigPanel;
+import org.apache.commons.text.StringEscapeUtils;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -26,7 +27,7 @@ import java.util.Objects;
 public class ServerDashboardController {
 
     private ServerSideProfile tempServerSideProfile;
-    private ServerMainWindowView serverMainWindowView;
+    private final ServerMainWindowView serverMainWindowView;
     private RMIServerController rmiServerController;
 
     public ServerDashboardController() {
@@ -46,7 +47,14 @@ public class ServerDashboardController {
 
     private void initMainWindowView() {
         // MainWindowView
-        serverMainWindowView.getSaveItem().addActionListener(e -> ProfileManager.saveProfileListToFile());
+        serverMainWindowView.getSaveItem().addActionListener(e -> {
+            if (ProfileManager.saveProfileListToFile()) {
+                updateConsole("<div>Profile list saved.</div>");
+            } else {
+                updateConsole("<div style=\"background-color: red; color: white;\">Cannot save the profile list" +
+                        ".</div>");
+            }
+        });
         serverMainWindowView.getExitItem().addActionListener(e -> System.exit(0));
         serverMainWindowView.getEnusItem().addActionListener(e -> {
             ConfigManager.setConfigEntry("lang", "en-US");
@@ -60,9 +68,8 @@ public class ServerDashboardController {
             ConfigManager.setConfigEntry("lang", "zh-Hant");
             JOptionPane.showMessageDialog(null, LangManger.get("lang_update_msg"));
         });
-        serverMainWindowView.getAboutItem().addActionListener(e -> JOptionPane.showMessageDialog(null, "Version 1.2" +
-                        "\n" + "Copyright " +
-                        "\u00A9 2022 Team 3", LangManger.get("about"),
+        serverMainWindowView.getAboutItem().addActionListener(e -> JOptionPane.showMessageDialog(null,
+                "Version 1.2" + "\n" + "Copyright " + "\u00A9 2022 Team 3", LangManger.get("about"),
                 JOptionPane.INFORMATION_MESSAGE));
         serverMainWindowView.getHelpItem().addActionListener(e -> {
             if (!CommonUtils.openLocalFile("./help/README-" + ConfigManager.getConfigEntry("lang") + ".html")) {
@@ -110,6 +117,8 @@ public class ServerDashboardController {
                 ProfileRow newProfileRow = new ProfileRow(new ServerSideProfile(), false, new Date(0), "");
                 ProfileManager.putProfileRow(newNodeName, newProfileRow);
                 nodeListPanel.getNewNodeNameTextField().setText("");
+                updateConsole("<div>Node [" + StringEscapeUtils.escapeHtml3(newNodeName) + "] added successfully" +
+                        ".</div>");
             } else {
                 JOptionPane.showMessageDialog(null, "There is a node with the same name in the list", "Error",
                         JOptionPane.ERROR_MESSAGE);
@@ -125,7 +134,10 @@ public class ServerDashboardController {
 
             int[] selectedRows = nodeListTable.getSelectedRows();
             for (int i = 0; i < selectedRows.length; i++) {
-                ProfileManager.removeProfileRow((String) nodeListTable.getValueAt(selectedRows[i], 0));
+                String currentNodeName = (String) nodeListTable.getValueAt(selectedRows[i], 0);
+                ProfileManager.removeProfileRow(currentNodeName);
+                updateConsole("<div>Node [" + StringEscapeUtils.escapeHtml3(currentNodeName) + "] deleted " +
+                        "successfully.</div>");
             }
 
             nodeListTable.setAutoCreateRowSorter(true);
@@ -149,7 +161,9 @@ public class ServerDashboardController {
 
         // Button actions
 //        displayConfigPanel.getConfirmButton().addActionListener(e -> confirmBtnClicked());
-        displayConfigPanel.getApplyButton().addActionListener(e -> applyBtnClicked());
+        displayConfigPanel.getApplyButton().addActionListener(e -> {
+            applyBtnClicked();
+        });
         displayConfigPanel.getPreviewButton().addActionListener(e -> previewBtnClicked());
 //        displayConfigPanel.getCancelButton().addActionListener(e -> cancelBtnClicked());
         displayConfigPanel.getSelectImageDirectoryButton().addActionListener(e -> {
@@ -247,6 +261,7 @@ public class ServerDashboardController {
 
         for (int i = 0; i < selectedRows.length; i++) {
             String currentNodeName = nodeListTable.getValueAt(selectedRows[i], 0).toString();
+            updateConsole("<div>Apply profile to node [" + StringEscapeUtils.escapeHtml3(currentNodeName) + "].</div>");
             ProfileRow currentProfileRow = ProfileManager.getProfileRow(currentNodeName);
             if (currentProfileRow == null) {
                 currentProfileRow = new ProfileRow(new ServerSideProfile(serverSideProfileTemplate), false,
