@@ -58,4 +58,6 @@ final public class DefaultConst {
     public static final int DISPLAY_MODE = 1;
 
     public static final int SERVICE_MODE = 2;
+
+    public static final String DEFAULT_LISTEN_ADDRESS = "0.0.0.0";
 }
