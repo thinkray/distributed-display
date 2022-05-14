@@ -1,23 +1,29 @@
 package cn.edu.uic.distributeddisplay.view.panel;
 
 import cn.edu.uic.distributeddisplay.model.NodeListTableModel;
-import cn.edu.uic.distributeddisplay.util.ProfileManager;
-import cn.edu.uic.distributeddisplay.util.ProfileRow;
+import cn.edu.uic.distributeddisplay.util.*;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class NodeListPanel extends JPanel {
+    private JTextField newNodeNameTextField;
+    private JButton addNodeButton;
+    private JButton deleteNodeButton;
     private NodeListTableModel nodeListTableModel;
     private JTable nodeListTable;
     private JScrollPane nodeListTableScrollPane;
     private Thread updateWorker;
 
     public NodeListPanel() {
+        setBorder(BorderFactory.createTitledBorder("Node List"));
+        setLayout(new BorderLayout());
+
+        initTopPanel();
+
         // Initialize center panel
-        initCenterPanelComponents();
-        initCenterPanelLayout();
+        initCenterPanel();
         initUpdateWorker();
 
         // Initialize bottom panel
@@ -26,12 +32,42 @@ public class NodeListPanel extends JPanel {
         setPreferredSize(new Dimension(300, 125));
     }
 
+    public JTextField getNewNodeNameTextField() {
+        return newNodeNameTextField;
+    }
+
+    public JButton getAddNodeButton() {
+        return addNodeButton;
+    }
+
+    public JButton getDeleteNodeButton() {
+        return deleteNodeButton;
+    }
+
     public JTable getNodeListTable() {
         return nodeListTable;
     }
 
-    private void initCenterPanelComponents() {
-        Object[][] data = {{"Kundan Kumar Jha", new Boolean(true)}, {"Anand Jha", new Boolean(false)}};
+    public void initTopPanel() {
+        Container centerPanel = new Container();
+        centerPanel.setLayout(new GridBagLayout());
+        // Line 1: New Profile Name | Add button | Delete button
+        CommonUtils.gbcNewLine();
+        newNodeNameTextField = new JTextField();
+        centerPanel.add(newNodeNameTextField, CommonUtils.getGridBagConstraints(0, 1, 1, 6, 1.0,
+                DefaultConst.INSETS_CENTER));
+        addNodeButton = new JButton("Add");
+        centerPanel.add(addNodeButton, CommonUtils.getGridBagConstraints(1, 1, 1, 0.5, 1.0,
+                DefaultConst.INSETS_CENTER));
+        deleteNodeButton = new JButton("Delete");
+        centerPanel.add(deleteNodeButton, CommonUtils.getGridBagConstraints(2, 1, 1, 0.5, 1.0,
+                DefaultConst.INSETS_CENTER));
+
+        add(centerPanel, BorderLayout.NORTH);
+    }
+
+    private void initCenterPanel() {
+        Object[][] data = new Object[][]{};
 
         // Column Names
         String[] columnNames = {"Node Name", "Online"};
@@ -44,12 +80,6 @@ public class NodeListPanel extends JPanel {
         nodeListTable.getTableHeader().setReorderingAllowed(false);
         // adding it to JScrollPane
         nodeListTableScrollPane = new JScrollPane(nodeListTable);
-    }
-
-    private void initCenterPanelLayout() {
-        setBorder(BorderFactory.createTitledBorder("Node List"));
-        setLayout(new BorderLayout());
-
         add(nodeListTableScrollPane, BorderLayout.CENTER);
     }
 

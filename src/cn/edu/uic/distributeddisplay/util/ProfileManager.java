@@ -114,6 +114,14 @@ public class ProfileManager {
         profileMap.put(nodeName, profileRow);
     }
 
+    public static void removeProfileRow(String nodeName) {
+        try {
+            profileMap.remove(nodeName);
+        } catch (Exception ex) {
+            return;
+        }
+    }
+
     public static int getProfileSize() {
         return profileMap.size();
     }

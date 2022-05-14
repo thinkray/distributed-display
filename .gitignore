@@ -103,3 +103,4 @@ fabric.properties
 log.txt
 config.json
 profile.bin
+log.txt.lck

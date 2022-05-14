@@ -24,6 +24,7 @@ import javax.swing.text.html.HTMLDocument;
 import java.awt.*;
 import java.io.*;
 import java.util.Date;
+import java.util.Objects;
 
 public class ServerDashboardController {
 
@@ -63,7 +64,7 @@ public class ServerDashboardController {
             JOptionPane.showMessageDialog(null, LangManger.get("lang_update_msg"));
         });
         v.getAboutItem().addActionListener(e -> JOptionPane.showMessageDialog(null, "Version 1.2\n" + "Copyright " +
-                        "\u00A9 2019-2022 Bohui WU (\u0040RapDoodle)", LangManger.get("about"),
+                "\u00A9 2019-2022 Bohui WU (\u0040RapDoodle)", LangManger.get("about"),
                 JOptionPane.INFORMATION_MESSAGE));
         v.getHelpItem().addActionListener(e -> {
             if (!CommonUtils.openLocalFile("./help/README-" + ConfigManager.getConfigEntry("lang") + ".html")) {
@@ -94,6 +95,39 @@ public class ServerDashboardController {
                 v.getDisplayConfigPanel().setPanelEnabled(true);
                 updateFields(tempServerSideProfile);
             }
+        });
+
+        nodeListPanel.getAddNodeButton().addActionListener(e -> {
+            nodeListPanel.getAddNodeButton().setEnabled(false);
+            nodeListPanel.getNewNodeNameTextField().setEnabled(false);
+
+            String newNodeName = nodeListPanel.getNewNodeNameTextField().getText();
+            if (Objects.equals(newNodeName, "")) {
+                JOptionPane.showMessageDialog(null, "Node name cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (ProfileManager.getProfileRow(newNodeName) == null) {
+                ProfileRow newProfileRow = new ProfileRow(new ServerSideProfile(), false, new Date(0), "");
+                ProfileManager.putProfileRow(newNodeName, newProfileRow);
+                nodeListPanel.getNewNodeNameTextField().setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "There is a node with the same name in the list", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+            nodeListPanel.getNewNodeNameTextField().setEnabled(true);
+            nodeListPanel.getAddNodeButton().setEnabled(true);
+        });
+
+        nodeListPanel.getDeleteNodeButton().addActionListener(e -> {
+            nodeListPanel.getDeleteNodeButton().setEnabled(false);
+            nodeListTable.setAutoCreateRowSorter(false);
+
+            int[] selectedRows = nodeListTable.getSelectedRows();
+            for (int i = 0; i < selectedRows.length; i++) {
+                ProfileManager.removeProfileRow((String) nodeListTable.getValueAt(selectedRows[i], 0));
+            }
+
+            nodeListTable.setAutoCreateRowSorter(true);
+            nodeListPanel.getDeleteNodeButton().setEnabled(true);
         });
 
         serverConfigPanel.getListenButton().addActionListener(e -> {
