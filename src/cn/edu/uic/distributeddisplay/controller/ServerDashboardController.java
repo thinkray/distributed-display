@@ -38,6 +38,7 @@ public class ServerDashboardController {
     }
 
     private void initController() {
+        ProfileManager.loadProfileListFromFile();
         initMainWindowView();
 //        updateFields();
         initMainWindowInfoPanel();
@@ -47,7 +48,7 @@ public class ServerDashboardController {
 
     private void initMainWindowView() {
         // MainWindowView
-        v.getSaveItem().addActionListener(e -> applyBtnClicked());
+        v.getSaveItem().addActionListener(e -> ProfileManager.saveProfileListToFile());
         v.getExitItem().addActionListener(e -> System.exit(0));
         v.getEnusItem().addActionListener(e -> {
             ConfigManager.setConfigEntry("lang", "en-US");

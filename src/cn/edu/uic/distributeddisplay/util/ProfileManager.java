@@ -8,6 +8,7 @@ package cn.edu.uic.distributeddisplay.util;
 
 import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
 
+import java.io.*;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,8 +18,51 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ProfileManager {
 
+    private static File profileDirectory = new File(ConfigManager.getConfigEntry("profile_location"));
     private static ConcurrentHashMap<String, ProfileRow> profileMap = new ConcurrentHashMap<>();
     private static Thread onlineChecker;
+
+    public static void saveProfileListToFile() {
+        try {
+            // Write the profile
+            FileOutputStream fos = null;
+            fos = new FileOutputStream(profileDirectory);
+            ObjectOutputStream out = new ObjectOutputStream(fos);
+            ConcurrentHashMap<String, ServerSideProfile> profileMapForFile = new ConcurrentHashMap<>();
+            for (Map.Entry<String, ProfileRow> row : profileMap.entrySet()) {
+                profileMapForFile.put(row.getKey(), row.getValue().serverSideProfile);
+            }
+
+            out.writeObject(profileMapForFile);
+            out.close();
+            fos.close();
+            Log.log("Profile saved.");
+        } catch (Exception e) {
+            // TODO: Print error
+        }
+    }
+
+    public static void loadProfileListFromFile() {
+        try {
+            // Read the profile
+            FileInputStream fis = new FileInputStream(profileDirectory);
+            ObjectInputStream in = new ObjectInputStream(fis);
+
+            // Register the profile to the profile manager
+            ConcurrentHashMap<String, ServerSideProfile> profileMapForFile = (ConcurrentHashMap<String,
+                    ServerSideProfile>) in.readObject();
+            for (Map.Entry<String, ServerSideProfile> row : profileMapForFile.entrySet()) {
+                ProfileRow currentRow = new ProfileRow(row.getValue(), false, new Date(0L), "");
+                profileMap.put(row.getKey(), currentRow);
+            }
+
+            in.close();
+            fis.close();
+            Log.log("Profile loaded.");
+        } catch (Exception e) {
+            profileMap = new ConcurrentHashMap<>();
+        }
+    }
 
     public static void startOnlineChecker() {
         onlineChecker = new Thread() {
