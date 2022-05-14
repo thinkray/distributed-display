@@ -74,8 +74,11 @@ public class ServerMainWindowView extends JFrame {
         // Prepare the window for display
         setSize(800, 600);
         setLocationRelativeTo(null);
-        setMinimumSize(new Dimension(800, 600));
+        setMinimumSize(new Dimension(800, 700));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Disable window resizing
+        setResizable(false);
     }
 
     private void initMenuBar() {
