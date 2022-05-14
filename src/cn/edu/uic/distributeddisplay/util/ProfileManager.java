@@ -38,7 +38,7 @@ public class ProfileManager {
             fos.close();
             Log.log("Profile saved.");
         } catch (Exception e) {
-            // TODO: Print error
+            Log.logError(e.getMessage());
         }
     }
 
