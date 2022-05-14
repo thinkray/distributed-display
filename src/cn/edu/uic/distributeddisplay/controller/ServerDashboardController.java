@@ -136,12 +136,12 @@ public class ServerDashboardController {
             serverConfigPanel.getListenButton().setEnabled(false);
             if (rmiServerController.isRunning()) {
                 if (rmiServerController.stopServer()) {
-                    serverConfigPanel.getListenButton().setText("Start");
+                    serverConfigPanel.getListenButton().setText(LangManger.get("start"));
                 }
             } else {
                 if (rmiServerController.startServer(serverConfigPanel.getListenAddressTextField().getText(),
                         (Integer) serverConfigPanel.getListenPortJSpinner().getValue())) {
-                    serverConfigPanel.getListenButton().setText("Stop");
+                    serverConfigPanel.getListenButton().setText(LangManger.get("stop"));
                 }
             }
             serverConfigPanel.getListenButton().setEnabled(true);
@@ -231,25 +231,6 @@ public class ServerDashboardController {
         p.getImageFitStyleComboBox().setSelectedIndex(serverSideProfile.getImgFitStyle());
     }
 
-//    private void trySave(ServerSideProfile serverSideProfile) {
-//        // TODO: Get selection list
-////        try {
-////            tempServerSideProfile.save(serverSideProfile);
-////        } catch (IOException ex) {
-////            Log.logError(ex.getMessage());
-////            JOptionPane.showMessageDialog(null, "Error occurred while saving the profile!");
-////        }
-//    }
-
-//    public void confirmBtnClicked() {
-//        ServerSideProfile serverSideProfile = wrapProfile();
-//        trySave(serverSideProfile);
-//        SwingUtilities.invokeLater(() -> {
-//            new DisplayController(serverSideProfile, false);
-//        });
-//        ViewsManager.getMainWindowView().setVisible(false);
-//    }
-
     public void previewBtnClicked() {
         ServerSideProfile serverSideProfile = wrapProfile();
         SwingUtilities.invokeLater(() -> {
@@ -276,18 +257,7 @@ public class ServerDashboardController {
                 currentProfileRow.newConfigAvailable = true;
             }
         }
-
-//        trySave(serverSideProfile);
     }
-
-//    public void cancelBtnClicked() {
-//        if (ViewsManager.getDisplayView() == null) {
-//            ViewsManager.getMainWindowView().dispose();
-//        } else {
-//            ViewsManager.getMainWindowView().setVisible(false);
-//            ViewsManager.getDisplayView().setVisible(true);
-//        }
-//    }
 
     public ServerSideProfile wrapProfile() {
         DisplayConfigPanel p = serverMainWindowView.getDisplayConfigPanel();

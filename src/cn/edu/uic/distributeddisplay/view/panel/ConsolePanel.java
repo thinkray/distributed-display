@@ -35,7 +35,7 @@ public class ConsolePanel extends JPanel {
     private void initCenterPanelComponents() {
         consoleEditorPane = new JEditorPane();
         consoleEditorPane.setContentType("text/html");
-        consoleEditorPane.setText("<html><body><div id=\"container\"><div>Ready</div></div></body></html>");
+        consoleEditorPane.setText(String.format("<html><body><div id=\"container\"><div>%s</div></div></body></html>", LangManger.get("ready")));
 
         consoleScrollPane = new JScrollPane(consoleEditorPane);
     }

@@ -76,7 +76,7 @@ public class ServerConfigPanel extends JPanel {
     private void initBottomPanel() {
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        listenButton = new JButton("Start");
+        listenButton = new JButton(LangManger.get("start"));
         bottomPanel.add(listenButton);
 
         add(bottomPanel, BorderLayout.SOUTH);

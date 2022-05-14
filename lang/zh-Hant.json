@@ -75,5 +75,10 @@
 	"error": "錯誤",
 	"check_in_failed": "簽入失敗",
 	"node_name_in_use": "指定的節點名已被使用",
-	"remote_error": "遠端發生錯誤"
+	"remote_error": "遠端發生錯誤",
+	"start": "啟動",
+	"stop": "停止",
+	"start_listening_on": "開始接聽",
+	"server_stopped": "伺服器已停止",
+	"ready": "已就緒"
 }

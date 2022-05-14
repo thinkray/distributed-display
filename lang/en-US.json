@@ -75,5 +75,10 @@
 	"error": "Error",
 	"check_in_failed": "Check in failed",
 	"node_name_in_use": "The specified node name is already in use",
-	"remote_error": "Remote error occurred"
+	"remote_error": "Remote error occurred",
+	"start": "Start",
+	"stop": "Stop",
+	"start_listening_on": "Start listening on",
+	"server_stopped": "Server stopped",
+	"ready": "Ready"
 }

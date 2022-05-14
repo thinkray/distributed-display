@@ -75,5 +75,10 @@
 	"error": "错误",
 	"check_in_failed": "签入失败",
 	"node_name_in_use": "指定的节点名已被使用",
-	"remote_error": "发生远程错误"
+	"remote_error": "发生远程错误",
+	"start": "开始",
+	"stop": "停止",
+	"start_listening_on": "开始监听于",
+	"server_stopped": "服务器已停止",
+	"ready": "已就绪"
 }
