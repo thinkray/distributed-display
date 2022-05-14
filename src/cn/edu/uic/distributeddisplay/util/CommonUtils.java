@@ -12,11 +12,11 @@ package cn.edu.uic.distributeddisplay.util;
 
 import com.google.common.collect.HashBiMap;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 
 public class CommonUtils {
 
@@ -71,18 +71,6 @@ public class CommonUtils {
         return colorHashMap.inverse().get(index);
     }
 
-//    public static BufferedImage getScreenshot(Component component) {
-//        // Unable to implement correctly under the current framework
-//        BufferedImage image = new BufferedImage(
-//                component.getWidth(),
-//                component.getHeight(),
-//                BufferedImage.TYPE_INT_RGB
-//        );
-//        // Call the Component's paint method, using the Graphics object of the image.
-//        component.paint(image.getGraphics());
-//        return image;
-//    }
-
     public static GridBagConstraints getGridBagConstraints(int gridX, int gridWidth, int gridHeight, double weightX,
                                                            double weightY, Insets insets) {
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -117,8 +105,7 @@ public class CommonUtils {
 
     public static boolean isImage(File file) {
         try {
-            String mimetype = Files.probeContentType(file.toPath());
-            return mimetype != null && mimetype.split("/")[0].equals("image");
+            return ImageIO.read(file) != null;
         } catch (IOException e) {
             // May not even be a file
             return false;
