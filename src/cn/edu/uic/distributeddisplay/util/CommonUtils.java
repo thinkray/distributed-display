@@ -13,6 +13,7 @@ package cn.edu.uic.distributeddisplay.util;
 
 import com.google.common.collect.HashBiMap;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -36,6 +37,27 @@ public class CommonUtils {
         // Initialize the grid bag constraints
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
+    }
+
+    public static void initUI() {
+        try {
+            // Change the color theme of the program to Darcular
+            UIManager.setLookAndFeel("com.bulenkov.darcula.DarculaLaf");
+
+            // Slider themes
+            UIManager.getLookAndFeelDefaults().put("Slider.selectedTrackColor", new Color(43, 43, 43));
+            UIManager.getLookAndFeelDefaults().put("Slider.disabledTickColor", new Color(43, 43, 43));
+        } catch (ClassNotFoundException | InstantiationException |
+                 IllegalAccessException | UnsupportedLookAndFeelException e) {
+            // Fail to set the theme, use the default theme
+            Log.logError(e.getMessage());
+        }
+    }
+
+    public static void initManagers() {
+        // Initialize managers
+        ConfigManager.initConfigManager();
+        LangManger.initLangManager();
     }
 
     public static int getColorFromIndex(Color color) throws NullPointerException {
