@@ -18,6 +18,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class DisplayController {
@@ -45,6 +47,12 @@ public class DisplayController {
             displayView.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    closeView();
+                }
+            });
+            displayView.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
                     closeView();
                 }
             });
@@ -84,6 +92,15 @@ public class DisplayController {
                 }
                 System.exit(0);
             });
+
+            if (displayModel.getMode() == DefaultConst.SERVICE_MODE) {
+                displayView.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        nodeGUIController.getRMIClientController().stopClient();
+                    }
+                });
+            }
         }
 
         // Render the components

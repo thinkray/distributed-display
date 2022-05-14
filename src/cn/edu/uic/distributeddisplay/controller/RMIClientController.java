@@ -3,11 +3,13 @@ package cn.edu.uic.distributeddisplay.controller;
 import cn.edu.uic.distributeddisplay.profile.NodeSideProfile;
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
 import cn.edu.uic.distributeddisplay.util.LangManger;
+import cn.edu.uic.distributeddisplay.view.NodeConfigView;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Objects;
 
 
 public class RMIClientController {
@@ -42,13 +44,18 @@ public class RMIClientController {
     }
 
     public Boolean stopClient() {
-        try {
-            clientWorker.interrupt();
-            isRunning = false;
+        if (isRunning) {
+            try {
+                clientWorker.interrupt();
+                isRunning = false;
+                return true;
+            } catch (Exception e) {
+                isRunning = true;
+                return false;
+            }
+        } else {
+            showConfigWindow(" ");
             return true;
-        } catch (Exception e) {
-            isRunning = true;
-            return false;
         }
     }
 
@@ -91,8 +98,16 @@ public class RMIClientController {
     }
 
     private void showConfigWindow(String message) {
-        nodeGUIController.getNodeConfigView().setVisible(true);
+        if (Objects.equals(message, "")) {
+            message = " ";
+        }
         nodeGUIController.setComponentsStatus(true, message);
+        NodeConfigView nodeConfigView = nodeGUIController.getNodeConfigView();
+        nodeConfigView.setVisible(true);
+        nodeConfigView.toFront();
+        nodeConfigView.requestFocus();
+        nodeConfigView.setAlwaysOnTop(true);
+        nodeConfigView.setAlwaysOnTop(false);
     }
 
     public NodeGUIController getNodeGUIController() {

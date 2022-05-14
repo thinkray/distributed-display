@@ -45,25 +45,37 @@ public class NodeGUIController {
         // Define actions
         nodeConfigView.getConnectButton().addActionListener((ActionEvent e) -> {
             setComponentsStatus(false, LangManger.get("connecting") + "...");
-            Boolean result = false;
-            try {
-                result = rmiClientController.startClient(nodeConfigView.getNodeNameTextField().getText(),
-                        nodeConfigView.getServerAddressTextField().getText());
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(nodeConfigView, LangManger.get("cannot_connect"), LangManger.get("error"),
-                        JOptionPane.ERROR_MESSAGE);
-                setComponentsStatus(true);
-                return;
-            }
-            if (result) {
-                rmiClientController.getNodeGUIController().getNodeConfigView().setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(nodeConfigView,
-                        LangManger.get("check_in_failed") + ": " + LangManger.get("node_name_in_use"),
-                        LangManger.get("error"),
-                        JOptionPane.ERROR_MESSAGE);
-                setComponentsStatus(true);
-            }
+            SwingWorker<String, Object> worker = new SwingWorker<String, Object>() {
+                @Override
+                protected String doInBackground() throws Exception {
+                    Boolean result = false;
+                    try {
+                        result = rmiClientController.startClient(nodeConfigView.getNodeNameTextField().getText(),
+                                nodeConfigView.getServerAddressTextField().getText());
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(nodeConfigView, LangManger.get("cannot_connect"),
+                                LangManger.get("error"),
+                                JOptionPane.ERROR_MESSAGE);
+                        setComponentsStatus(true);
+                        return null;
+                    }
+                    if (result) {
+                        rmiClientController.getNodeGUIController().getNodeConfigView().setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(nodeConfigView,
+                                LangManger.get("check_in_failed") + ": " + LangManger.get("node_name_in_use"),
+                                LangManger.get("error"),
+                                JOptionPane.ERROR_MESSAGE);
+                        setComponentsStatus(true);
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                }
+            };
+            worker.execute();
         });
     }
 

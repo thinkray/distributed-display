@@ -21,6 +21,9 @@ public class DisplayView extends JFrame {
     private JLabel backgroundLabel;
 
     public DisplayView() {
+        // Prevent close
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
         // Full screen mode
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);

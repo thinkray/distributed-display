@@ -67,7 +67,7 @@ public class NodeConnectionConfigPanel extends JPanel {
         centerPanel.add(serverAddressTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0,
                 DefaultConst.INSETS_RIGHT));
 
-        add(centerPanel, BorderLayout.NORTH);
+        add(centerPanel, BorderLayout.CENTER);
     }
 
     private void initBottomPanel() {

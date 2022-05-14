@@ -70,7 +70,6 @@ public class DisplayConfigPanel extends JPanel {
         textArea.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(98, 98, 98)));
         initSliders();
         imageDirectoryTextField = new JTextField();
-        imageDirectoryTextField.setEditable(false);
         selectImageDirectoryButton = new JButton("...");
         initImageFitStyleComboBox();
     }

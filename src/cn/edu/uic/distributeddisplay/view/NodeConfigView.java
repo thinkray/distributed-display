@@ -39,8 +39,8 @@ public class NodeConfigView extends JFrame {
         statusBar.add(statusLabel);
         add(statusBar, BorderLayout.SOUTH);
 
-        setMinimumSize(new Dimension(400, 200));
-        setMaximizedBounds(new Rectangle(20, 20, 400, 200));
+        setMinimumSize(new Dimension(400, 220));
+        setMaximizedBounds(new Rectangle(20, 20, 400, 220));
 
         initMenuBar();
     }

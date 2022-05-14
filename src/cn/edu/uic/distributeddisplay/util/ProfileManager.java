@@ -80,8 +80,10 @@ public class ProfileManager {
                                 currentProfileRow.isOnline = Duration.between(row.getValue().lastSeen.toInstant(),
                                         currentDate.toInstant()).toMillis() < 5000;
                                 if (!currentProfileRow.isOnline) {
-                                    rmiServerController.getServerDashboardController().updateConsole("<div " + "style" +
-                                            "=\"background-color: orange; color: white;\">Node [" + StringEscapeUtils.escapeHtml3(row.getKey()) + "] lost connection.</div>");
+                                    rmiServerController.getServerDashboardController().updateConsole(String.format(
+                                            "<div style=\"background-color: orange; color: white;\">%s Node [%s] " +
+                                                    "lost" + " " + "connection.</div>", new Date(),
+                                            StringEscapeUtils.escapeHtml3(row.getKey())));
                                 }
                             }
                         }
