@@ -66,6 +66,7 @@ public class RMIClientController {
                     while (true) {
                         int severRespond = rmiServerWorkerInterface.heartbeat(nodeName, sessionUUID);
                         if (severRespond == DefaultConst.INVALID_SESSION) {
+                            showConfigWindow("Disconnected");
                             return;
                         } else if (severRespond == DefaultConst.SESSION_RENEWED_NEW_CONFIG_AVAILABLE) {
                             NodeSideProfile newProfile = rmiServerWorkerInterface.getConfig(nodeName, sessionUUID);
@@ -74,15 +75,22 @@ public class RMIClientController {
                         Thread.sleep(1000);
                     }
                 } catch (InterruptedException e) {
+                    showConfigWindow(" ");
                     return;
                 } catch (RemoteException e) {
-                    // TODO: Back to config panel
+                    // Back to config panel
+                    showConfigWindow("Remote error occurred");
                     throw new RuntimeException(e);
                 }
             }
         };
 
         clientWorker.start();
+    }
+
+    private void showConfigWindow(String message) {
+        nodeGUIController.getV().setVisible(true);
+        nodeGUIController.setComponentsStatus(true, message);
     }
 
     public NodeGUIController getNodeGUIController() {

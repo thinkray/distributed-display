@@ -51,6 +51,9 @@ public class DisplayConfigPanel extends JPanel {
 
         // Initialize bottom panel
         initBottomPanel();
+
+        // The panel is disabled until a profile is selected
+        setPanelEnabled(false);
     }
 
     public JButton getSelectImageDirectoryButton() {
@@ -116,7 +119,6 @@ public class DisplayConfigPanel extends JPanel {
         hOffsetSlider.setLabelTable(hSliderTable);
         hOffsetSlider.setPaintLabels(true);
         hOffsetSlider.setSnapToTicks(true);
-
     }
 
     private void initCenterPanelLayout() {
@@ -290,6 +292,15 @@ public class DisplayConfigPanel extends JPanel {
         colorComboBox.addItem(LangManger.get("blue"));
         colorComboBox.addItem(LangManger.get("white"));
         colorComboBox.addItem(LangManger.get("others"));
+    }
+
+    public void setPanelEnabled(boolean enabled) {
+        Component[] centerComponents = centerPanel.getComponents();
+        for (Component component : centerComponents) {
+            component.setEnabled(enabled);
+        }
+        previewButton.setEnabled(enabled);
+        applyButton.setEnabled(enabled);
     }
 
     public JComboBox<String> getFontComboBox() {

@@ -17,7 +17,7 @@ import java.util.Collections;
 public class DisplayModel {
 
     private AbstractProfile profile;
-    private boolean previewMode;
+    private int mode;
     private Dimension screenSize;
 
     public DisplayModel(AbstractProfile profile) {
@@ -71,12 +71,12 @@ public class DisplayModel {
         this.profile = profile;
     }
 
-    public boolean isPreviewMode() {
-        return previewMode;
+    public int getMode() {
+        return mode;
     }
 
-    public void setPreviewMode(boolean previewMode) {
-        this.previewMode = previewMode;
+    public void setMode(int mode) {
+        this.mode = mode;
     }
 
     public Dimension getScreenSize() {

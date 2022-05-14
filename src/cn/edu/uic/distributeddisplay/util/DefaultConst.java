@@ -53,4 +53,10 @@ final public class DefaultConst {
     public static final int SESSION_RENEWED_NO_NEW_CONFIG = 304;
 
     public static final int SESSION_RENEWED_NEW_CONFIG_AVAILABLE = 200;
+
+    public static final int PREVIEW_MODE = 0;
+
+    public static final int DISPLAY_MODE = 1;
+
+    public static final int SERVICE_MODE = 2;
 }

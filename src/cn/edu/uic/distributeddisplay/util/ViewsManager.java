@@ -9,12 +9,14 @@
 package cn.edu.uic.distributeddisplay.util;
 
 import cn.edu.uic.distributeddisplay.view.DisplayView;
+import cn.edu.uic.distributeddisplay.view.NodeConfigView;
 import cn.edu.uic.distributeddisplay.view.ServerMainWindowView;
 
 public class ViewsManager {
 
     private static DisplayView displayView;
     private static ServerMainWindowView serverMainWindowView;
+    private static NodeConfigView nodeConfigView;
 
     public static DisplayView getDisplayView() {
         return displayView;
@@ -39,4 +41,11 @@ public class ViewsManager {
         }
     }
 
+    public static NodeConfigView getNodeConfigView() {
+        return nodeConfigView;
+    }
+
+    public static void setNodeConfigView(NodeConfigView nodeConfigView) {
+        ViewsManager.nodeConfigView = nodeConfigView;
+    }
 }

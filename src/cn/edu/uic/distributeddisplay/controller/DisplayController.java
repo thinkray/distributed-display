@@ -11,6 +11,7 @@ import cn.edu.uic.distributeddisplay.profile.AbstractProfile;
 import cn.edu.uic.distributeddisplay.profile.NodeSideProfile;
 import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
+import cn.edu.uic.distributeddisplay.util.Log;
 import cn.edu.uic.distributeddisplay.util.ViewsManager;
 import cn.edu.uic.distributeddisplay.model.DisplayModel;
 import cn.edu.uic.distributeddisplay.view.DisplayView;
@@ -26,20 +27,20 @@ public class DisplayController {
     private DisplayModel m;
     private DisplayView v;
 
-    public DisplayController(AbstractProfile serverSideProfile, boolean previewMode) {
+    public DisplayController(AbstractProfile serverSideProfile, int mode) {
         this.m = new DisplayModel(serverSideProfile);
-        this.m.setPreviewMode(previewMode);
+        this.m.setMode(mode);
         this.v = new DisplayView();
         initController();
     }
 
-    public DisplayController() {
-        // Show a blank screen using the default profile
-        this(new ServerSideProfile(), false);
+    public DisplayController(int mode) {
+        // Show a blank screen using the default profile.
+        this(new ServerSideProfile(), mode);
     }
 
     private void initController() {
-        if (m.isPreviewMode()) {
+        if (m.getMode() == DefaultConst.PREVIEW_MODE) {
             // In preview mode, users can use left-click or right-click to exit
             v.addMouseListener(new MouseAdapter() {
                 @Override
@@ -52,9 +53,8 @@ public class DisplayController {
             if (ViewsManager.getDisplayView() == null) {
                 ViewsManager.setDisplayView(v);
             } else {
-                System.out.println("Warning: Double initialization.");
+                Log.logWarning("Warning: Double initialization.");
             }
-
 
             // Register right-click events
             v.addMouseListener(new MouseAdapter() {
@@ -69,7 +69,14 @@ public class DisplayController {
             });
 
             // Define menu item events
-            v.getPreferenceItem().addActionListener(e -> closeView());
+            if (m.getMode() == DefaultConst.DISPLAY_MODE) {
+                v.getPreferenceItem().addActionListener(e -> closeView());
+            } else if (m.getMode() == DefaultConst.SERVICE_MODE) {
+                v.getPreferenceItem().addActionListener(e -> {
+                    ViewsManager.getNodeConfigView().setVisible(true);
+                    v.repaint();
+                });
+            }
             v.getExitItem().addActionListener(e -> System.exit(0));
         }
 

@@ -91,6 +91,7 @@ public class ServerDashboardController {
                             ProfileManager.getProfileRow((String) nodeListTable.getValueAt(nodeListTable.getSelectedRow(), 0));
                     tempServerSideProfile = new ServerSideProfile(profileRow.serverSideProfile);
                 }
+                v.getDisplayConfigPanel().setPanelEnabled(true);
                 updateFields(tempServerSideProfile);
             }
         });
@@ -215,7 +216,7 @@ public class ServerDashboardController {
     public void previewBtnClicked() {
         ServerSideProfile serverSideProfile = wrapProfile();
         SwingUtilities.invokeLater(() -> {
-            new DisplayController(serverSideProfile, true);
+            new DisplayController(serverSideProfile, DefaultConst.PREVIEW_MODE);
         });
         ViewsManager.getMainWindowView().setVisible(false);
     }
