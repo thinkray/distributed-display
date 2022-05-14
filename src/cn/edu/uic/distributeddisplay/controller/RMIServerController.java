@@ -11,7 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 
 public class RMIServerController {
-    private ServerDashboardController serverDashboardController;
+    private final ServerDashboardController serverDashboardController;
     private String address;
     private Integer port;
     private Boolean isRunning;
@@ -26,14 +26,18 @@ public class RMIServerController {
         try {
             rmiRegistry = LocateRegistry.createRegistry(port);
             Naming.rebind("rmi://" + address + ":" + port + "/DisplayServer", new RMIServerWorkerController(this));
-            ProfileManager.startOnlineChecker();
+            ProfileManager.startOnlineChecker(this);
             isRunning = true;
-            serverDashboardController.updateConsole("<div>" + LangManger.get("start_listening_on") + " " + StringEscapeUtils.escapeHtml3(address + ":" + port) + "</div>");
+            serverDashboardController.updateConsole(String.format("<div style=\"background-color: green; color: " +
+                    "white;\">%s %s</div>", LangManger.get("start_listening_on"),
+                    StringEscapeUtils.escapeHtml3(address + ":" + port)));
             return true;
         } catch (Exception e) {
             isRunning = false;
             rmiRegistry = null;
-            serverDashboardController.updateConsole("<div>" + LangManger.get("cannot_listen_on") + " " + StringEscapeUtils.escapeHtml3(address + ":" + port) + "</div>");
+            serverDashboardController.updateConsole(String.format("<div style=\"background-color: red; color: white;" +
+                    "\">%s %s</div>", LangManger.get("cannot_listen_on"),
+                    StringEscapeUtils.escapeHtml3(address + ":" + port)));
             return false;
         }
     }
@@ -43,16 +47,22 @@ public class RMIServerController {
             ProfileManager.stopOnlineChecker();
             UnicastRemoteObject.unexportObject(rmiRegistry, true);
             isRunning = false;
-            serverDashboardController.updateConsole("<div>" + LangManger.get("server_stopped") + "</div>");
+            serverDashboardController.updateConsole(String.format("<div style=\"background-color: olive; color: " +
+                    "white;\">%s</div>", LangManger.get("server_stopped")));
             return true;
         } catch (Exception e) {
             isRunning = true;
-            serverDashboardController.updateConsole("<div>" + LangManger.get("failed_to_stop") + "</div>");
+            serverDashboardController.updateConsole(String.format("<div style=\"background-color: red; color: white;" +
+                    "\">%s</div>", LangManger.get("failed_to_stop")));
             return false;
         }
     }
 
     public Boolean isRunning() {
         return isRunning;
+    }
+
+    public ServerDashboardController getServerDashboardController() {
+        return serverDashboardController;
     }
 }

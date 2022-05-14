@@ -11,8 +11,8 @@ import java.rmi.RemoteException;
 
 
 public class RMIClientController {
-    private NodeGUIController nodeGUIController;
-    private DisplayController displayController;
+    private final NodeGUIController nodeGUIController;
+    private final DisplayController displayController;
     private String nodeName;
     private String serverAddress;
     private RMIServerWorkerInterface rmiServerWorkerInterface;
