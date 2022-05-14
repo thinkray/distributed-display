@@ -1,8 +1,18 @@
+/**
+ * The main window on the server side
+ *
+ * @author Team 3
+ * @version 1.0
+ */
+
 package cn.edu.uic.distributeddisplay.view;
 
 import cn.edu.uic.distributeddisplay.util.LangManger;
 import cn.edu.uic.distributeddisplay.util.ViewsManager;
-import cn.edu.uic.distributeddisplay.view.panel.*;
+import cn.edu.uic.distributeddisplay.view.panel.ConsolePanel;
+import cn.edu.uic.distributeddisplay.view.panel.DisplayConfigPanel;
+import cn.edu.uic.distributeddisplay.view.panel.NodeListPanel;
+import cn.edu.uic.distributeddisplay.view.panel.ServerConfigPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +20,10 @@ import java.awt.*;
 public class ServerMainWindowView extends JFrame {
 
     // Dashboard
-    private ServerConfigPanel serverConfigPanel;
-    private NodeListPanel nodeListPanel;
-    private DisplayConfigPanel displayConfigPanel;
-    private ConsolePanel consolePanel;
+    private final ServerConfigPanel serverConfigPanel;
+    private final NodeListPanel nodeListPanel;
+    private final DisplayConfigPanel displayConfigPanel;
+    private final ConsolePanel consolePanel;
 
     // Files
     private JMenuBar menuBar;

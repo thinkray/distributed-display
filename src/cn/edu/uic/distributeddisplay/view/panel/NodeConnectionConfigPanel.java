@@ -1,3 +1,10 @@
+/**
+ * The node connection config panel
+ *
+ * @author Team 3
+ * @version 1.0
+ */
+
 package cn.edu.uic.distributeddisplay.view.panel;
 
 import cn.edu.uic.distributeddisplay.util.CommonUtils;

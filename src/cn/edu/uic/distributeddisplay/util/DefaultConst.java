@@ -1,9 +1,8 @@
 /**
  * The DefaultConst class stores all the default values for the program
  *
- * @author Bohui WU
+ * @author Team 3
  * @version 1.0
- * @since 12/28/2019
  */
 
 package cn.edu.uic.distributeddisplay.util;

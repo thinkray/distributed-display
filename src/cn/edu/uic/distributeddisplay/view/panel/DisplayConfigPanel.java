@@ -1,15 +1,15 @@
 /**
- * The panel stores all the components for adjusting the parameters of the profile
+ * The panel provides an interface for adjusting the parameters of the profile
  *
- * @author Bohui WU
+ * @author Team 3
  * @version 1.8
- * @since 12/18/2019
  */
+
 package cn.edu.uic.distributeddisplay.view.panel;
 
 import cn.edu.uic.distributeddisplay.util.CommonUtils;
-import cn.edu.uic.distributeddisplay.util.LangManger;
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
+import cn.edu.uic.distributeddisplay.util.LangManger;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,3 +1,10 @@
+/**
+ * Display according to the Profile
+ *
+ * @author Team 3
+ * @version 1.0
+ */
+
 package cn.edu.uic.distributeddisplay.view;
 
 import cn.edu.uic.distributeddisplay.util.LangManger;

@@ -122,6 +122,6 @@ To uninstall the program, simply remove the entire folder, and you are good to g
 |json-20141113.jar|For the program's configuration|
 
 # Copyright
-Copyright© 2019-2020 Bohui WU (Bowen, @\_RapDoodle\_)
+Copyright© Copyright© 2021 Team 3)
 
 Email: wbh3516@gmail.com

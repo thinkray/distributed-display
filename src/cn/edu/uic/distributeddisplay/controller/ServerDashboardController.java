@@ -1,14 +1,12 @@
 /**
  * The controller for the frame MainWindow
  *
- * @author Bohui WU
- * @since 12/20/2019
+ * @author Team 3
  */
 package cn.edu.uic.distributeddisplay.controller;
 
 import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
 import cn.edu.uic.distributeddisplay.util.*;
-//import cn.edu.uic.distributeddisplay.model.PreferenceModel;
 import cn.edu.uic.distributeddisplay.view.ServerMainWindowView;
 import cn.edu.uic.distributeddisplay.view.panel.ConsolePanel;
 import cn.edu.uic.distributeddisplay.view.panel.DisplayConfigPanel;
@@ -19,22 +17,21 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import java.awt.*;
-import java.io.*;
+import java.io.File;
 import java.util.Date;
 import java.util.Objects;
 
 public class ServerDashboardController {
 
     private ServerSideProfile tempServerSideProfile;
-    private ServerMainWindowView v;
+    private ServerMainWindowView serverMainWindowView;
     private RMIServerController rmiServerController;
 
     public ServerDashboardController() {
         tempServerSideProfile = new ServerSideProfile();
-        v = new ServerMainWindowView();
+        serverMainWindowView = new ServerMainWindowView();
         initController();
     }
 
@@ -44,29 +41,30 @@ public class ServerDashboardController {
 //        updateFields();
         initMainWindowInfoPanel();
         rmiServerController = new RMIServerController(this);
-        v.setVisible(true);
+        serverMainWindowView.setVisible(true);
     }
 
     private void initMainWindowView() {
         // MainWindowView
-        v.getSaveItem().addActionListener(e -> ProfileManager.saveProfileListToFile());
-        v.getExitItem().addActionListener(e -> System.exit(0));
-        v.getEnusItem().addActionListener(e -> {
+        serverMainWindowView.getSaveItem().addActionListener(e -> ProfileManager.saveProfileListToFile());
+        serverMainWindowView.getExitItem().addActionListener(e -> System.exit(0));
+        serverMainWindowView.getEnusItem().addActionListener(e -> {
             ConfigManager.setConfigEntry("lang", "en-US");
             JOptionPane.showMessageDialog(null, LangManger.get("lang_update_msg"));
         });
-        v.getZhhansItem().addActionListener(e -> {
+        serverMainWindowView.getZhhansItem().addActionListener(e -> {
             ConfigManager.setConfigEntry("lang", "zh-Hans");
             JOptionPane.showMessageDialog(null, LangManger.get("lang_update_msg"));
         });
-        v.getZhhantItem().addActionListener(e -> {
+        serverMainWindowView.getZhhantItem().addActionListener(e -> {
             ConfigManager.setConfigEntry("lang", "zh-Hant");
             JOptionPane.showMessageDialog(null, LangManger.get("lang_update_msg"));
         });
-        v.getAboutItem().addActionListener(e -> JOptionPane.showMessageDialog(null, "Version 1.2\n" + "Copyright " +
-                "\u00A9 2019-2022 Bohui WU (\u0040RapDoodle)", LangManger.get("about"),
+        serverMainWindowView.getAboutItem().addActionListener(e -> JOptionPane.showMessageDialog(null, "Version 1.2" +
+                        "\n" + "Copyright " +
+                        "\u00A9 2022 Team 3", LangManger.get("about"),
                 JOptionPane.INFORMATION_MESSAGE));
-        v.getHelpItem().addActionListener(e -> {
+        serverMainWindowView.getHelpItem().addActionListener(e -> {
             if (!CommonUtils.openLocalFile("./help/README-" + ConfigManager.getConfigEntry("lang") + ".html")) {
                 // When the manual is not found
                 JOptionPane.showMessageDialog(null, LangManger.get("err_help_not_found"), LangManger.get("message"),
@@ -76,10 +74,10 @@ public class ServerDashboardController {
     }
 
     private void initMainWindowInfoPanel() {
-        ServerConfigPanel serverConfigPanel = v.getServerConfigPanel();
-        NodeListPanel nodeListPanel = v.getNodeListPanel();
-        DisplayConfigPanel displayConfigPanel = v.getDisplayConfigPanel();
-        ConsolePanel consolePanel = v.getConsolePanel();
+        ServerConfigPanel serverConfigPanel = serverMainWindowView.getServerConfigPanel();
+        NodeListPanel nodeListPanel = serverMainWindowView.getNodeListPanel();
+        DisplayConfigPanel displayConfigPanel = serverMainWindowView.getDisplayConfigPanel();
+        ConsolePanel consolePanel = serverMainWindowView.getConsolePanel();
 
         JTable nodeListTable = nodeListPanel.getNodeListTable();
 
@@ -89,12 +87,12 @@ public class ServerDashboardController {
                 int[] selectedRows = nodeListTable.getSelectedRows();
                 if (selectedRows.length == 0) {
                     tempServerSideProfile = new ServerSideProfile();
-                    v.getDisplayConfigPanel().setPanelEnabled(false);
+                    serverMainWindowView.getDisplayConfigPanel().setPanelEnabled(false);
                 } else if (selectedRows.length == 1) {
                     ProfileRow profileRow =
                             ProfileManager.getProfileRow((String) nodeListTable.getValueAt(nodeListTable.getSelectedRow(), 0));
                     tempServerSideProfile = new ServerSideProfile(profileRow.serverSideProfile);
-                    v.getDisplayConfigPanel().setPanelEnabled(true);
+                    serverMainWindowView.getDisplayConfigPanel().setPanelEnabled(true);
                 }
 
                 updateFields(tempServerSideProfile);
@@ -155,7 +153,8 @@ public class ServerDashboardController {
         displayConfigPanel.getPreviewButton().addActionListener(e -> previewBtnClicked());
 //        displayConfigPanel.getCancelButton().addActionListener(e -> cancelBtnClicked());
         displayConfigPanel.getSelectImageDirectoryButton().addActionListener(e -> {
-            JFileChooser fc = new JFileChooser(v.getDisplayConfigPanel().getImageDirectoryTextField().getText());
+            JFileChooser fc =
+                    new JFileChooser(serverMainWindowView.getDisplayConfigPanel().getImageDirectoryTextField().getText());
             fc.setAcceptAllFileFilterUsed(false);
             fc.addChoosableFileFilter(new FileNameExtensionFilter("Image(*.jpg, *.jpeg, *.png)", "jpg", "JPG", "jpeg"
                     , "JPEG", "png", "PNG"));
@@ -206,7 +205,7 @@ public class ServerDashboardController {
     }
 
     private void updateFields(ServerSideProfile serverSideProfile) {
-        DisplayConfigPanel p = v.getDisplayConfigPanel();
+        DisplayConfigPanel p = serverMainWindowView.getDisplayConfigPanel();
         Font font = serverSideProfile.getFont();
         p.getFontComboBox().setSelectedItem(font.getFontName());
         p.getFontSizeComboBox().setSelectedItem(font.getSize());
@@ -260,7 +259,7 @@ public class ServerDashboardController {
     }
 
     public void applyBtnClicked() {
-        NodeListPanel nodeListPanel = v.getNodeListPanel();
+        NodeListPanel nodeListPanel = serverMainWindowView.getNodeListPanel();
         JTable nodeListTable = nodeListPanel.getNodeListTable();
         int[] selectedRows = nodeListTable.getSelectedRows();
         ServerSideProfile serverSideProfileTemplate = wrapProfile();
@@ -291,7 +290,7 @@ public class ServerDashboardController {
 //    }
 
     public ServerSideProfile wrapProfile() {
-        DisplayConfigPanel p = v.getDisplayConfigPanel();
+        DisplayConfigPanel p = serverMainWindowView.getDisplayConfigPanel();
         return new ServerSideProfile(p.getTextArea().getText(),
                 new Font(p.getFontComboBox().getSelectedItem().toString(),
                         p.getFontStyleComboBox().getSelectedIndex(),
@@ -303,11 +302,11 @@ public class ServerDashboardController {
     }
 
     public void updateConsole(String message) {
-        JEditorPane console = v.getConsolePanel().getConsoleEditorPane();
+        JEditorPane console = serverMainWindowView.getConsolePanel().getConsoleEditorPane();
 
         try {
             HTMLDocument doc = (HTMLDocument) console.getDocument();
-            doc.insertBeforeEnd((Element) doc.getElement("container"), message);
+            doc.insertBeforeEnd(doc.getElement("container"), message);
         } catch (Exception e) {
             System.out.println(e);
         }

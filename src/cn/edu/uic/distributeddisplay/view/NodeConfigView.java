@@ -1,16 +1,20 @@
+/**
+ * The node connection config panel
+ *
+ * @author Team 3
+ * @version 1.0
+ */
+
 package cn.edu.uic.distributeddisplay.view;
 
-import cn.edu.uic.distributeddisplay.util.CommonUtils;
-import cn.edu.uic.distributeddisplay.util.DefaultConst;
 import cn.edu.uic.distributeddisplay.view.panel.NodeConnectionConfigPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class NodeConfigView extends JFrame {
-    private NodeConnectionConfigPanel nodeConnectionConfigPanel;
-    private JLabel statusLabel;
+    private final NodeConnectionConfigPanel nodeConnectionConfigPanel;
+    private final JLabel statusLabel;
 
     public NodeConfigView() {
         setTitle("Connect");

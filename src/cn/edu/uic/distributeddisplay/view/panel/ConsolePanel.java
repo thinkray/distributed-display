@@ -1,3 +1,10 @@
+/**
+ * The Console panel
+ *
+ * @author Team 3
+ * @version 1.0
+ */
+
 package cn.edu.uic.distributeddisplay.view.panel;
 
 import javax.swing.*;

@@ -1,8 +1,7 @@
 /**
  * The renderer for colorComboBox in the preference panel
  *
- * @author Bohui WU
- * @since 12/22/2019
+ * @author Team 3
  */
 
 package cn.edu.uic.distributeddisplay.util;

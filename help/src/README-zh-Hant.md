@@ -116,7 +116,4 @@
 1. 原始版本
 
 # 版權
-Copyright© 2019-2020 Bohui WU (Bowen, @\_RapDoodle\_)
-
-Email: wbh3516@gmail.com
-
+Copyright© 2021 Team 3

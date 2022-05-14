@@ -1,8 +1,7 @@
 /**
  * The Profile Object
  *
- * @author Bohui WU
- * @since 12/20/2019
+ * @author Team 3
  */
 package cn.edu.uic.distributeddisplay.profile;
 

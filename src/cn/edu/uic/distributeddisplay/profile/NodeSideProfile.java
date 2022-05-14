@@ -1,17 +1,13 @@
 /**
  * The Profile Object
  *
- * @author Bohui WU
- * @since 12/20/2019
+ * @author Team 3
  */
 package cn.edu.uic.distributeddisplay.profile;
 
 import cn.edu.uic.distributeddisplay.util.CommonUtils;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 
 public class NodeSideProfile extends AbstractProfile {
 

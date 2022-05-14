@@ -2,8 +2,7 @@
  * The model for the frame display. It is responsible for getting the profile from the profile manager
  * and return the requested data required by the ControllerDisplay
  *
- * @author Bohui WU
- * @since 12/20/2019
+ * @author Team 3
  */
 package cn.edu.uic.distributeddisplay.model;
 

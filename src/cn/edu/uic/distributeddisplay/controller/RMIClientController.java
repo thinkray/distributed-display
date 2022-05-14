@@ -2,14 +2,11 @@ package cn.edu.uic.distributeddisplay.controller;
 
 import cn.edu.uic.distributeddisplay.profile.NodeSideProfile;
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
-import cn.edu.uic.distributeddisplay.util.ProfileManager;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.Objects;
 
 
 public class RMIClientController {
@@ -75,12 +72,16 @@ public class RMIClientController {
                         Thread.sleep(1000);
                     }
                 } catch (InterruptedException e) {
-                    showConfigWindow(" ");
+                    try {
+                        rmiServerWorkerInterface.checkOut(nodeName, sessionUUID);
+                    } catch (RemoteException ex) {
+                    }
+                    showConfigWindow("Disconnected");
                     return;
                 } catch (RemoteException e) {
                     // Back to config panel
                     showConfigWindow("Remote error occurred");
-                    throw new RuntimeException(e);
+                    return;
                 }
             }
         };
@@ -89,7 +90,7 @@ public class RMIClientController {
     }
 
     private void showConfigWindow(String message) {
-        nodeGUIController.getV().setVisible(true);
+        nodeGUIController.getNodeConfigView().setVisible(true);
         nodeGUIController.setComponentsStatus(true, message);
     }
 

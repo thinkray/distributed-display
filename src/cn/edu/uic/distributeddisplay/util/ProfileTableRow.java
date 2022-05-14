@@ -1,8 +1,10 @@
+/**
+ * A row in a ProfileTable
+ *
+ * @author Team 3
+ * @version 1.0
+ */
 package cn.edu.uic.distributeddisplay.util;
-
-import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
-
-import java.util.Date;
 
 public class ProfileTableRow {
     public String nodeName = "";

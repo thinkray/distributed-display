@@ -5,9 +5,8 @@
  * 3). Control the grid bag constrains object in the preference panel
  * 4). Get the screenshot of a given window (not used)
  *
- * @author Bohui WU
+ * @author Team 3
  * @version 1.0
- * @since 12/24/2019
  */
 package cn.edu.uic.distributeddisplay.util;
 

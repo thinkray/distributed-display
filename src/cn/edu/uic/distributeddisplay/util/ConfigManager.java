@@ -1,9 +1,8 @@
 /**
  * The ConfigManager handles the configuration of the program
  *
- * @author Bohui WU
+ * @author Team 3
  * @version 1.0
- * @since 12/25/2019
  */
 package cn.edu.uic.distributeddisplay.util;
 

@@ -124,6 +124,4 @@
 | json-20141113.jar |用于程序的配置|
 
 # 版权
-Copyright© 2019-2020 Bohui WU (Bowen, @\_RapDoodle\_)
-
-Email: wbh3516@gmail.com
+Copyright© 2021 Team 3

@@ -1,7 +1,6 @@
 package cn.edu.uic.distributeddisplay.controller;
 
 import cn.edu.uic.distributeddisplay.util.ProfileManager;
-
 import org.apache.commons.text.StringEscapeUtils;
 
 import java.rmi.Naming;

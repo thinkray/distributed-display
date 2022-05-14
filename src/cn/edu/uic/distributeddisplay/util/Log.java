@@ -1,7 +1,7 @@
 /**
  * The Logger for the program
  *
- * @author Bohui WU
+ * @author Team 3
  * @version 1.0
  * @since 1/2/2020
  */

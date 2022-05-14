@@ -1,8 +1,17 @@
+/**
+ * The node list panel
+ *
+ * @author Team 3
+ * @version 1.0
+ */
+
 package cn.edu.uic.distributeddisplay.view.panel;
 
 import cn.edu.uic.distributeddisplay.model.NodeListTableModel;
-import cn.edu.uic.distributeddisplay.util.*;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import cn.edu.uic.distributeddisplay.util.CommonUtils;
+import cn.edu.uic.distributeddisplay.util.DefaultConst;
+import cn.edu.uic.distributeddisplay.util.ProfileManager;
+import cn.edu.uic.distributeddisplay.util.ProfileRow;
 
 import javax.swing.*;
 import java.awt.*;
