@@ -22,7 +22,7 @@ final public class DefaultConst {
 
     public static final int TILE = 2;
 
-    public static final String DEFAULT_TEXT = LangManger.get("default_text");
+    public static final String DEFAULT_TEXT = "";
 
     public static final int DEFAULT_LETTER_SPACING = -20;
 
