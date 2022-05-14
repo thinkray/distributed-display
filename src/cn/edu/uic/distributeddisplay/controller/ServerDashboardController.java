@@ -87,12 +87,16 @@ public class ServerDashboardController {
             @Override
             public void valueChanged(ListSelectionEvent event) {
                 int[] selectedRows = nodeListTable.getSelectedRows();
-                if (selectedRows.length == 1) {
+                if (selectedRows.length == 0) {
+                    tempServerSideProfile = new ServerSideProfile();
+                    v.getDisplayConfigPanel().setPanelEnabled(false);
+                } else if (selectedRows.length == 1) {
                     ProfileRow profileRow =
                             ProfileManager.getProfileRow((String) nodeListTable.getValueAt(nodeListTable.getSelectedRow(), 0));
                     tempServerSideProfile = new ServerSideProfile(profileRow.serverSideProfile);
+                    v.getDisplayConfigPanel().setPanelEnabled(true);
                 }
-                v.getDisplayConfigPanel().setPanelEnabled(true);
+
                 updateFields(tempServerSideProfile);
             }
         });

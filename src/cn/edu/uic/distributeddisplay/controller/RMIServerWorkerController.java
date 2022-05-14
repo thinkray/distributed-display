@@ -32,6 +32,7 @@ public class RMIServerWorkerController extends UnicastRemoteObject implements RM
             ProfileManager.putProfileRow(nodeName, profileRow);
             return profileRow.uuid;
         } else if (!currentProfileRow.isOnline) {
+            currentProfileRow.isOnline = true;
             currentProfileRow.lastSeen = new Date();
             currentProfileRow.uuid = UUID.randomUUID().toString();
             currentProfileRow.newConfigAvailable = true;
