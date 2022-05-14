@@ -8,10 +8,7 @@
 package cn.edu.uic.distributeddisplay.view.panel;
 
 import cn.edu.uic.distributeddisplay.model.NodeListTableModel;
-import cn.edu.uic.distributeddisplay.util.CommonUtils;
-import cn.edu.uic.distributeddisplay.util.DefaultConst;
-import cn.edu.uic.distributeddisplay.util.ProfileManager;
-import cn.edu.uic.distributeddisplay.util.ProfileRow;
+import cn.edu.uic.distributeddisplay.util.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,7 +23,7 @@ public class NodeListPanel extends JPanel {
     private Thread updateWorker;
 
     public NodeListPanel() {
-        setBorder(BorderFactory.createTitledBorder("Node List"));
+        setBorder(BorderFactory.createTitledBorder(LangManger.get("node_list")));
         setLayout(new BorderLayout());
 
         initTopPanel();
@@ -65,10 +62,10 @@ public class NodeListPanel extends JPanel {
         newNodeNameTextField = new JTextField();
         centerPanel.add(newNodeNameTextField, CommonUtils.getGridBagConstraints(0, 1, 1, 6, 1.0,
                 DefaultConst.INSETS_CENTER));
-        addNodeButton = new JButton("Add");
+        addNodeButton = new JButton(LangManger.get("add"));
         centerPanel.add(addNodeButton, CommonUtils.getGridBagConstraints(1, 1, 1, 0.5, 1.0,
                 DefaultConst.INSETS_CENTER));
-        deleteNodeButton = new JButton("Delete");
+        deleteNodeButton = new JButton(LangManger.get("delete"));
         centerPanel.add(deleteNodeButton, CommonUtils.getGridBagConstraints(2, 1, 1, 0.5, 1.0,
                 DefaultConst.INSETS_CENTER));
 
@@ -79,7 +76,7 @@ public class NodeListPanel extends JPanel {
         Object[][] data = new Object[][]{};
 
         // Column Names
-        String[] columnNames = {"Node Name", "Online"};
+        String[] columnNames = {LangManger.get("node_name"), LangManger.get("online")};
 
         // Initializing the JTable
         nodeListTable = new JTable();

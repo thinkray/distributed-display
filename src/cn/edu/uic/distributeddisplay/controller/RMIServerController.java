@@ -1,5 +1,6 @@
 package cn.edu.uic.distributeddisplay.controller;
 
+import cn.edu.uic.distributeddisplay.util.LangManger;
 import cn.edu.uic.distributeddisplay.util.ProfileManager;
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -27,12 +28,12 @@ public class RMIServerController {
             Naming.rebind("rmi://" + address + ":" + port + "/DisplayServer", new RMIServerWorkerController(this));
             ProfileManager.startOnlineChecker();
             isRunning = true;
-            serverDashboardController.updateConsole("<div>Start listening on " + StringEscapeUtils.escapeHtml3(address + ":" + port) + "</div>");
+            serverDashboardController.updateConsole("<div>" + LangManger.get("start_listening_on") + " " + StringEscapeUtils.escapeHtml3(address + ":" + port) + "</div>");
             return true;
         } catch (Exception e) {
             isRunning = false;
             rmiRegistry = null;
-            serverDashboardController.updateConsole("<div>Cannot start listening on " + StringEscapeUtils.escapeHtml3(address + ":" + port) + "</div>");
+            serverDashboardController.updateConsole("<div>" + LangManger.get("cannot_listen_on") + " " + StringEscapeUtils.escapeHtml3(address + ":" + port) + "</div>");
             return false;
         }
     }
@@ -42,11 +43,11 @@ public class RMIServerController {
             ProfileManager.stopOnlineChecker();
             UnicastRemoteObject.unexportObject(rmiRegistry, true);
             isRunning = false;
-            serverDashboardController.updateConsole("<div>Server stopped</div>");
+            serverDashboardController.updateConsole("<div>" + LangManger.get("server_stopped") + "</div>");
             return true;
         } catch (Exception e) {
             isRunning = true;
-            serverDashboardController.updateConsole("<div>Failed to stop server</div>");
+            serverDashboardController.updateConsole("<div>" + LangManger.get("failed_to_stop") + "</div>");
             return false;
         }
     }

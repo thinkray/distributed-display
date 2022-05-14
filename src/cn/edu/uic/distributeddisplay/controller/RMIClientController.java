@@ -2,6 +2,7 @@ package cn.edu.uic.distributeddisplay.controller;
 
 import cn.edu.uic.distributeddisplay.profile.NodeSideProfile;
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
+import cn.edu.uic.distributeddisplay.util.LangManger;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -63,7 +64,7 @@ public class RMIClientController {
                     while (true) {
                         int severRespond = rmiServerWorkerInterface.heartbeat(nodeName, sessionUUID);
                         if (severRespond == DefaultConst.INVALID_SESSION) {
-                            showConfigWindow("Disconnected");
+                            showConfigWindow(LangManger.get("disconnected"));
                             return;
                         } else if (severRespond == DefaultConst.SESSION_RENEWED_NEW_CONFIG_AVAILABLE) {
                             NodeSideProfile newProfile = rmiServerWorkerInterface.getConfig(nodeName, sessionUUID);
@@ -76,11 +77,11 @@ public class RMIClientController {
                         rmiServerWorkerInterface.checkOut(nodeName, sessionUUID);
                     } catch (RemoteException ex) {
                     }
-                    showConfigWindow("Disconnected");
+                    showConfigWindow(LangManger.get("disconnected"));
                     return;
                 } catch (RemoteException e) {
                     // Back to config panel
-                    showConfigWindow("Remote error occurred");
+                    showConfigWindow(LangManger.get("remote_error"));
                     return;
                 }
             }

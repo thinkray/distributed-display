@@ -7,6 +7,8 @@
 
 package cn.edu.uic.distributeddisplay.view.panel;
 
+import cn.edu.uic.distributeddisplay.util.LangManger;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -39,18 +41,9 @@ public class ConsolePanel extends JPanel {
     }
 
     private void initCenterPanelLayout() {
-        setBorder(BorderFactory.createTitledBorder("Console"));
+        setBorder(BorderFactory.createTitledBorder(LangManger.get("console")));
         setLayout(new BorderLayout());
 
         add(consoleScrollPane, BorderLayout.CENTER);
     }
-
-//    private void initBottomPanel() {
-//        JPanel bottomPanel = new JPanel();
-//        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-//        listenButton = new JButton("Listen");
-//        bottomPanel.add(listenButton);
-//
-//        add(bottomPanel, BorderLayout.SOUTH);
-//    }
 }

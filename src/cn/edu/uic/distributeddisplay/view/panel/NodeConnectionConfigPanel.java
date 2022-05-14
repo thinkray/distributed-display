@@ -9,6 +9,7 @@ package cn.edu.uic.distributeddisplay.view.panel;
 
 import cn.edu.uic.distributeddisplay.util.CommonUtils;
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
+import cn.edu.uic.distributeddisplay.util.LangManger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,21 +46,21 @@ public class NodeConnectionConfigPanel extends JPanel {
     }
 
     private void initCenterPanelLayout() {
-        setBorder(BorderFactory.createTitledBorder("Config"));
+        setBorder(BorderFactory.createTitledBorder(LangManger.get("config")));
         setLayout(new BorderLayout());
 
         Container centerPanel = new Container();
         centerPanel.setLayout(new GridBagLayout());
         // Line 1: Node name
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel("Node name: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0,
+        centerPanel.add(new JLabel(LangManger.get("node_name") + ": "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0,
                 DefaultConst.INSETS_LEFT));
         centerPanel.add(nodeNameTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0,
                 DefaultConst.INSETS_RIGHT));
 
         // Line 2: Server address
         CommonUtils.gbcNewLine();
-        centerPanel.add(new JLabel("Server: "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0,
+        centerPanel.add(new JLabel(LangManger.get("server") + ": "), CommonUtils.getGridBagConstraints(0, 1, 1, 0.2, 1.0,
                 DefaultConst.INSETS_LEFT));
         centerPanel.add(serverAddressTextField, CommonUtils.getGridBagConstraints(1, 8, 1, 1.6, 1.0,
                 DefaultConst.INSETS_RIGHT));
@@ -70,7 +71,7 @@ public class NodeConnectionConfigPanel extends JPanel {
     private void initBottomPanel() {
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        connectButton = new JButton("Connect");
+        connectButton = new JButton(LangManger.get("connect"));
         bottomPanel.add(connectButton);
 
         add(bottomPanel, BorderLayout.SOUTH);
