@@ -3,6 +3,7 @@ package cn.edu.uic.distributeddisplay.controller;
 import cn.edu.uic.distributeddisplay.profile.NodeSideProfile;
 import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
+import cn.edu.uic.distributeddisplay.util.LangManger;
 import cn.edu.uic.distributeddisplay.util.ProfileManager;
 import cn.edu.uic.distributeddisplay.util.ProfileRow;
 import org.apache.commons.text.StringEscapeUtils;
@@ -32,8 +33,9 @@ public class RMIServerWorkerController extends UnicastRemoteObject implements RM
                     UUID.randomUUID().toString());
             ProfileManager.putProfileRow(nodeName, profileRow);
             rmiServerController.getServerDashboardController().updateConsole(String.format("<div style=\"color:yellow"
-                            + "\">%s Node [%s] goes online. A new profile created.</div>", new Date(),
-                    StringEscapeUtils.escapeHtml3(nodeName)));
+                            + "\">%s %s[%s] %s%s</div>",
+                    new Date(), LangManger.get("node"), StringEscapeUtils.escapeHtml3(nodeName),
+                    LangManger.get("is_online"), LangManger.get("new_profile_created")));
             return profileRow.uuid;
         } else if (!currentProfileRow.isOnline) {
             currentProfileRow.isOnline = true;
@@ -41,8 +43,9 @@ public class RMIServerWorkerController extends UnicastRemoteObject implements RM
             currentProfileRow.uuid = UUID.randomUUID().toString();
             currentProfileRow.newConfigAvailable = true;
             rmiServerController.getServerDashboardController().updateConsole(String.format("<div style=\"color:yellow"
-                            + "\">%s Node [%s] goes online. Found an existing profile.</div>", new Date(),
-                    StringEscapeUtils.escapeHtml3(nodeName)));
+                            + "\">%s %s[%s] %s%s</div>",
+                    new Date(), LangManger.get("node"), StringEscapeUtils.escapeHtml3(nodeName),
+                    LangManger.get("is_online"), LangManger.get("found_existing_profile")));
             return currentProfileRow.uuid;
         } else {
             return null;
@@ -57,7 +60,8 @@ public class RMIServerWorkerController extends UnicastRemoteObject implements RM
             currentProfileRow.lastSeen = new Date(0L);
             currentProfileRow.isOnline = false;
             rmiServerController.getServerDashboardController().updateConsole(String.format("<div style=\"color:yellow"
-                    + "\">%s Node [%s] goes offline.</div>", new Date(), StringEscapeUtils.escapeHtml3(nodeName)));
+                    + "\">%s %s[%s] %s</div>", new Date(), LangManger.get("node"), StringEscapeUtils.escapeHtml3(nodeName),
+                    LangManger.get("is_offline")));
             return true;
         }
     }
@@ -70,7 +74,7 @@ public class RMIServerWorkerController extends UnicastRemoteObject implements RM
         }
 
         rmiServerController.getServerDashboardController().updateConsole(String.format("<div style=\"color:lime" +
-                "\">%s Distribute profile to node [%s].</div>", new Date(), StringEscapeUtils.escapeHtml3(nodeName)));
+                "\">%s %s[%s]</div>", new Date(), LangManger.get("distributed_to_node"), StringEscapeUtils.escapeHtml3(nodeName)));
 
         currentProfileRow.newConfigAvailable = false;
         return new NodeSideProfile(currentProfileRow.serverSideProfile);

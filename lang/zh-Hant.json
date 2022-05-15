@@ -79,6 +79,21 @@
 	"start": "啟動",
 	"stop": "停止",
 	"start_listening_on": "開始接聽",
+	"cannot_listen_on": "無法接聽",
 	"server_stopped": "伺服器已停止",
-	"ready": "已就緒"
+	"ready": "已就緒",
+	"applied_to_node": "將配置文件應用到節點",
+	"cannot_save_profile_list": "無法保存配置文件列表。",
+	"profile_list_saved": "配置文件列表已保存。",
+	"error_empty_node_name": "節點名不能為空",
+	"error_duplicate_node_name": "列表中有同名節點",
+	"node": "节点",
+	"added_msg": "添加成功。",
+	"deleted_msg": "刪除成功。",
+	"distributed_to_node": "分發配置文件到節點",
+	"error_lost_connection": "失去連接。",
+	"is_online": "在線。",
+	"new_profile_created": "一個新的配置文件已經創建。",
+	"found_existing_profile": "找到一個現有的配置文件。",
+	"is_offline": "離線。"
 }

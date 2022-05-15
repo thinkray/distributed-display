@@ -79,6 +79,21 @@
 	"start": "开始",
 	"stop": "停止",
 	"start_listening_on": "开始监听于",
+	"cannot_listen_on": "无法监听于",
 	"server_stopped": "服务器已停止",
-	"ready": "已就绪"
+	"ready": "已就绪",
+	"applied_to_node": "已下发配置到",
+	"cannot_save_profile_list": "无法保存配置列表。",
+	"profile_list_saved": "配置列表已保存。",
+	"error_empty_node_name": "节点名字不能为空",
+	"error_duplicate_node_name": "列表中已含有重名。",
+	"node": "节点",
+	"added_msg": "已成功添加。",
+	"deleted_msg": "已成功删除",
+	"distributed_to_node": "已发布配置到节点",
+	"error_lost_connection": "丢失连接。",
+	"is_online": "已上线。",
+	"new_profile_created": "已创建新的配置。",
+	"found_existing_profile": "已找到现有配置。",
+	"is_offline": "已下线。"
 }

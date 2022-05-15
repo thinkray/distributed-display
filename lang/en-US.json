@@ -79,6 +79,21 @@
 	"start": "Start",
 	"stop": "Stop",
 	"start_listening_on": "Start listening on",
+	"cannot_listen_on": "Cannot listen on",
 	"server_stopped": "Server stopped",
-	"ready": "Ready"
+	"ready": "Ready",
+	"applied_to_node": "Applied profile to node. ",
+	"cannot_save_profile_list": "Cannot save the profile list.",
+	"profile_list_saved": "Profile list saved.",
+	"error_empty_node_name": "Node name cannot be empty",
+	"error_duplicate_node_name": "There is a node with the same name in the list",
+	"node": "Node ",
+	"added_msg": "added successfully.",
+	"deleted_msg": "deleted successfully.",
+	"distributed_to_node": "Distribute profile to node ",
+	"error_lost_connection": "lost connection.",
+	"is_online": "is online. ",
+	"new_profile_created": "A new profile has been created.",
+	"found_existing_profile": "Found an existing profile.",
+	"is_offline": "is offline."
 }
