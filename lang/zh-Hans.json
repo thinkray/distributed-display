@@ -95,5 +95,11 @@
 	"is_online": "已上线。",
 	"new_profile_created": "已创建新的配置。",
 	"found_existing_profile": "已找到现有配置。",
-	"is_offline": "已下线。"
+	"is_offline": "已下线。",
+	"disconnect": "断开连接",
+	"status:": "状态：",
+	"not_connected": "未连接",
+	"connected": "已连接",
+	"retrying": "重试中",
+	"failed_to_stop": "无法关闭服务器。"
 }

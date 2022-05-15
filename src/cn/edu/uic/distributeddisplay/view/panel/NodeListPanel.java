@@ -38,21 +38,6 @@ public class NodeListPanel extends JPanel {
         setPreferredSize(new Dimension(300, 125));
     }
 
-    public JTextField getNewNodeNameTextField() {
-        return newNodeNameTextField;
-    }
-
-    public JButton getAddNodeButton() {
-        return addNodeButton;
-    }
-
-    public JButton getDeleteNodeButton() {
-        return deleteNodeButton;
-    }
-
-    public JTable getNodeListTable() {
-        return nodeListTable;
-    }
 
     public void initTopPanel() {
         Container centerPanel = new Container();
@@ -125,12 +110,19 @@ public class NodeListPanel extends JPanel {
         updateWorker.start();
     }
 
-//    private void initBottomPanel() {
-//        JPanel bottomPanel = new JPanel();
-//        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-//        listenButton = new JButton("Listen");
-//        bottomPanel.add(listenButton);
-//
-//        add(bottomPanel, BorderLayout.SOUTH);
-//    }
+    public JTextField getNewNodeNameTextField() {
+        return newNodeNameTextField;
+    }
+
+    public JButton getAddNodeButton() {
+        return addNodeButton;
+    }
+
+    public JButton getDeleteNodeButton() {
+        return deleteNodeButton;
+    }
+
+    public JTable getNodeListTable() {
+        return nodeListTable;
+    }
 }

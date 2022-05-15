@@ -7,6 +7,7 @@
 
 package cn.edu.uic.distributeddisplay.view;
 
+import cn.edu.uic.distributeddisplay.util.DefaultConst;
 import cn.edu.uic.distributeddisplay.util.LangManger;
 
 import javax.swing.*;
@@ -15,7 +16,8 @@ import java.awt.*;
 public class DisplayView extends JFrame {
 
     private JPopupMenu rightClickMenu;
-    private JMenuItem preferenceItem;
+    private JMenuItem disconnectItem;
+    private JMenuItem statusItem;
     private JMenuItem exitItem;
     private JPanel textPanel;
     private JLabel backgroundLabel;
@@ -37,27 +39,16 @@ public class DisplayView extends JFrame {
 
     private void initRightClickMenu() {
         rightClickMenu = new JPopupMenu();
-        preferenceItem = new JMenuItem(LangManger.get("preference"));
+        // statusItem = new JMenuItem(LangManger.get("status:") + LangManger.get("not_connected"));
+        statusItem = new JMenuItem(LangManger.get("status:") + LangManger.get("not_connected"));
+        statusItem.setEnabled(false);
+        disconnectItem = new JMenuItem(LangManger.get("disconnect"));
         exitItem = new JMenuItem(LangManger.get("exit"));
-        rightClickMenu.add(preferenceItem);
+
+        rightClickMenu.add(statusItem);
         rightClickMenu.addSeparator();
+        rightClickMenu.add(disconnectItem);
         rightClickMenu.add(exitItem);
-    }
-
-    public JPopupMenu getRightClickMenu() {
-        return rightClickMenu;
-    }
-
-    public JMenuItem getPreferenceItem() {
-        return preferenceItem;
-    }
-
-    public JMenuItem getExitItem() {
-        return exitItem;
-    }
-
-    public JPanel getTextPanel() {
-        return textPanel;
     }
 
     public void setTextPanel(JPanel textPanel) {
@@ -68,15 +59,35 @@ public class DisplayView extends JFrame {
         add(textPanel, 0);
     }
 
-    public JLabel getBackgroundLabel() {
-        return backgroundLabel;
-    }
-
     public void setBackgroundLabel(JLabel backgroundLabel) {
         if (this.backgroundLabel != null) {
             remove(this.backgroundLabel);
         }
         this.backgroundLabel = backgroundLabel;
         add(backgroundLabel);
+    }
+
+    public JPopupMenu getRightClickMenu() {
+        return rightClickMenu;
+    }
+
+    public JMenuItem getStatusItem() {
+        return statusItem;
+    }
+
+    public JMenuItem getDisconnectItem() {
+        return disconnectItem;
+    }
+
+    public JMenuItem getExitItem() {
+        return exitItem;
+    }
+
+    public JPanel getTextPanel() {
+        return textPanel;
+    }
+
+    public JLabel getBackgroundLabel() {
+        return backgroundLabel;
     }
 }

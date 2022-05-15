@@ -95,5 +95,11 @@
 	"is_online": "is online. ",
 	"new_profile_created": "A new profile has been created.",
 	"found_existing_profile": "Found an existing profile.",
-	"is_offline": "is offline."
+	"is_offline": "is offline.",
+	"disconnect": "Disconnect",
+	"status:": "Status: ",
+	"not_connected": "Not connected",
+	"connected": "Connected",
+	"retrying": "Retrying",
+	"failed_to_stop": "Failed to stop the server."
 }

@@ -38,6 +38,9 @@ public class NodeGUIController {
             JOptionPane.showMessageDialog(null, LangManger.get("lang_update_msg"));
         });
 
+        // Set the status bar's default text
+        setComponentsStatus(true, LangManger.get("not_connected"));
+
         nodeConfigView.setVisible(true);
     }
 
@@ -56,17 +59,18 @@ public class NodeGUIController {
                         JOptionPane.showMessageDialog(nodeConfigView, LangManger.get("cannot_connect"),
                                 LangManger.get("error"),
                                 JOptionPane.ERROR_MESSAGE);
-                        setComponentsStatus(true);
+                        setComponentsStatus(true, LangManger.get("not_connected"));
                         return null;
                     }
                     if (result) {
                         rmiClientController.getNodeGUIController().getNodeConfigView().setVisible(false);
+                        rmiClientController.getDisplayController().setNodeStatus(DefaultConst.CLIENT_CONNECTED);
                     } else {
                         JOptionPane.showMessageDialog(nodeConfigView,
                                 LangManger.get("check_in_failed") + ": " + LangManger.get("node_name_in_use"),
                                 LangManger.get("error"),
                                 JOptionPane.ERROR_MESSAGE);
-                        setComponentsStatus(true);
+                        setComponentsStatus(true, LangManger.get("not_connected"));
                     }
                     return null;
                 }

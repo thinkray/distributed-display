@@ -95,5 +95,11 @@
 	"is_online": "在線。",
 	"new_profile_created": "一個新的配置文件已經創建。",
 	"found_existing_profile": "找到一個現有的配置文件。",
-	"is_offline": "離線。"
+	"is_offline": "離線。",
+	"disconnect": "中斷連線",
+	"status:": "狀態：",
+	"not_connected": "未連線",
+	"connected": "已連線",
+	"retrying": "正在重試",
+	"failed_to_stop": "無法停止伺服器"
 }

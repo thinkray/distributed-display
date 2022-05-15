@@ -18,9 +18,11 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTMLDocument;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Objects;
 
@@ -289,7 +291,7 @@ public class ServerDashboardController {
         try {
             HTMLDocument doc = (HTMLDocument) console.getDocument();
             doc.insertBeforeEnd(doc.getElement("container"), message);
-        } catch (Exception e) {
+        } catch (BadLocationException | IOException e) {
             System.out.println(e);
         }
     }

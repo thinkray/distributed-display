@@ -16,6 +16,7 @@ public class RMIServerController {
     private Integer port;
     private Boolean isRunning;
     private Registry rmiRegistry;
+    private RMIServerWorkerController rmiServerWorkerController;
 
     public RMIServerController(ServerDashboardController serverDashboardController) {
         this.serverDashboardController = serverDashboardController;
@@ -25,7 +26,8 @@ public class RMIServerController {
     public Boolean startServer(String address, Integer port) {
         try {
             rmiRegistry = LocateRegistry.createRegistry(port);
-            Naming.rebind("rmi://" + address + ":" + port + "/DisplayServer", new RMIServerWorkerController(this));
+            rmiServerWorkerController = new RMIServerWorkerController(this);
+            Naming.rebind("rmi://" + address + ":" + port + "/DisplayServer", rmiServerWorkerController);
             ProfileManager.startOnlineChecker(this);
             isRunning = true;
             serverDashboardController.updateConsole(String.format("<div style=\"background-color: green; color: " +
@@ -45,6 +47,7 @@ public class RMIServerController {
     public Boolean stopServer() {
         try {
             ProfileManager.stopOnlineChecker();
+            UnicastRemoteObject.unexportObject(rmiServerWorkerController, true);
             UnicastRemoteObject.unexportObject(rmiRegistry, true);
             isRunning = false;
             serverDashboardController.updateConsole(String.format("<div style=\"background-color: olive; color: " +

@@ -10,6 +10,7 @@ import cn.edu.uic.distributeddisplay.model.DisplayModel;
 import cn.edu.uic.distributeddisplay.profile.AbstractProfile;
 import cn.edu.uic.distributeddisplay.profile.ServerSideProfile;
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
+import cn.edu.uic.distributeddisplay.util.LangManger;
 import cn.edu.uic.distributeddisplay.util.Log;
 import cn.edu.uic.distributeddisplay.util.ViewsManager;
 import cn.edu.uic.distributeddisplay.view.DisplayView;
@@ -64,6 +65,9 @@ public class DisplayController {
                 Log.logWarning("Warning: Double initialization.");
             }
 
+            // Initialize the default text for status item in the right-click menu
+            setNodeStatus(DefaultConst.CLIENT_NOT_CONNECTED);
+
             // Register right-click events
             displayView.addMouseListener(new MouseAdapter() {
                 @Override
@@ -78,9 +82,9 @@ public class DisplayController {
 
             // Define menu item events
             if (displayModel.getMode() == DefaultConst.DISPLAY_MODE) {
-                displayView.getPreferenceItem().addActionListener(e -> closeView());
+                displayView.getDisconnectItem().addActionListener(e -> closeView());
             } else if (displayModel.getMode() == DefaultConst.SERVICE_MODE) {
-                displayView.getPreferenceItem().addActionListener(e -> {
+                displayView.getDisconnectItem().addActionListener(e -> {
                     nodeGUIController.getRMIClientController().stopClient();
                     displayView.repaint();
                 });
@@ -211,6 +215,26 @@ public class DisplayController {
         // pass the Profile object as an argument to the constructor of DisplayController.
         displayModel.setProfile(profile);
         renderView();
+    }
+
+    public void setNodeStatus(int nodeStatus) {
+        String status = "";
+        switch (nodeStatus) {
+            case DefaultConst.CLIENT_NOT_CONNECTED:
+                status = LangManger.get("not_connected");
+                break;
+            case DefaultConst.CLIENT_CONNECTED:
+                status = LangManger.get("connected");
+                break;
+            case DefaultConst.CLIENT_DISCONNECTED:
+                status = LangManger.get("disconnected");
+                break;
+            case DefaultConst.CLIENT_RETRYING:
+                status = LangManger.get("retrying");
+                break;
+        }
+        displayView.getStatusItem().setText(LangManger.get("status:") + status);
+        displayView.repaint();
     }
 
     public void setViewVisibility(boolean visible) {

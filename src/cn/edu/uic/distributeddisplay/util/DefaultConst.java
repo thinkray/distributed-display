@@ -60,4 +60,18 @@ final public class DefaultConst {
     public static final int SERVICE_MODE = 2;
 
     public static final String DEFAULT_LISTEN_ADDRESS = "0.0.0.0";
+
+    public static final int CLIENT_NOT_CONNECTED = 0;
+
+    public static final int CLIENT_CONNECTED = 1;
+
+    public static final int CLIENT_DISCONNECTED = 2;
+
+    public static final int CLIENT_RETRYING = 3;
+
+    public static final int CLIENT_MODE_FIRST_TIME_CHECK_IN = 0;
+
+    public static final int CLIENT_MODE_RECHECK_IN = 1;
+
+    public static final int CLIENT_MODE_HEARTBEAT = 2;
 }
