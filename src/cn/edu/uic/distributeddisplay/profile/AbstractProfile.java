@@ -1,6 +1,7 @@
 package cn.edu.uic.distributeddisplay.profile;
 
 import cn.edu.uic.distributeddisplay.util.DefaultConst;
+import org.apache.commons.text.StringEscapeUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,7 +51,7 @@ public abstract class AbstractProfile implements Serializable {
     }
 
     public String getText() {
-        return text;
+        return StringEscapeUtils.escapeHtml3(text);
     }
 
     public void setText(String text) {
