@@ -184,7 +184,7 @@ public class DisplayController {
                     width = (int) screenSize.getWidth();
                     height = (int) screenSize.getHeight();
                     break;
-                case DefaultConst.TILE:
+                case DefaultConst.RAW:
                     // Tile
                     width = img.getImage().getWidth(null);
                     height = img.getImage().getHeight(null);

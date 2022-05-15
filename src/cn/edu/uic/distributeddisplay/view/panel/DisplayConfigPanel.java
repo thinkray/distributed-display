@@ -266,7 +266,7 @@ public class DisplayConfigPanel extends JPanel {
         this.imageFitStyleComboBox = new JComboBox<>();
         imageFitStyleComboBox.addItem(LangManger.get("fit"));
         imageFitStyleComboBox.addItem(LangManger.get("stretch"));
-        imageFitStyleComboBox.addItem(LangManger.get("tile"));
+        imageFitStyleComboBox.addItem(LangManger.get("raw"));
     }
 
     private void initColorComboBox() {

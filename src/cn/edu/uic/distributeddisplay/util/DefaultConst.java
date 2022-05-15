@@ -19,7 +19,7 @@ final public class DefaultConst {
 
     public static final int STRETCH = 1;
 
-    public static final int TILE = 2;
+    public static final int RAW = 2;
 
     public static final String DEFAULT_TEXT = "";
 
