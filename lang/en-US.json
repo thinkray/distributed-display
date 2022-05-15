@@ -101,5 +101,6 @@
 	"not_connected": "Not connected",
 	"connected": "Connected",
 	"retrying": "Retrying",
-	"failed_to_stop": "Failed to stop the server."
+	"failed_to_stop": "Failed to stop the server.",
+	"raw": "Raw"
 }

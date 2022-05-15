@@ -101,5 +101,6 @@
 	"not_connected": "未连接",
 	"connected": "已连接",
 	"retrying": "重试中",
-	"failed_to_stop": "无法关闭服务器。"
+	"failed_to_stop": "无法关闭服务器。",
+	"raw": "原始"
 }
