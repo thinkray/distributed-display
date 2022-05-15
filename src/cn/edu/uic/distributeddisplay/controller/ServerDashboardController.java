@@ -219,6 +219,10 @@ public class ServerDashboardController {
 
     private void updateFields(ServerSideProfile serverSideProfile) {
         DisplayConfigPanel p = serverMainWindowView.getDisplayConfigPanel();
+
+        // Fix: When the color is selected to "others", the menu may pop up when profile changes
+        p.setInitializing(true);
+
         Font font = serverSideProfile.getFont();
         p.getFontComboBox().setSelectedItem(font.getFontName());
         p.getFontSizeComboBox().setSelectedItem(font.getSize());
@@ -242,6 +246,7 @@ public class ServerDashboardController {
             // Do nothing when the file does not exist
         }
         p.getImageFitStyleComboBox().setSelectedIndex(serverSideProfile.getImgFitStyle());
+        p.setInitializing(false);
     }
 
     public void previewBtnClicked() {

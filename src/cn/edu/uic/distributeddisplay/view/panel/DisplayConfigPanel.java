@@ -373,5 +373,9 @@ public class DisplayConfigPanel extends JPanel {
     public void markInitialized() {
         initializing = false;
     }
+
+    public void setInitializing(boolean initializing) {
+        this.initializing = initializing;
+    }
 }
 
