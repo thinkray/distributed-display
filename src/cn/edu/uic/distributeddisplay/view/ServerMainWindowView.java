@@ -41,7 +41,6 @@ public class ServerMainWindowView extends JFrame {
 
     // Menu: Help
     private JMenu helpMenu;
-    private JMenuItem helpItem;
     private JMenuItem aboutItem;
 
     public ServerMainWindowView() {
@@ -103,10 +102,7 @@ public class ServerMainWindowView extends JFrame {
 
         // Menu: Help
         helpMenu = new JMenu(LangManger.get("help"));
-        helpItem = new JMenuItem(LangManger.get("help"));
         aboutItem = new JMenuItem(LangManger.get("about"));
-        helpMenu.add(helpItem);
-        helpMenu.addSeparator();
         helpMenu.add(aboutItem);
         menuBar.add(helpMenu);
 
@@ -152,9 +148,5 @@ public class ServerMainWindowView extends JFrame {
 
     public JMenuItem getAboutItem() {
         return aboutItem;
-    }
-
-    public JMenuItem getHelpItem() {
-        return helpItem;
     }
 }

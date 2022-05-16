@@ -70,15 +70,9 @@ public class ServerDashboardController {
             JOptionPane.showMessageDialog(null, LangManger.get("lang_update_msg"));
         });
         serverMainWindowView.getAboutItem().addActionListener(e -> JOptionPane.showMessageDialog(null,
-                "Version 1.2" + "\n" + "Copyright " + "\u00A9 2022 Team 3", LangManger.get("about"),
+                "Version 1.2" + "\n" + "Copyright " + "\u00A9 2022 Team 3 (COMP4130 in 2022 Spring, UIC)\n" +
+                        "You may distribute the project under the MIT License.", LangManger.get("about"),
                 JOptionPane.INFORMATION_MESSAGE));
-        serverMainWindowView.getHelpItem().addActionListener(e -> {
-            if (!CommonUtils.openLocalFile("./help/README-" + ConfigManager.getConfigEntry("lang") + ".html")) {
-                // When the manual is not found
-                JOptionPane.showMessageDialog(null, LangManger.get("err_help_not_found"), LangManger.get("message"),
-                        JOptionPane.ERROR_MESSAGE);
-            }
-        });
     }
 
     private void initMainWindowInfoPanel() {
