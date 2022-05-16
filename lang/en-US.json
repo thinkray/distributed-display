@@ -102,5 +102,6 @@
 	"connected": "Connected",
 	"retrying": "Retrying",
 	"failed_to_stop": "Failed to stop the server.",
-	"raw": "Raw"
+	"raw": "Raw",
+	"error_duplicate_node_name_client": "There is a node with the same name on the network"
 }

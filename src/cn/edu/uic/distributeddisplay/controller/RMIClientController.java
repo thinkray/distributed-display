@@ -73,7 +73,7 @@ public class RMIClientController {
                                 sessionUUID = rmiServerWorkerInterface.checkIn(nodeName);
                                 if (sessionUUID == null) {
                                     displayController.setNodeStatus(DefaultConst.CLIENT_NOT_CONNECTED);
-                                    showNodeConfigWindow(LangManger.get("cannot_connect"));
+                                    showNodeConfigWindow(LangManger.get("error_duplicate_node_name_client"));
                                     isRunning = false;
                                     return;
                                 }

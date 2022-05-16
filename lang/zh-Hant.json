@@ -102,5 +102,6 @@
 	"connected": "已連線",
 	"retrying": "正在重試",
 	"failed_to_stop": "無法停止伺服器",
-	"raw": "原始"
+	"raw": "原始",
+	"error_duplicate_node_name_client": "網絡上有重名"
 }
