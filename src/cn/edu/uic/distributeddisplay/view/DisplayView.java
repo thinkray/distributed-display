@@ -7,7 +7,6 @@
 
 package cn.edu.uic.distributeddisplay.view;
 
-import cn.edu.uic.distributeddisplay.util.DefaultConst;
 import cn.edu.uic.distributeddisplay.util.LangManger;
 
 import javax.swing.*;
@@ -39,8 +38,7 @@ public class DisplayView extends JFrame {
         getContentPane().setBackground(Color.BLACK);
     }
 
-    private void initComponents()
-    {
+    private void initComponents() {
         textPanel = new JPanel();
         add(textPanel);
         backgroundLabel = new JLabel();

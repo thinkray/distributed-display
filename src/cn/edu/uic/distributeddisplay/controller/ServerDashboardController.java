@@ -53,7 +53,8 @@ public class ServerDashboardController {
             if (ProfileManager.saveProfileListToFile()) {
                 updateConsole(String.format("<div>%s</div>", LangManger.get("profile_list_saved")));
             } else {
-                updateConsole(String.format("<div style=\"background-color: red; color: white;\">%s</div>", LangManger.get("cannot_save_profile_list")));
+                updateConsole(String.format("<div style=\"background-color: red; color: white;\">%s</div>",
+                        LangManger.get("cannot_save_profile_list")));
             }
         });
         serverMainWindowView.getExitItem().addActionListener(e -> System.exit(0));
@@ -113,7 +114,8 @@ public class ServerDashboardController {
 
             String newNodeName = nodeListPanel.getNewNodeNameTextField().getText();
             if (Objects.equals(newNodeName, "")) {
-                JOptionPane.showMessageDialog(null, LangManger.get("error_empty_node_name"), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, LangManger.get("error_empty_node_name"), "Error",
+                        JOptionPane.ERROR_MESSAGE);
             } else if (ProfileManager.getProfileRow(newNodeName) == null) {
                 ProfileRow newProfileRow = new ProfileRow(new ServerSideProfile(), false, new Date(0), "");
                 ProfileManager.putProfileRow(newNodeName, newProfileRow);
@@ -173,7 +175,8 @@ public class ServerDashboardController {
             JFileChooser fc =
                     new JFileChooser(serverMainWindowView.getDisplayConfigPanel().getImageDirectoryTextField().getText());
             fc.setAcceptAllFileFilterUsed(false);
-            fc.addChoosableFileFilter(new FileNameExtensionFilter(LangManger.get("image") + "(*.jpg, *.jpeg, *.png)", "jpg", "JPG", "jpeg"
+            fc.addChoosableFileFilter(new FileNameExtensionFilter(LangManger.get("image") + "(*.jpg, *.jpeg, *.png)",
+                    "jpg", "JPG", "jpeg"
                     , "JPEG", "png", "PNG"));
             if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 displayConfigPanel.getImageDirectoryTextField().setText(fc.getSelectedFile().getPath());
@@ -269,7 +272,8 @@ public class ServerDashboardController {
 
         for (int i = 0; i < selectedRows.length; i++) {
             String currentNodeName = nodeListTable.getValueAt(selectedRows[i], 0).toString();
-            updateConsole(String.format("<div>%s [%s].</div>", LangManger.get("applied_to_node"), StringEscapeUtils.escapeHtml3(currentNodeName)));
+            updateConsole(String.format("<div>%s [%s].</div>", LangManger.get("applied_to_node"),
+                    StringEscapeUtils.escapeHtml3(currentNodeName)));
             ProfileRow currentProfileRow = ProfileManager.getProfileRow(currentNodeName);
             if (currentProfileRow == null) {
                 currentProfileRow = new ProfileRow(new ServerSideProfile(serverSideProfileTemplate), false,

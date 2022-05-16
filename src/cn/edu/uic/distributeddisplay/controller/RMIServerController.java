@@ -31,14 +31,14 @@ public class RMIServerController {
             ProfileManager.startOnlineChecker(this);
             isRunning = true;
             serverDashboardController.updateConsole(String.format("<div style=\"background-color: green; color: " +
-                    "white;\">%s %s</div>", LangManger.get("start_listening_on"),
+                            "white;\">%s %s</div>", LangManger.get("start_listening_on"),
                     StringEscapeUtils.escapeHtml3(address + ":" + port)));
             return true;
         } catch (Exception e) {
             isRunning = false;
             rmiRegistry = null;
             serverDashboardController.updateConsole(String.format("<div style=\"background-color: red; color: white;" +
-                    "\">%s %s</div>", LangManger.get("cannot_listen_on"),
+                            "\">%s %s</div>", LangManger.get("cannot_listen_on"),
                     StringEscapeUtils.escapeHtml3(address + ":" + port)));
             return false;
         }

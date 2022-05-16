@@ -1,113 +1,124 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<title>帮助</title>
-		<link rel="stylesheet" href="c.css">
-	</head>
-	<body>
-		<div>
-			<h1 id="-textdisplay-">文字显示（TextDisplay）</h1>
-			<p>文本显示（TextDisplay）是一款轻量级的开源程序，旨在帮助用户在屏幕上显示带有背景图像的文本，并便于用户轻松调整文本和图像。</p>
-			<h1 id="-">要求</h1>
-			<ul>
-			<li>开发者: Java (JDK 8+)</li>
-			<li>普通用户: Java (JRE 8+)</li>
-			</ul>
-			<h1 id="-">部署</h1>
-			<p>有两种方法可以使程序运行：</p>
-			<ol>
-			<li><p>下载可执行的“.jar”文件并在您的系统上运行</p>
-			<ol>
-			<li>从“releases”文件夹中获取可执行的.jar文件；</li>
-			<li><p>确保您的计算机上装有Java Runtime Environment。双击以“.jar”结尾的可执行文件或使用命令行工具启动程序</p>
-			<blockquote>
-			<p>java -jar TextDisplay.jar</p>
-			</blockquote>
-			<p> 然后您就可以出发了。</p>
-			</li>
-			</ol>
-			</li>
-			<li>自行编译项目<ul>
-			<li>IntelliJ IDEA中的步骤</li>
-			<li>在IntelliJ IDEA中打开项目</li>
-			<li>选择“文件”-&gt;“项目结构”</li>
-			<li>在“Project Strucutre”窗口中，从左栏中选择“Artifacts”</li>
-			<li>添加一个新的工件：“+”-&gt;“JAR”-&gt;“来自具有依赖项的模块...”</li>
-			<li>选择主类“GUI”并保存设置</li>
-			<li>返回编辑器。转到“构建”-&gt;“构建工件...”-&gt;“构建”</li>
-			<li>可执行文件.jar文件将放置在文件夹“out/artifacts/TextDisplay_jar”中</li>
-			<li>将“lang”和“help”文件夹复制到该目录</li>
-			</ul>
-			</li>
-			</ol>
-			<h1 id="-">使用指南</h1>
-			<p>＃ 入门</p>
-			<ul>
-			<li>首次运行时，程序将提示您一条消息，指示未找到任何配置文件，并且将生成一个新的配置文件，只需单击“确定”以继续</li>
-			<li>配置文件参数的字段<ol>
-			<li>配置文件名称：配置文件的名称。在开发的这一阶段，这并不重要 ;）</li>
-			<li>字体：要显示的文本的字体。</li>
-			<li>大小：要显示的文本的大小。</li>
-			<li>样式：要显示的文本的样式。您可以根据自己的喜好选择“普通”，“加粗”或“斜体”。</li>
-			<li>颜色：要显示的文本的颜色。程序提供了七种默认颜色。当提供的所有七种颜色都不满足您的需要时，可以通过选择“其他”选项来选择自己的颜色。</li>
-			<li>文本方向：文本的方向。您可以选择“水平”，“垂直”或“垂直（翻转）”。如果选择“垂直（翻转）”，则显示的文本将从右至左垂直显示。</li>
-			<li>垂直间距：仅在将“文本方向”选择为“垂直”或“垂直（反向）”时启用。它调整给定行的每个字符的垂直间距。</li>
-			<li>行距：行之间的间距。</li>
-			<li>垂直位移：调整垂直位移。</li>
-			<li>水平位移：调整水平位移。</li>
-			<li>图片：背景图片。</li>
-			<li>适应：图像的适应方法。您可以选择“适应”，“拉伸”或“平铺”。<ul>
-			<li>适应：图像将适应窗口而不改变比例。</li>
-			<li>拉伸：图像将填满整个窗口。可以调整图像的比例。</li>
-			<li>平铺：图像将以任何大小或拉伸显示。</li>
-			</ul>
-			</li>
-			</ol>
-			</li>
-			<li>底面板<ul>
-			<li>取消：退出程序或返回到显示窗口（之前单击过“确认”按钮时）。</li>
-			<li>预览：预览配置文件（不保存配置文件）。</li>
-			<li>应用：保存当前设置。</li>
-			<li>确认：保存当前设置并进入显示模式</li>
-			</ul>
-			</li>
-			<li>菜单介绍<ul>
-			<li>文件<ul>
-			<li>保存：保存当前配置文件</li>
-			<li>退出：退出程序</li>
-			</ul>
-			</li>
-			<li>语言<ul>
-			<li>English：将您的语言设置为英语</li>
-			<li>简体中文：将您的语言设置为简体中文</li>
-			<li>正體中文：将您的语言设置为繁体中文</li>
-			</ul>
-			</li>
-			<li>帮助<ul>
-			<li>帮助：调出帮助文件</li>
-			<li>关于：显示版权的信息
-			*显示模式简介</li>
-			</ul>
-			</li>
-			<li>如果完成所有设置，请单击“确认”，然后进入“显示模式”。</li>
-			<li>如果要退出程序或更改“显示模式”中显示内容，请右键单击（或在触摸屏上长按）以调出菜单。</li>
-			</ul>
-			</li>
-			</ul>
-			<h1 id="q-a">Q&amp;A</h1>
-			<ul>
-			<li><p>“预览”和“显示”模式有什么区别？</p>
-			<p>  答：当您使用“预览”模式时，当前设置将不会保存，您只需单击窗口即可退出预览模式。在“显示”模式下，所有设置将在进入“显示”模式之前保存。</p>
-			</li>
-			<li>程序告诉我启动时重新安装程序。我该怎么办？
-			  答：“lang”文件夹可能位于错误的目录中。请确保该文件夹与可执行文件正确放置在同一目录中。如果问题仍然出现，请尝试删除config.json文件，然后尝试再次运行该程序。如果问题仍然存在，请考虑重新安装该程序。</li>
-			<li>我尝试运行该程序时未显示该程序。我该怎么办？
-			  答：首先，请确保您的JVM满足要求。如果您确定不是问题所在，请将“log.txt”文件报告给 wbh3516@gmail.com.</li>
-			</ul>
-			<h1 id="-">文件</h1>
-			<pre><code>├── TextDisplay<span class="hljs-selector-class">.jar</span>
-├── serverSideProfile<span class="hljs-selector-class">.bin</span>
+<head>
+    <meta charset="utf-8">
+    <title>帮助</title>
+    <link rel="stylesheet" href="c.css">
+</head>
+<body>
+<div>
+    <h1 id="-textdisplay-">文字显示（TextDisplay）</h1>
+    <p>文本显示（TextDisplay）是一款轻量级的开源程序，旨在帮助用户在屏幕上显示带有背景图像的文本，并便于用户轻松调整文本和图像。</p>
+    <h1 id="-">要求</h1>
+    <ul>
+        <li>开发者: Java (JDK 8+)</li>
+        <li>普通用户: Java (JRE 8+)</li>
+    </ul>
+    <h1 id="-">部署</h1>
+    <p>有两种方法可以使程序运行：</p>
+    <ol>
+        <li><p>下载可执行的“.jar”文件并在您的系统上运行</p>
+            <ol>
+                <li>从“releases”文件夹中获取可执行的.jar文件；</li>
+                <li><p>确保您的计算机上装有Java Runtime Environment。双击以“.jar”结尾的可执行文件或使用命令行工具启动程序</p>
+                    <blockquote>
+                        <p>java -jar TextDisplay.jar</p>
+                    </blockquote>
+                    <p> 然后您就可以出发了。</p>
+                </li>
+            </ol>
+        </li>
+        <li>自行编译项目
+            <ul>
+                <li>IntelliJ IDEA中的步骤</li>
+                <li>在IntelliJ IDEA中打开项目</li>
+                <li>选择“文件”-&gt;“项目结构”</li>
+                <li>在“Project Strucutre”窗口中，从左栏中选择“Artifacts”</li>
+                <li>添加一个新的工件：“+”-&gt;“JAR”-&gt;“来自具有依赖项的模块...”</li>
+                <li>选择主类“GUI”并保存设置</li>
+                <li>返回编辑器。转到“构建”-&gt;“构建工件...”-&gt;“构建”</li>
+                <li>可执行文件.jar文件将放置在文件夹“out/artifacts/TextDisplay_jar”中</li>
+                <li>将“lang”和“help”文件夹复制到该目录</li>
+            </ul>
+        </li>
+    </ol>
+    <h1 id="-">使用指南</h1>
+    <p>＃ 入门</p>
+    <ul>
+        <li>首次运行时，程序将提示您一条消息，指示未找到任何配置文件，并且将生成一个新的配置文件，只需单击“确定”以继续</li>
+        <li>配置文件参数的字段
+            <ol>
+                <li>配置文件名称：配置文件的名称。在开发的这一阶段，这并不重要 ;）</li>
+                <li>字体：要显示的文本的字体。</li>
+                <li>大小：要显示的文本的大小。</li>
+                <li>样式：要显示的文本的样式。您可以根据自己的喜好选择“普通”，“加粗”或“斜体”。</li>
+                <li>颜色：要显示的文本的颜色。程序提供了七种默认颜色。当提供的所有七种颜色都不满足您的需要时，可以通过选择“其他”选项来选择自己的颜色。</li>
+                <li>文本方向：文本的方向。您可以选择“水平”，“垂直”或“垂直（翻转）”。如果选择“垂直（翻转）”，则显示的文本将从右至左垂直显示。</li>
+                <li>垂直间距：仅在将“文本方向”选择为“垂直”或“垂直（反向）”时启用。它调整给定行的每个字符的垂直间距。</li>
+                <li>行距：行之间的间距。</li>
+                <li>垂直位移：调整垂直位移。</li>
+                <li>水平位移：调整水平位移。</li>
+                <li>图片：背景图片。</li>
+                <li>适应：图像的适应方法。您可以选择“适应”，“拉伸”或“平铺”。
+                    <ul>
+                        <li>适应：图像将适应窗口而不改变比例。</li>
+                        <li>拉伸：图像将填满整个窗口。可以调整图像的比例。</li>
+                        <li>平铺：图像将以任何大小或拉伸显示。</li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+        <li>底面板
+            <ul>
+                <li>取消：退出程序或返回到显示窗口（之前单击过“确认”按钮时）。</li>
+                <li>预览：预览配置文件（不保存配置文件）。</li>
+                <li>应用：保存当前设置。</li>
+                <li>确认：保存当前设置并进入显示模式</li>
+            </ul>
+        </li>
+        <li>菜单介绍
+            <ul>
+                <li>文件
+                    <ul>
+                        <li>保存：保存当前配置文件</li>
+                        <li>退出：退出程序</li>
+                    </ul>
+                </li>
+                <li>语言
+                    <ul>
+                        <li>English：将您的语言设置为英语</li>
+                        <li>简体中文：将您的语言设置为简体中文</li>
+                        <li>正體中文：将您的语言设置为繁体中文</li>
+                    </ul>
+                </li>
+                <li>帮助
+                    <ul>
+                        <li>帮助：调出帮助文件</li>
+                        <li>关于：显示版权的信息
+                            *显示模式简介
+                        </li>
+                    </ul>
+                </li>
+                <li>如果完成所有设置，请单击“确认”，然后进入“显示模式”。</li>
+                <li>如果要退出程序或更改“显示模式”中显示内容，请右键单击（或在触摸屏上长按）以调出菜单。</li>
+            </ul>
+        </li>
+    </ul>
+    <h1 id="q-a">Q&amp;A</h1>
+    <ul>
+        <li><p>“预览”和“显示”模式有什么区别？</p>
+            <p> 答：当您使用“预览”模式时，当前设置将不会保存，您只需单击窗口即可退出预览模式。在“显示”模式下，所有设置将在进入“显示”模式之前保存。</p>
+        </li>
+        <li>程序告诉我启动时重新安装程序。我该怎么办？
+            答：“lang”文件夹可能位于错误的目录中。请确保该文件夹与可执行文件正确放置在同一目录中。如果问题仍然出现，请尝试删除config.json文件，然后尝试再次运行该程序。如果问题仍然存在，请考虑重新安装该程序。
+        </li>
+        <li>我尝试运行该程序时未显示该程序。我该怎么办？
+            答：首先，请确保您的JVM满足要求。如果您确定不是问题所在，请将“log.txt”文件报告给 wbh3516@gmail.com.
+        </li>
+    </ul>
+    <h1 id="-">文件</h1>
+    <pre><code>├── TextDisplay<span class="hljs-selector-class">.jar</span>
+├── profile<span class="hljs-selector-class">.bin</span>
 ├── config<span class="hljs-selector-class">.json</span>
 ├── log<span class="hljs-selector-class">.txt</span>
 │   ├── lang
@@ -118,92 +129,97 @@
 │   │   ├── READEME-en-US<span class="hljs-selector-class">.html</span>
 │   │   ├── READEME-zh-Hans<span class="hljs-selector-class">.html</span>
 │   │   └── READEME-zh-Hant.html
-			</code></pre><table>
-			<thead>
-			<tr>
-			<th>名称</th>
-			<th>描述</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-			<td>TextDisplay.jar</td>
-			<td>程序本体，可执行文件</td>
-			</tr>
-			<tr>
-			<td>serverSideProfile.bin</td>
-			<td>您当前的个人资料</td>
-			</tr>
-			<tr>
-			<td>config.json</td>
-			<td>程序的配置</td>
-			</tr>
-			<tr>
-			<td>log.txt</td>
-			<td>运行时日志</td>
-			</tr>
-			<tr>
-			<td>lang（文件夹）</td>
-			<td>存储所有语言包的文件夹</td>
-			</tr>
-			<tr>
-			<td>help（文件夹）</td>
-			<td>存储所有自述文件（帮助）文件的文件夹</td>
-			</tr>
-			</tbody>
-			</table>
-			<h1 id="-">卸载</h1>
-			<p>要卸载该程序，只需删除整个文件夹，就可以了。</p>
-			<h1 id="-">更新日志</h1>
-			<h2 id="1-2-">1.2-release</h2>
-			<ol>
-			<li>实施了一个新的记录器</li>
-			<li>错误修复</li>
-			</ol>
-			<h2 id="1-1-">1.1-release</h2>
-			<ol>
-			<li>添加了对调整垂直间距，反转垂直文本，更改图像适合方法的支持</li>
-			<li>应用色彩主题“吸血鬼”</li>
-			<li>预览个人配置时性能得到改善</li>
-			<li>错误修复</li>
-			</ol>
-			<h2 id="1-0-">1.0-release</h2>
-			<ol>
-			<li>原始版本</li>
-			</ol>
-			<h1 id="-">依赖</h1>
-			<table>
-			<thead>
-			<tr>
-			<th>名称</th>
-			<th>描述</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-			<td>commons-io-2.6.jar</td>
-			<td>用于文件输入和输出</td>
-			</tr>
-			<tr>
-			<td>darcula.jar</td>
-			<td>颜色主题</td>
-			</tr>
-			<tr>
-			<td>google-collect-snapshot-20080321.jar</td>
-			<td>用于BiHashMap</td>
-			</tr>
-			<tr>
-			<td>json-20141113.jar</td>
-			<td>用于程序的配置</td>
-			</tr>
-			<tr>
-			<td>c.css</td>
-			<td>John Otander的GitHub Style Markdown CSS</td>
-			</tr>
-			</tbody>
-			</table>
-			<h1 id="-">版权</h1>
-			<p>Copyright© 2021 Team 3</p>
-		</div>
-	</body>
+			</code></pre>
+    <table>
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>TextDisplay.jar</td>
+            <td>程序本体，可执行文件</td>
+        </tr>
+        <tr>
+            <td>serverSideProfile.bin</td>
+            <td>您当前的个人资料</td>
+        </tr>
+        <tr>
+            <td>config.json</td>
+            <td>程序的配置</td>
+        </tr>
+        <tr>
+            <td>log.txt</td>
+            <td>运行时日志</td>
+        </tr>
+        <tr>
+            <td>lang（文件夹）</td>
+            <td>存储所有语言包的文件夹</td>
+        </tr>
+        <tr>
+            <td>help（文件夹）</td>
+            <td>存储所有自述文件（帮助）文件的文件夹</td>
+        </tr>
+        </tbody>
+    </table>
+    <h1 id="-">卸载</h1>
+    <p>要卸载该程序，只需删除整个文件夹，就可以了。</p>
+    <h1 id="-">更新日志</h1>
+    <h2 id="1-2-">1.2-release</h2>
+    <ol>
+        <li>实施了一个新的记录器</li>
+        <li>错误修复</li>
+    </ol>
+    <h2 id="1-1-">1.1-release</h2>
+    <ol>
+        <li>添加了对调整垂直间距，反转垂直文本，更改图像适合方法的支持</li>
+        <li>应用色彩主题“吸血鬼”</li>
+        <li>预览个人配置时性能得到改善</li>
+        <li>错误修复</li>
+    </ol>
+    <h2 id="1-0-">1.0-release</h2>
+    <ol>
+        <li>原始版本</li>
+    </ol>
+    <h1 id="-">依赖</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>commons-io-2.6.jar</td>
+            <td>用于文件输入和输出</td>
+        </tr>
+        <tr>
+            <td>commons-lang3-3.12.0.jar <br> commons-text-1.9.jar</td>
+            <td>用于 HTML 字符转义</td>
+        </tr>
+        <tr>
+            <td>darcula.jar</td>
+            <td>颜色主题</td>
+        </tr>
+        <tr>
+            <td>guava-31.1-jre.jar</td>
+            <td>用于BiHashMap</td>
+        </tr>
+        <tr>
+            <td>json-20141113.jar</td>
+            <td>用于程序的配置</td>
+        </tr>
+        <tr>
+            <td>c.css</td>
+            <td>John Otander的GitHub Style Markdown CSS</td>
+        </tr>
+        </tbody>
+    </table>
+    <h1 id="-">版权</h1>
+    <p>Copyright© 2022 Team 3</p>
+</div>
+</body>
 </html>

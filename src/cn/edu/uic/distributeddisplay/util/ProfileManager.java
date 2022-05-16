@@ -82,7 +82,8 @@ public class ProfileManager {
                                 if (!currentProfileRow.isOnline) {
                                     rmiServerController.getServerDashboardController().updateConsole(String.format(
                                             "<div style=\"background-color: orange; color: white;\">%s %s[%s] %s</div>",
-                                            new Date(), LangManger.get("node"), StringEscapeUtils.escapeHtml3(row.getKey()),
+                                            new Date(), LangManger.get("node"),
+                                            StringEscapeUtils.escapeHtml3(row.getKey()),
                                             LangManger.get("error_lost_connection")));
                                 }
                             }

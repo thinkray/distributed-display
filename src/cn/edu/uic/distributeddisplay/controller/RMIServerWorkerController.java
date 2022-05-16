@@ -60,7 +60,8 @@ public class RMIServerWorkerController extends UnicastRemoteObject implements RM
             currentProfileRow.lastSeen = new Date(0L);
             currentProfileRow.isOnline = false;
             rmiServerController.getServerDashboardController().updateConsole(String.format("<div style=\"color:yellow"
-                    + "\">%s %s[%s] %s</div>", new Date(), LangManger.get("node"), StringEscapeUtils.escapeHtml3(nodeName),
+                            + "\">%s %s[%s] %s</div>", new Date(), LangManger.get("node"),
+                    StringEscapeUtils.escapeHtml3(nodeName),
                     LangManger.get("is_offline")));
             return true;
         }
@@ -74,7 +75,8 @@ public class RMIServerWorkerController extends UnicastRemoteObject implements RM
         }
 
         rmiServerController.getServerDashboardController().updateConsole(String.format("<div style=\"color:lime" +
-                "\">%s %s[%s]</div>", new Date(), LangManger.get("distributed_to_node"), StringEscapeUtils.escapeHtml3(nodeName)));
+                        "\">%s %s[%s]</div>", new Date(), LangManger.get("distributed_to_node"),
+                StringEscapeUtils.escapeHtml3(nodeName)));
 
         currentProfileRow.newConfigAvailable = false;
         return new NodeSideProfile(currentProfileRow.serverSideProfile);
