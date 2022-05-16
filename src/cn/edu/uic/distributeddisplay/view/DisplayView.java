@@ -23,6 +23,8 @@ public class DisplayView extends JFrame {
     private JLabel backgroundLabel;
 
     public DisplayView() {
+        initComponents();
+
         // Prevent close
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -37,6 +39,14 @@ public class DisplayView extends JFrame {
         getContentPane().setBackground(Color.BLACK);
     }
 
+    private void initComponents()
+    {
+        textPanel = new JPanel();
+        add(textPanel);
+        backgroundLabel = new JLabel();
+        add(backgroundLabel);
+    }
+
     private void initRightClickMenu() {
         rightClickMenu = new JPopupMenu();
         // statusItem = new JMenuItem(LangManger.get("status:") + LangManger.get("not_connected"));
@@ -49,22 +59,6 @@ public class DisplayView extends JFrame {
         rightClickMenu.addSeparator();
         rightClickMenu.add(disconnectItem);
         rightClickMenu.add(exitItem);
-    }
-
-    public void setTextPanel(JPanel textPanel) {
-        if (this.textPanel != null) {
-            remove(this.textPanel);
-        }
-        this.textPanel = textPanel;
-        add(textPanel, 0);
-    }
-
-    public void setBackgroundLabel(JLabel backgroundLabel) {
-        if (this.backgroundLabel != null) {
-            remove(this.backgroundLabel);
-        }
-        this.backgroundLabel = backgroundLabel;
-        add(backgroundLabel);
     }
 
     public JPopupMenu getRightClickMenu() {

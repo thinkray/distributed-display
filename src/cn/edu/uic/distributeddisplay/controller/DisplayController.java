@@ -115,31 +115,8 @@ public class DisplayController {
     }
 
     private void renderView() {
-        // Initialize the text panel
-        JPanel textPanel = new JPanel();
-        textPanel.setBackground(new Color(0, 0, 0, 0));
-        setTextPanelBounds(textPanel, displayModel.getScreenSize());
-
-        // Load labels into the frame
-        ArrayList<JLabel> labels = displayModel.getLabelsHTML();
-        for (JLabel label : labels) {
-            textPanel.add(label);
-        }
-
-        // Define the orientation of the layout according to the profile
-        int rows = 1, cols = 1;
-        if (displayModel.getProfile().isHorizontal()) {
-            rows = labels.size();
-        } else {
-            cols = labels.size();
-        }
-        textPanel.setLayout(new GridLayout(rows, cols, 0, 0));
-
-        // Add text overlay
-        displayView.setTextPanel(textPanel);
-
-        // Add background
-        displayView.setBackgroundLabel(renderBackground());
+        renderTextPanel();
+        renderBackground();
 
         displayView.revalidate();
         displayView.repaint();
@@ -157,13 +134,42 @@ public class DisplayController {
                 (int) (screenSize.getWidth() * (1 - 2 * hMargin)), (int) (screenSize.getHeight() * (1 - 2 * vMargin)));
     }
 
-    private JLabel renderBackground() {
+    private void renderTextPanel() {
+        // Initialize the text panel
+        JPanel textPanel = displayView.getTextPanel();
+        if (textPanel == null) {
+            textPanel = new JPanel();
+        } else {
+            textPanel.removeAll();
+        }
+        textPanel.setBackground(new Color(0, 0, 0, 0));
+        setTextPanelBounds(textPanel, displayModel.getScreenSize());
+
+        // Load labels into the frame
+        ArrayList<JLabel> labels = displayModel.getLabelsHTML();
+        for (JLabel label : labels) {
+            textPanel.add(label);
+        }
+
+        // Define the orientation of the layout according to the profile
+        int rows = 1, cols = 1;
+        if (displayModel.getProfile().isHorizontal()) {
+            rows = labels.size();
+        } else {
+            cols = labels.size();
+        }
+        textPanel.setLayout(new GridLayout(rows, cols, 0, 0));
+    }
+
+    private void renderBackground() {
+        JLabel backgroundLabel = displayView.getBackgroundLabel();
+        backgroundLabel.removeAll();
+
         Dimension screenSize = displayModel.getScreenSize();
 
         // Load Background image
         ImageIcon img = displayModel.getProfile().getBackgroundImage();
 
-        JLabel imgLabel;
         if (img != null) {
             // Accommodate different fitting styles
             int width = 0, height = 0;
@@ -191,13 +197,17 @@ public class DisplayController {
                     break;
             }
             Image backgroundImg = img.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-            imgLabel = new JLabel("", new ImageIcon(backgroundImg), JLabel.CENTER);
+
+            backgroundLabel.setText("");
+            backgroundLabel.setIcon(new ImageIcon(backgroundImg));
+            backgroundLabel.setHorizontalAlignment(JLabel.CENTER);
         } else {
-            imgLabel = new JLabel("", JLabel.CENTER);
+            backgroundLabel.setText("");
+            backgroundLabel.setIcon(null);
+            backgroundLabel.setHorizontalAlignment(JLabel.CENTER);
         }
 
-        imgLabel.setBounds(0, 0, (int) screenSize.getWidth(), (int) screenSize.getHeight());
-        return imgLabel;
+        backgroundLabel.setBounds(0, 0, (int) screenSize.getWidth(), (int) screenSize.getHeight());
     }
 
     private void closeView() {
