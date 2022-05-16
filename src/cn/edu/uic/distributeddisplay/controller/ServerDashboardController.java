@@ -71,9 +71,8 @@ public class ServerDashboardController {
             JOptionPane.showMessageDialog(null, LangManger.get("lang_update_msg"));
         });
         serverMainWindowView.getAboutItem().addActionListener(e -> JOptionPane.showMessageDialog(null,
-                "Version 1.2" + "\n" + "Copyright " + "\u00A9 2022 Team 3 (COMP4130 in 2022 Spring, UIC)\n" +
-                        "You may distribute the project under the MIT License.", LangManger.get("about"),
-                JOptionPane.INFORMATION_MESSAGE));
+                "Version 1.2" + "\n" + "Copyright " + "\u00A9 2022 Team 3 (COMP4130 in 2022 Spring, UIC)\n",
+                LangManger.get("about"), JOptionPane.INFORMATION_MESSAGE));
     }
 
     private void initMainWindowInfoPanel() {
@@ -170,8 +169,7 @@ public class ServerDashboardController {
                     new JFileChooser(serverMainWindowView.getDisplayConfigPanel().getImageDirectoryTextField().getText());
             fc.setAcceptAllFileFilterUsed(false);
             fc.addChoosableFileFilter(new FileNameExtensionFilter(LangManger.get("image") + "(*.jpg, *.jpeg, *.png)",
-                    "jpg", "JPG", "jpeg"
-                    , "JPEG", "png", "PNG"));
+                    "jpg", "JPG", "jpeg", "JPEG", "png", "PNG"));
             if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 displayConfigPanel.getImageDirectoryTextField().setText(fc.getSelectedFile().getPath());
             }
