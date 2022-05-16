@@ -81,7 +81,7 @@ public class ProfileManager {
                                         currentDate.toInstant()).toMillis() < 5000;
                                 if (!currentProfileRow.isOnline) {
                                     rmiServerController.getServerDashboardController().updateConsole(String.format(
-                                            "<div style=\"background-color: orange; color: white;\">%s %s [%s] </div>",
+                                            "<div style=\"background-color: orange; color: white;\">%s %s[%s] %s</div>",
                                             new Date(), LangManger.get("node"), StringEscapeUtils.escapeHtml3(row.getKey()),
                                             LangManger.get("error_lost_connection")));
                                 }

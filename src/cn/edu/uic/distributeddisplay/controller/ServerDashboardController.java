@@ -150,10 +150,14 @@ public class ServerDashboardController {
             if (rmiServerController.isRunning()) {
                 if (rmiServerController.stopServer()) {
                     serverConfigPanel.getListenButton().setText(LangManger.get("start"));
+                    serverConfigPanel.getListenAddressTextField().setEnabled(true);
+                    serverConfigPanel.getListenPortJSpinner().setEnabled(true);
                 }
             } else {
                 if (rmiServerController.startServer(serverConfigPanel.getListenAddressTextField().getText(),
                         (Integer) serverConfigPanel.getListenPortJSpinner().getValue())) {
+                    serverConfigPanel.getListenAddressTextField().setEnabled(false);
+                    serverConfigPanel.getListenPortJSpinner().setEnabled(false);
                     serverConfigPanel.getListenButton().setText(LangManger.get("stop"));
                 }
             }
