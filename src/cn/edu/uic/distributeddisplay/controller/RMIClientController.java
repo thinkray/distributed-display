@@ -5,9 +5,7 @@ import cn.edu.uic.distributeddisplay.util.DefaultConst;
 import cn.edu.uic.distributeddisplay.util.LangManger;
 import cn.edu.uic.distributeddisplay.view.NodeConfigView;
 
-import java.awt.*;
 import java.net.MalformedURLException;
-import java.rmi.AccessException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -85,7 +83,8 @@ public class RMIClientController {
                                     displayController.setNodeStatus(DefaultConst.CLIENT_RETRYING);
                                     currentMode = DefaultConst.CLIENT_MODE_RECHECK_IN;
                                 } else if (severRespond == DefaultConst.SESSION_RENEWED_NEW_CONFIG_AVAILABLE) {
-                                    NodeSideProfile newProfile = rmiServerWorkerInterface.getConfig(nodeName, sessionUUID);
+                                    NodeSideProfile newProfile = rmiServerWorkerInterface.getConfig(nodeName,
+                                            sessionUUID);
                                     displayController.setProfile(newProfile);
                                 }
                             }

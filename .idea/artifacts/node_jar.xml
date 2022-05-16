@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="node:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/node</output-path>
+    <root id="archive" name="distributed-display.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/manifests/node/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="distributed-display" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/json-20141113.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-io-2.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/guava-31.1-jre.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/darcula.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-text-1.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-lang3-3.12.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/annotations-17.0.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
