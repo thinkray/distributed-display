@@ -82,7 +82,7 @@
 	"cannot_listen_on": "無法接聽",
 	"server_stopped": "伺服器已停止",
 	"ready": "已就緒",
-	"applied_to_node": "將配置文件應用到節點",
+	"applied_to_node": "已保存節點配置",
 	"cannot_save_profile_list": "無法保存配置文件列表。",
 	"profile_list_saved": "配置文件列表已保存。",
 	"error_empty_node_name": "節點名不能為空",

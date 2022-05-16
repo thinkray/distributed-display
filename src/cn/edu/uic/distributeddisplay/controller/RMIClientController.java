@@ -99,7 +99,7 @@ public class RMIClientController {
                             } else if ((currentMode == DefaultConst.CLIENT_MODE_RECHECK_IN) || (currentMode == DefaultConst.CLIENT_MODE_HEARTBEAT)) {
                                 displayController.setNodeStatus(DefaultConst.CLIENT_RETRYING);
                                 // Retry after 10 seconds (make sure the current session already expired)
-                                Thread.sleep(10000);
+                                Thread.sleep(7000);
                                 currentMode = DefaultConst.CLIENT_MODE_RECHECK_IN;
                             }
                         }

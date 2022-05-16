@@ -82,7 +82,7 @@
 	"cannot_listen_on": "无法监听于",
 	"server_stopped": "服务器已停止",
 	"ready": "已就绪",
-	"applied_to_node": "已下发配置到",
+	"applied_to_node": "已保存节点配置",
 	"cannot_save_profile_list": "无法保存配置列表。",
 	"profile_list_saved": "配置列表已保存。",
 	"error_empty_node_name": "节点名字不能为空",
