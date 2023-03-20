@@ -1,18 +1,12 @@
-/**
- * Run the main method in this class to start the application
- *
- * @author Team 3
- */
-package cn.edu.uic.distributeddisplay.server;
+package cn.edu.uic.distributeddisplay.client.main;
 
+import cn.edu.uic.distributeddisplay.client.controller.ClientGUIController;
 import cn.edu.uic.distributeddisplay.core.util.CommonUtils;
 import cn.edu.uic.distributeddisplay.core.util.Logger;
-import cn.edu.uic.distributeddisplay.server.controller.ServerDashboardController;
 
 import javax.swing.*;
 
-public class Server {
-
+public class Client {
     public static void main(String[] args) {
         // Initialize the logger
         Logger.initLogger("log.txt");
@@ -22,8 +16,8 @@ public class Server {
             CommonUtils.initUI();
             CommonUtils.initManagers();
 
-            // Start Dashboard
-            new ServerDashboardController();
+            // Start GUI
+            new ClientGUIController();
         });
     }
 }

@@ -13,6 +13,8 @@ import org.json.JSONObject;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 
 public class LangManger {
 
@@ -21,21 +23,20 @@ public class LangManger {
 
     public static void initLangManager() {
         lang = ConfigManager.getConfigEntry("lang");
-        File langFile = new File(".." + File.separator + "lang" + File.separator + lang + ".json");
         try {
-            String jsonString = FileUtils.readFileToString(langFile, "UTF-8");
+            byte[] langResource = LangManger.class.getClassLoader().getResourceAsStream("lang/" + lang + ".json").readAllBytes();
+            String jsonString = new String(langResource, StandardCharsets.UTF_8);
             langTable = new JSONObject(jsonString);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            String errMsg = "Unable to read language pack at " +
-                    langFile.getAbsolutePath() + ".\nPlease consider reinstalling the program!";
+            String errMsg = "Unable to read language pack." +
+                    ".\nPlease consider reinstalling the program!";
             JOptionPane.showMessageDialog(null, errMsg, "Error",
                     JOptionPane.ERROR_MESSAGE);
             Logger.logError(e.getMessage() + " | " + errMsg);
             System.exit(1);
         } catch (JSONException e) {
-            String errMsg = "Error occurred while creating the language " +
-                    "table.\nPlease verify the language file at " + langFile.getAbsolutePath();
+            String errMsg = "Error occurred while creating the language table.";
             JOptionPane.showMessageDialog(null, errMsg);
             Logger.logError(e.getMessage() + " | " + errMsg);
             System.exit(1);
